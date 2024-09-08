@@ -1,10 +1,13 @@
 {
-  "name": "saas-starter",
-  "version": "0.3.1",
-  "private": true,
+  "name": "wordwizzz",
+  "description": "WordWizzz word learning NextJS application",
+  "version": "0.0.1",
+  "timetag": "240908-2223",
+  "timestamp": "2024.09.08 22:23 +0300",
+  "changed": "2024.08.22, 19:22",
   "author": {
-    "name": "mickasmt",
-    "url": "https://twitter.com/mickasmt"
+    "name": "Igor Lilliputten",
+    "url": "https://lilliputten.com"
   },
   "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276",
   "dependencies": {
