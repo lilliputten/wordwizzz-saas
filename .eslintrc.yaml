@@ -173,11 +173,10 @@ overrides:
       react/no-unknown-property:
         - 'error'
         - ignore:
-          - 'tw'
-          - 'stroke-width'
-          - 'stroke-linecap'
-          - 'stroke-linejoin'
-
+            - 'tw'
+            - 'stroke-width'
+            - 'stroke-linecap'
+            - 'stroke-linejoin'
 
   - # Raw js files (from root)...
     files: '**/*.js'
