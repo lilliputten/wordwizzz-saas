@@ -1,10 +1,10 @@
 <a href="https://next-saas-stripe-starter.vercel.app">
-  <img alt="SaaS Starter" src="public/_static/og.jpg">
+  <img alt="WordWizzz!" src="public/_static/og.jpg">
   <h1 align="center">Next SaaS Stripe Starter</h1>
 </a>
 
 <p align="center">
-  Start at full speed with SaaS Starter !
+  Start at full speed with WordWizzz! !
 </p>
 
 <p align="center">
@@ -26,7 +26,7 @@
 
 Empower your next project with the stack of Next.js 14, Prisma, Neon, Auth.js v5, Resend, React Email, Shadcn/ui, and Stripe.
 <br/>
-All seamlessly integrated with the SaaS Starter to accelerate your development and saas journey.
+All seamlessly integrated with the WordWizzz! to accelerate your development and saas journey.
 
 ## Installation
 
@@ -60,7 +60,7 @@ cp .env.example .env.local
 pnpm run dev
 ```
 
-> [!NOTE]  
+> [!NOTE]
 > I use [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) package for update this project.
 >
 > Use this command for update your project: `ncu -i --format group`
