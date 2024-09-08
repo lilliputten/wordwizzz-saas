@@ -1,4 +1,3 @@
-import { signIn } from "next-auth/react";
 import {
   Dispatch,
   SetStateAction,
@@ -6,11 +5,58 @@ import {
   useMemo,
   useState,
 } from "react";
+// import { BuiltInProviderType } from "@auth-core";
+import { signIn } from "next-auth/react";
 
-import { Icons } from "@/components/shared/icons";
+import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
-import { siteConfig } from "@/config/site";
+import { IconType, Icons } from "@/components/shared/icons";
+
+type TSignInParameters = Parameters<typeof signIn>;
+type TProvider = TSignInParameters[0];
+
+interface OAuthSignInButtonProps {
+  signInClicked?: boolean;
+  setSignInClicked: Dispatch<SetStateAction<boolean>>;
+  setShowSignInModal: Dispatch<SetStateAction<boolean>>;
+  provider: TProvider; // BuiltInProviderType;
+  ProviderIcon: IconType; // React.FC;
+  text: string;
+}
+
+function OAuthSignInButton(props: OAuthSignInButtonProps) {
+  const {
+    // prettier-ignore
+    signInClicked,
+    setSignInClicked,
+    setShowSignInModal,
+    provider,
+    ProviderIcon,
+    text,
+  } = props;
+  return (
+    <Button
+      variant="default"
+      disabled={signInClicked}
+      onClick={() => {
+        setSignInClicked(true);
+        signIn(provider, { redirect: false }).then(() =>
+          setTimeout(() => {
+            setShowSignInModal(false);
+          }, 400),
+        );
+      }}
+    >
+      {signInClicked ? (
+        <Icons.spinner className="mr-2 size-4 animate-spin" />
+      ) : (
+        <ProviderIcon className="mr-2 size-4" />
+      )}{" "}
+      {text}
+    </Button>
+  );
+}
 
 function SignInModal({
   showSignInModal,
@@ -36,6 +82,31 @@ function SignInModal({
         </div>
 
         <div className="flex flex-col space-y-4 bg-secondary/50 px-4 py-8 md:px-16">
+          <OAuthSignInButton
+            signInClicked={signInClicked}
+            setSignInClicked={setSignInClicked}
+            setShowSignInModal={setShowSignInModal}
+            provider="github"
+            ProviderIcon={Icons.github}
+            text="Sign In with Github"
+          />
+          <OAuthSignInButton
+            signInClicked={signInClicked}
+            setSignInClicked={setSignInClicked}
+            setShowSignInModal={setShowSignInModal}
+            provider="yandex"
+            ProviderIcon={Icons.yandex}
+            text="Sign In with Yandex"
+          />
+          <OAuthSignInButton
+            signInClicked={signInClicked}
+            setSignInClicked={setSignInClicked}
+            setShowSignInModal={setShowSignInModal}
+            provider="google"
+            ProviderIcon={Icons.google}
+            text="Sign In with Google"
+          />
+          {/*
           <Button
             variant="default"
             disabled={signInClicked}
@@ -55,6 +126,7 @@ function SignInModal({
             )}{" "}
             Sign In with Google
           </Button>
+          */}
         </div>
       </div>
     </Modal>

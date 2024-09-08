@@ -82,7 +82,7 @@ export default async function HeroLanding() {
               "px-5",
             )}
           >
-            <Icons.gitHub className="mr-2 size-4" />
+            <Icons.github className="mr-2 size-4" />
             <p>
               <span className="hidden sm:inline-block">Star on</span> GitHub{" "}
               <span className="font-semibold">{nFormatter(stars)}</span>

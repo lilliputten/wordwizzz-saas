@@ -6,16 +6,7 @@
     "name": "mickasmt",
     "url": "https://twitter.com/mickasmt"
   },
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "turbo": "next dev --turbo",
-    "start": "next start",
-    "lint": "next lint",
-    "preview": "next build && next start",
-    "postinstall": "prisma generate",
-    "email": "email dev --dir emails --port 3333"
-  },
+  "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276",
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
     "@hookform/resolvers": "^3.9.0",
@@ -117,5 +108,14 @@
     "typescript": "5.5.3",
     "unist-util-visit": "^5.0.0"
   },
-  "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276"
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "turbo": "next dev --turbo",
+    "start": "next start",
+    "lint": "next lint",
+    "preview": "next build && next start",
+    "postinstall": "prisma generate",
+    "email": "email dev --dir emails --port 3333"
+  }
 }

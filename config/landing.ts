@@ -72,7 +72,7 @@ export const features: FeatureLdg[] = [
     description:
       "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
     link: "/",
-    icon: "gitHub",
+    icon: "github",
   },
   {
     title: "Feature 4",

@@ -35,6 +35,9 @@ import {
 
 export type Icon = LucideIcon;
 
+export type IconProps = LucideProps;
+export type IconType = (p: IconProps) => JSX.Element;
+
 export const Icons = {
   add: Plus,
   arrowRight: ArrowRight,
@@ -48,7 +51,7 @@ export const Icons = {
   copy: Copy,
   dashboard: LayoutPanelLeft,
   ellipsis: MoreVertical,
-  gitHub: ({ ...props }: LucideProps) => (
+  github: ({ ...props }: IconProps) => (
     <svg
       aria-hidden="true"
       focusable="false"
@@ -65,7 +68,39 @@ export const Icons = {
       ></path>
     </svg>
   ),
-  google: ({ ...props }: LucideProps) => (
+  yandex: ({ ...props }: IconProps) => (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="fab"
+      data-icon="yandex"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 512"
+      {...props}
+    >
+      {/*!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.*/}
+      <path d="M153.1 315.8L65.7 512H2l96-209.8c-45.1-22.9-75.2-64.4-75.2-141.1C22.7 53.7 90.8 0 171.7 0H254v512h-55.1V315.8h-45.8zm45.8-269.3h-29.4c-44.4 0-87.4 29.4-87.4 114.6 0 82.3 39.4 108.8 87.4 108.8h29.4V46.5z" />
+      {/*
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="yandex"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 488 512"
+          {...props}
+        >
+          <path
+            d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+            fill="currentColor"
+          />
+        </svg>
+        */}
+    </svg>
+  ),
+  google: ({ ...props }: IconProps) => (
     <svg
       aria-hidden="true"
       focusable="false"
@@ -82,7 +117,7 @@ export const Icons = {
       />
     </svg>
   ),
-  nextjs: ({ ...props }: LucideProps) => (
+  nextjs: ({ ...props }: IconProps) => (
     <svg
       aria-hidden="true"
       focusable="false"
@@ -115,7 +150,7 @@ export const Icons = {
   spinner: Loader2,
   sun: SunMedium,
   trash: Trash,
-  twitter: ({ ...props }: LucideProps) => (
+  twitter: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
