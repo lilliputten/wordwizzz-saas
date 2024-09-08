@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { Check, List } from "lucide-react";
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useState } from "react";
-import { Drawer } from "vaul";
+import { Check, List } from 'lucide-react';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useState } from 'react';
+import { Drawer } from 'vaul';
 
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
-import { BLOG_CATEGORIES } from "@/config/blog";
-import { cn } from "@/lib/utils";
+import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
+import { BLOG_CATEGORIES } from '@/config/blog';
+import { cn } from '@/lib/utils';
 
 export function BlogHeaderLayout() {
   const [open, setOpen] = useState(false);
@@ -23,12 +23,9 @@ export function BlogHeaderLayout() {
     <>
       <MaxWidthWrapper className="py-6 md:pb-8 md:pt-10">
         <div className="max-w-screen-sm">
-          <h1 className="font-heading text-3xl md:text-4xl">
-            {data?.title || "Blog"}
-          </h1>
+          <h1 className="font-heading text-3xl md:text-4xl">{data?.title || 'Blog'}</h1>
           <p className="mt-3.5 text-base text-muted-foreground md:text-lg">
-            {data?.description ||
-              "Latest news and updates from Next SaaS Starter."}
+            {data?.description || 'Latest news and updates from Next SaaS Starter.'}
           </p>
         </div>
 
@@ -59,7 +56,10 @@ export function BlogHeaderLayout() {
           <List className="size-[18px]" />
           <p className="ml-2.5 text-sm font-medium">Categories</p>
         </Drawer.Trigger>
-        <Drawer.Overlay className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm" onClick={closeDrawer} />
+        <Drawer.Overlay
+          className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm"
+          onClick={closeDrawer}
+        />
         <Drawer.Portal>
           <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 mt-24 overflow-hidden rounded-t-[10px] border bg-background">
             <div className="sticky top-0 z-20 flex w-full items-center justify-center bg-inherit">
@@ -83,12 +83,7 @@ export function BlogHeaderLayout() {
                   mobile
                 />
               ))}
-              <CategoryLink
-                title="Guides"
-                href="/guides"
-                active={false}
-                mobile
-              />
+              <CategoryLink title="Guides" href="/guides" active={false} mobile />
             </ul>
           </Drawer.Content>
           <Drawer.Overlay />
@@ -123,10 +118,9 @@ const CategoryLink = ({
       ) : (
         <li
           className={cn(
-            "-mb-px border-b-2 border-transparent font-medium text-muted-foreground hover:text-foreground",
+            '-mb-px border-b-2 border-transparent font-medium text-muted-foreground hover:text-foreground',
             {
-              "border-purple-600 text-foreground dark:border-purple-400/80":
-                active,
+              'border-purple-600 text-foreground dark:border-purple-400/80': active,
             },
           )}
         >

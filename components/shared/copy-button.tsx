@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
-import { Icons } from "./icons";
+import { Icons } from './icons';
 
 interface CopyButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   value: string;
@@ -30,18 +30,14 @@ export function CopyButton({ value, className, ...props }: CopyButtonProps) {
       size="sm"
       variant="ghost"
       className={cn(
-        "z-10 size-[30px] border border-white/25 bg-zinc-900 p-1.5 text-primary-foreground hover:text-foreground dark:text-foreground",
+        'z-10 size-[30px] border border-white/25 bg-zinc-900 p-1.5 text-primary-foreground hover:text-foreground dark:text-foreground',
         className,
       )}
       onClick={() => handleCopyValue(value)}
       {...props}
     >
       <span className="sr-only">Copy</span>
-      {hasCopied ? (
-        <Icons.check className="size-4" />
-      ) : (
-        <Icons.copy className="size-4" />
-      )}
+      {hasCopied ? <Icons.check className="size-4" /> : <Icons.copy className="size-4" />}
     </Button>
   );
 }

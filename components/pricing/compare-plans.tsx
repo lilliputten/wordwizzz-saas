@@ -1,20 +1,16 @@
-import { PlansRow } from "@/types";
-import { CircleCheck, Info } from "lucide-react";
+import { PlansRow } from '@/types';
+import { CircleCheck, Info } from 'lucide-react';
 
-import { comparePlans, plansColumns } from "@/config/subscriptions";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { HeaderSection } from "@/components/shared/header-section";
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
+import { comparePlans, plansColumns } from '@/config/subscriptions';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { HeaderSection } from '@/components/shared/header-section';
+import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
 
 export function ComparePlans() {
   const renderCell = (value: string | boolean | null) => {
-    if (value === null) return "—";
-    if (typeof value === "boolean")
-      return value ? <CircleCheck className="mx-auto size-[22px]" /> : "—";
+    if (value === null) return '—';
+    if (typeof value === 'boolean')
+      return value ? <CircleCheck className="mx-auto size-[22px]" /> : '—';
     return value;
   };
 
@@ -45,22 +41,17 @@ export function ComparePlans() {
             {comparePlans.map((row: PlansRow, index: number) => (
               <tr key={index} className="divide-x divide-border border">
                 <td
-                  data-tip={row.tooltip ? row.tooltip : ""}
+                  data-tip={row.tooltip ? row.tooltip : ''}
                   className="sticky left-0 bg-accent md:bg-transparent"
                 >
                   <div className="flex items-center justify-between space-x-2 p-4">
-                    <span className="text-[15px] font-medium lg:text-base">
-                      {row.feature}
-                    </span>
+                    <span className="text-[15px] font-medium lg:text-base">{row.feature}</span>
                     {row.tooltip && (
                       <Popover>
                         <PopoverTrigger className="rounded p-1 hover:bg-muted">
                           <Info className="size-[18px] text-muted-foreground" />
                         </PopoverTrigger>
-                        <PopoverContent
-                          side="top"
-                          className="max-w-80 p-3 text-sm"
-                        >
+                        <PopoverContent side="top" className="max-w-80 p-3 text-sm">
                           {row.tooltip}
                         </PopoverContent>
                       </Popover>

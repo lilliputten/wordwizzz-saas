@@ -3,38 +3,38 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from '@/components/ui/accordion';
 
-import { HeaderSection } from "../shared/header-section";
+import { HeaderSection } from '../shared/header-section';
 
 const pricingFaqData = [
   {
-    id: "item-1",
-    question: "What is the cost of the free plan?",
+    id: 'item-1',
+    question: 'What is the cost of the free plan?',
     answer:
       "Our free plan is completely free, with no monthly or annual charges. It's a great way to get started and explore our basic features.",
   },
   {
-    id: "item-2",
-    question: "How much does the Basic Monthly plan cost?",
+    id: 'item-2',
+    question: 'How much does the Basic Monthly plan cost?',
     answer:
-      "The Basic Monthly plan is priced at $15 per month. It provides access to our core features and is billed on a monthly basis.",
+      'The Basic Monthly plan is priced at $15 per month. It provides access to our core features and is billed on a monthly basis.',
   },
   {
-    id: "item-3",
-    question: "What is the price of the Pro Monthly plan?",
+    id: 'item-3',
+    question: 'What is the price of the Pro Monthly plan?',
     answer:
-      "The Pro Monthly plan is available for $25 per month. It offers advanced features and is billed on a monthly basis for added flexibility.",
+      'The Pro Monthly plan is available for $25 per month. It offers advanced features and is billed on a monthly basis for added flexibility.',
   },
   {
-    id: "item-4",
-    question: "Do you offer any annual subscription plans?",
+    id: 'item-4',
+    question: 'Do you offer any annual subscription plans?',
     answer:
-      "Yes, we offer annual subscription plans for even more savings. The Basic Annual plan is $144 per year, and the Pro Annual plan is $300 per year.",
+      'Yes, we offer annual subscription plans for even more savings. The Basic Annual plan is $144 per year, and the Pro Annual plan is $300 per year.',
   },
   {
-    id: "item-5",
-    question: "Is there a trial period for the paid plans?",
+    id: 'item-5',
+    question: 'Is there a trial period for the paid plans?',
     answer:
       "We offer a 14-day free trial for both the Pro Monthly and Pro Annual plans. It's a great way to experience all the features before committing to a paid subscription.",
   },

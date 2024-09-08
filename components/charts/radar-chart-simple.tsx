@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { TrendingUp } from "lucide-react";
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
+import { TrendingUp } from 'lucide-react';
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from 'recharts';
 
 import {
   Card,
@@ -10,27 +10,27 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from '@/components/ui/chart';
 
 const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 273 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
+  { month: 'January', desktop: 186 },
+  { month: 'February', desktop: 305 },
+  { month: 'March', desktop: 237 },
+  { month: 'April', desktop: 273 },
+  { month: 'May', desktop: 209 },
+  { month: 'June', desktop: 214 },
 ];
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
+    label: 'Desktop',
+    color: 'hsl(var(--chart-1))',
   },
 } satisfies ChartConfig;
 
@@ -52,11 +52,7 @@ export function RadarChartSimple() {
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <PolarAngleAxis dataKey="month" />
             <PolarGrid />
-            <Radar
-              dataKey="desktop"
-              fill="var(--color-desktop)"
-              fillOpacity={0.6}
-            />
+            <Radar dataKey="desktop" fill="var(--color-desktop)" fillOpacity={0.6} />
           </RadarChart>
         </ChartContainer>
       </CardContent>
@@ -64,9 +60,7 @@ export function RadarChartSimple() {
         <div className="flex items-center gap-2 font-medium leading-none">
           Trending up by 5.2% this month <TrendingUp className="size-4" />
         </div>
-        <div className="leading-none text-muted-foreground">
-          January - June 2024
-        </div>
+        <div className="leading-none text-muted-foreground">January - June 2024</div>
       </CardFooter>
     </Card>
   );

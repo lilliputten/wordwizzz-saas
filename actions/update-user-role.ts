@@ -1,11 +1,11 @@
-"use server";
+'use server';
 
-import { revalidatePath } from "next/cache";
-import { auth } from "@/auth";
-import { UserRole } from "@prisma/client";
+import { revalidatePath } from 'next/cache';
+import { auth } from '@/auth';
+import { UserRole } from '@prisma/client';
 
-import { prisma } from "@/lib/db";
-import { userRoleSchema } from "@/lib/validations/user";
+import { prisma } from '@/lib/db';
+import { userRoleSchema } from '@/lib/validations/user';
 
 export type FormData = {
   role: UserRole;
@@ -16,7 +16,7 @@ export async function updateUserRole(userId: string, data: FormData) {
     const session = await auth();
 
     if (!session?.user || session?.user.id !== userId) {
-      throw new Error("Unauthorized");
+      throw new Error('Unauthorized');
     }
 
     const { role } = userRoleSchema.parse(data);
@@ -31,10 +31,10 @@ export async function updateUserRole(userId: string, data: FormData) {
       },
     });
 
-    revalidatePath("/dashboard/settings");
-    return { status: "success" };
+    revalidatePath('/dashboard/settings');
+    return { status: 'success' };
   } catch (error) {
     // console.log(error)
-    return { status: "error" };
+    return { status: 'error' };
   }
 }

@@ -1,24 +1,20 @@
-"use client";
+'use client';
 
-import { siteConfig } from "@/config/site";
-import { Button } from "@/components/ui/button";
-import { SectionColumns } from "@/components/dashboard/section-columns";
-import { useDeleteAccountModal } from "@/components/modals/delete-account-modal";
-import { Icons } from "@/components/shared/icons";
+import { siteConfig } from '@/config/site';
+import { Button } from '@/components/ui/button';
+import { SectionColumns } from '@/components/dashboard/section-columns';
+import { useDeleteAccountModal } from '@/components/modals/delete-account-modal';
+import { Icons } from '@/components/shared/icons';
 
 export function DeleteAccountSection() {
-  const { setShowDeleteAccountModal, DeleteAccountModal } =
-    useDeleteAccountModal();
+  const { setShowDeleteAccountModal, DeleteAccountModal } = useDeleteAccountModal();
 
   const userPaidPlan = true;
 
   return (
     <>
       <DeleteAccountModal />
-      <SectionColumns
-        title="Delete Account"
-        description="This is a danger zone - Be careful !"
-      >
+      <SectionColumns title="Delete Account" description="This is a danger zone - Be careful !">
         <div className="flex flex-col gap-4 rounded-xl border border-red-400 p-4 dark:border-red-900">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
@@ -35,8 +31,8 @@ export function DeleteAccountSection() {
             </div>
             <div className="text-balance text-sm text-muted-foreground">
               Permanently delete your {siteConfig.name} account
-              {userPaidPlan ? " and your subscription" : ""}. This action cannot
-              be undone - please proceed with caution.
+              {userPaidPlan ? ' and your subscription' : ''}. This action cannot be undone - please
+              proceed with caution.
             </div>
           </div>
           <div className="flex items-center gap-2">

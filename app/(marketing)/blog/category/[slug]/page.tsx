@@ -1,10 +1,10 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { allPosts } from "contentlayer/generated";
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { allPosts } from 'contentlayer/generated';
 
-import { BLOG_CATEGORIES } from "@/config/blog";
-import { constructMetadata, getBlurDataURL } from "@/lib/utils";
-import { BlogCard } from "@/components/content/blog-card";
+import { BLOG_CATEGORIES } from '@/config/blog';
+import { constructMetadata, getBlurDataURL } from '@/lib/utils';
+import { BlogCard } from '@/components/content/blog-card';
 
 export async function generateStaticParams() {
   return BLOG_CATEGORIES.map((category) => ({
@@ -17,9 +17,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata | undefined> {
-  const category = BLOG_CATEGORIES.find(
-    (category) => category.slug === params.slug,
-  );
+  const category = BLOG_CATEGORIES.find((category) => category.slug === params.slug);
   if (!category) {
     return;
   }

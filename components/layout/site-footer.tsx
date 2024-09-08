@@ -1,22 +1,20 @@
-import * as React from "react";
-import Link from "next/link";
+import * as React from 'react';
+import Link from 'next/link';
 
-import { footerLinks, siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-import { ModeToggle } from "@/components/layout/mode-toggle";
+import { footerLinks, siteConfig } from '@/config/site';
+import { cn } from '@/lib/utils';
+import { ModeToggle } from '@/components/layout/mode-toggle';
 
-import { NewsletterForm } from "../forms/newsletter-form";
-import { Icons } from "../shared/icons";
+import { NewsletterForm } from '../forms/newsletter-form';
+import { Icons } from '../shared/icons';
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
-    <footer className={cn("border-t", className)}>
+    <footer className={cn('border-t', className)}>
       <div className="container grid max-w-6xl grid-cols-2 gap-6 py-14 md:grid-cols-5">
         {footerLinks.map((section) => (
           <div key={section.title}>
-            <span className="text-sm font-medium text-foreground">
-              {section.title}
-            </span>
+            <span className="text-sm font-medium text-foreground">{section.title}</span>
             <ul className="mt-4 list-inside space-y-3">
               {section.items?.map((link) => (
                 <li key={link.title}>
@@ -42,7 +40,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             Copyright &copy; 2024. All rights reserved.
           </span> */}
           <p className="text-left text-sm text-muted-foreground">
-            Built by{" "}
+            Built by{' '}
             <Link
               href={siteConfig.links.twitter}
               target="_blank"
@@ -51,7 +49,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               mickasmt
             </Link>
-            . Hosted on{" "}
+            . Hosted on{' '}
             <Link
               href="https://vercel.com"
               target="_blank"
@@ -60,7 +58,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               Vercel
             </Link>
-            . Illustrations by{" "}
+            . Illustrations by{' '}
             <Link
               href="https://popsy.co"
               target="_blank"

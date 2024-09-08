@@ -1,8 +1,8 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { BLOG_AUTHORS } from "@/config/blog";
-import { getBlurDataURL } from "@/lib/utils";
-import BlurImage from "@/components/shared/blur-image";
+import { BLOG_AUTHORS } from '@/config/blog';
+import { getBlurDataURL } from '@/lib/utils';
+import BlurImage from '@/components/shared/blur-image';
 
 export default async function Author({
   username,
@@ -42,12 +42,8 @@ export default async function Author({
         className="size-8 rounded-full transition-all group-hover:brightness-90 md:size-10"
       />
       <div className="flex flex-col -space-y-0.5">
-        <p className="font-semibold text-foreground max-md:text-sm">
-          {authors[username].name}
-        </p>
-        <p className="text-sm text-muted-foreground">
-          @{authors[username].twitter}
-        </p>
+        <p className="font-semibold text-foreground max-md:text-sm">{authors[username].name}</p>
+        <p className="text-sm text-muted-foreground">@{authors[username].twitter}</p>
       </div>
     </Link>
   );

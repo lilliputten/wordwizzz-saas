@@ -31,7 +31,7 @@ import {
   Trash,
   User,
   X,
-} from "lucide-react";
+} from 'lucide-react';
 
 export type Icon = LucideIcon;
 

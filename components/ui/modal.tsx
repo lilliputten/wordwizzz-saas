@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react';
 // import { useRouter } from "next/router";
-import { Drawer } from "vaul";
+import { Drawer } from 'vaul';
 
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { cn } from "@/lib/utils";
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { cn } from '@/lib/utils';
 
 interface ModalProps {
   children: React.ReactNode;
@@ -34,6 +34,7 @@ export function Modal({
       return;
     }
     // fire onClose event if provided
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     onClose && onClose();
 
     // if setShowModal is defined, use it to close modal
@@ -61,7 +62,7 @@ export function Modal({
         <Drawer.Portal>
           <Drawer.Content
             className={cn(
-              "fixed inset-x-0 bottom-0 z-50 mt-24 overflow-hidden rounded-t-[10px] border bg-background",
+              'fixed inset-x-0 bottom-0 z-50 mt-24 overflow-hidden rounded-t-[10px] border bg-background',
               className,
             )}
           >
@@ -87,10 +88,7 @@ export function Modal({
       <DialogContent
         onOpenAutoFocus={(e) => e.preventDefault()}
         onCloseAutoFocus={(e) => e.preventDefault()}
-        className={cn(
-          "overflow-hidden p-0 md:max-w-md md:rounded-2xl md:border",
-          className,
-        )}
+        className={cn('overflow-hidden p-0 md:max-w-md md:rounded-2xl md:border', className)}
       >
         {children}
       </DialogContent>

@@ -1,6 +1,6 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
+import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
 
 export default function BentoGrid() {
   return (
@@ -70,11 +70,7 @@ export default function BentoGrid() {
                       gradientUnits="userSpaceOnUse"
                     >
                       <stop stopColor="purple" stopOpacity="0" />
-                      <stop
-                        className="text-indigo-600"
-                        offset="1"
-                        stopColor="currentColor"
-                      />
+                      <stop className="text-indigo-600" offset="1" stopColor="currentColor" />
                     </linearGradient>
                     <clipPath id="clip0_0_1">
                       <rect
@@ -89,12 +85,10 @@ export default function BentoGrid() {
                 </svg>
               </div>
               <div className="relative z-10 mt-8 space-y-1.5 text-center">
-                <h2 className="text-lg font-medium text-foreground">
-                  Secure by default
-                </h2>
+                <h2 className="text-lg font-medium text-foreground">Secure by default</h2>
                 <p className="text-muted-foreground">
-                  Provident fugit and vero voluptate. magnam magni doloribus
-                  dolores voluptates a sapiente nisi.
+                  Provident fugit and vero voluptate. magnam magni doloribus dolores voluptates a
+                  sapiente nisi.
                 </p>
               </div>
             </div>
@@ -112,13 +106,7 @@ export default function BentoGrid() {
                 >
                   <rect width="386" height="123" rx="10" />
                   <g clipPath="url(#clip0_0_106)">
-                    <circle
-                      className="text-primary"
-                      cx="29"
-                      cy="29"
-                      r="15"
-                      fill="currentColor"
-                    />
+                    <circle className="text-primary" cx="29" cy="29" r="15" fill="currentColor" />
                     <path
                       d="M29 23V35"
                       className="stroke-white dark:stroke-black"
@@ -163,10 +151,7 @@ export default function BentoGrid() {
                       y2="123"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop
-                        className="text-purple-600/80"
-                        stopColor="currentColor"
-                      />
+                      <stop className="text-purple-600/80" stopColor="currentColor" />
                       <stop
                         className="text-white dark:text-transparent"
                         offset="1"
@@ -175,23 +160,16 @@ export default function BentoGrid() {
                       />
                     </linearGradient>
                     <clipPath id="clip0_0_106">
-                      <rect
-                        width="358"
-                        height="30"
-                        fill="white"
-                        transform="translate(14 14)"
-                      />
+                      <rect width="358" height="30" fill="white" transform="translate(14 14)" />
                     </clipPath>
                   </defs>
                 </svg>
               </div>
               <div className="relative z-10 mt-8 space-y-1.5 text-center">
-                <h2 className="text-lg font-medium text-foreground">
-                  Faster than light
-                </h2>
+                <h2 className="text-lg font-medium text-foreground">Faster than light</h2>
                 <p className="text-muted-foreground">
-                  Provident fugit vero voluptate. magnam magni doloribus dolores
-                  voluptates inventore nisi.
+                  Provident fugit vero voluptate. magnam magni doloribus dolores voluptates
+                  inventore nisi.
                 </p>
               </div>
             </div>
@@ -218,12 +196,9 @@ export default function BentoGrid() {
                   </svg>
                 </div>
                 <div className="space-y-2">
-                  <h2 className="text-lg font-medium text-foreground">
-                    Faster than light
-                  </h2>
+                  <h2 className="text-lg font-medium text-foreground">Faster than light</h2>
                   <p className="text-muted-foreground">
-                    Provident fugit vero voluptate. Voluptates a sapiente
-                    inventore nisi.
+                    Provident fugit vero voluptate. Voluptates a sapiente inventore nisi.
                   </p>
                 </div>
               </div>
@@ -260,10 +235,7 @@ export default function BentoGrid() {
                       y2="230.114"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop
-                        className="text-purple-500/50"
-                        stopColor="currentColor"
-                      />
+                      <stop className="text-purple-500/50" stopColor="currentColor" />
                       <stop
                         className="text-purple-950/5"
                         offset="1"
@@ -303,12 +275,9 @@ export default function BentoGrid() {
                   </svg>
                 </div>
                 <div className="space-y-2">
-                  <h2 className="text-lg font-medium text-foreground">
-                    Keep your loved ones safe
-                  </h2>
+                  <h2 className="text-lg font-medium text-foreground">Keep your loved ones safe</h2>
                   <p className="text-muted-foreground">
-                    Voluptate. magnam magni doloribus dolores voluptates a
-                    sapiente.
+                    Voluptate. magnam magni doloribus dolores voluptates a sapiente.
                   </p>
                 </div>
               </div>

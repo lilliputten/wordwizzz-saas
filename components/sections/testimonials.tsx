@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-import { testimonials } from "@/config/landing";
-import { HeaderSection } from "@/components/shared/header-section";
+import { testimonials } from '@/config/landing';
+import { HeaderSection } from '@/components/shared/header-section';
 
 export default function Testimonials() {
   return (
@@ -31,12 +31,8 @@ export default function Testimonials() {
                         />
                       </span>
                       <div>
-                        <p className="text-sm font-semibold text-foreground">
-                          {item.name}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {item.job}
-                        </p>
+                        <p className="text-sm font-semibold text-foreground">{item.name}</p>
+                        <p className="text-sm text-muted-foreground">{item.job}</p>
                       </div>
                     </div>
                     <q className="text-muted-foreground">{item.review}</q>

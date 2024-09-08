@@ -1,17 +1,11 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useMemo,
-  useState,
-} from "react";
-import { signOut, useSession } from "next-auth/react";
-import { toast } from "sonner";
+import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
+import { signOut, useSession } from 'next-auth/react';
+import { toast } from 'sonner';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Modal } from "@/components/ui/modal";
-import { UserAvatar } from "@/components/shared/user-avatar";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Modal } from '@/components/ui/modal';
+import { UserAvatar } from '@/components/shared/user-avatar';
 
 function DeleteAccountModal({
   showDeleteAccountModal,
@@ -26,9 +20,9 @@ function DeleteAccountModal({
   async function deleteAccount() {
     setDeleting(true);
     await fetch(`/api/user`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     }).then(async (res) => {
       if (res.status === 200) {
@@ -64,8 +58,7 @@ function DeleteAccountModal({
         />
         <h3 className="text-lg font-semibold">Delete Account</h3>
         <p className="text-center text-sm text-muted-foreground">
-          <b>Warning:</b> This will permanently delete your account and your
-          active subscription!
+          <b>Warning:</b> This will permanently delete your account and your active subscription!
         </p>
 
         {/* TODO: Use getUserSubscriptionPlan(session.user.id) to display the user's subscription if he have a paid plan */}
@@ -75,8 +68,8 @@ function DeleteAccountModal({
         onSubmit={async (e) => {
           e.preventDefault();
           toast.promise(deleteAccount(), {
-            loading: "Deleting account...",
-            success: "Account deleted successfully!",
+            loading: 'Deleting account...',
+            success: 'Account deleted successfully!',
             error: (err) => err,
           });
         }}
@@ -84,10 +77,8 @@ function DeleteAccountModal({
       >
         <div>
           <label htmlFor="verification" className="block text-sm">
-            To verify, type{" "}
-            <span className="font-semibold text-black dark:text-white">
-              confirm delete account
-            </span>{" "}
+            To verify, type{' '}
+            <span className="font-semibold text-black dark:text-white">confirm delete account</span>{' '}
             below
           </label>
           <Input
@@ -102,10 +93,7 @@ function DeleteAccountModal({
           />
         </div>
 
-        <Button
-          variant={deleting ? "disable" : "destructive"}
-          disabled={deleting}
-        >
+        <Button variant={deleting ? 'disable' : 'destructive'} disabled={deleting}>
           Confirm delete account
         </Button>
       </form>

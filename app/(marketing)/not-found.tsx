@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function NotFound() {
   return (
@@ -13,7 +13,7 @@ export default function NotFound() {
         className="pointer-events-none mb-5 mt-6 dark:invert"
       />
       <p className="text-balance px-4 text-center text-2xl font-medium">
-        Page not found. Back to{" "}
+        Page not found. Back to{' '}
         <Link
           href="/"
           className="text-muted-foreground underline underline-offset-4 hover:text-purple-500"

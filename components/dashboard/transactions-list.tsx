@@ -1,15 +1,9 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Table,
   TableBody,
@@ -17,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 
 export default function TransactionsList() {
   return (
@@ -91,9 +85,7 @@ export default function TransactionsList() {
                   noah@example.com
                 </div>
               </TableCell>
-              <TableCell className="hidden xl:table-column">
-                Subscription
-              </TableCell>
+              <TableCell className="hidden xl:table-column">Subscription</TableCell>
               <TableCell className="hidden xl:table-column">
                 <Badge className="text-xs" variant="outline">
                   Approved

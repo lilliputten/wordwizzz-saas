@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { useContext, useState } from "react";
-import Link from "next/link";
-import { UserSubscriptionPlan } from "@/types";
+import { useContext, useState } from 'react';
+import Link from 'next/link';
+import { UserSubscriptionPlan } from '@/types';
 
-import { SubscriptionPlan } from "@/types/index";
-import { pricingData } from "@/config/subscriptions";
-import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { BillingFormButton } from "@/components/forms/billing-form-button";
-import { ModalContext } from "@/components/modals/providers";
-import { HeaderSection } from "@/components/shared/header-section";
-import { Icons } from "@/components/shared/icons";
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
+import { SubscriptionPlan } from '@/types/index';
+import { pricingData } from '@/config/subscriptions';
+import { cn } from '@/lib/utils';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { BillingFormButton } from '@/components/forms/billing-form-button';
+import { ModalContext } from '@/components/modals/providers';
+import { HeaderSection } from '@/components/shared/header-section';
+import { Icons } from '@/components/shared/icons';
+import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
 
 interface PricingCardsProps {
   userId?: string;
@@ -22,9 +22,7 @@ interface PricingCardsProps {
 
 export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   const isYearlyDefault =
-    !subscriptionPlan?.stripeCustomerId || subscriptionPlan.interval === "year"
-      ? true
-      : false;
+    !subscriptionPlan?.stripeCustomerId || subscriptionPlan.interval === 'year' ? true : false;
   const [isYearly, setIsYearly] = useState<boolean>(!!isYearlyDefault);
   const { setShowSignInModal } = useContext(ModalContext);
 
@@ -36,10 +34,8 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
     return (
       <div
         className={cn(
-          "relative flex flex-col overflow-hidden rounded-3xl border shadow-sm",
-          offer.title.toLocaleLowerCase() === "pro"
-            ? "-m-0.5 border-2 border-purple-400"
-            : "",
+          'relative flex flex-col overflow-hidden rounded-3xl border shadow-sm',
+          offer.title.toLocaleLowerCase() === 'pro' ? '-m-0.5 border-2 border-purple-400' : '',
         )}
         key={offer.title}
       >
@@ -71,7 +67,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
             <div className="text-left text-sm text-muted-foreground">
               {isYearly
                 ? `$${offer.prices.yearly} will be charged when annual`
-                : "when charged monthly"}
+                : 'when charged monthly'}
             </div>
           ) : null}
         </div>
@@ -87,10 +83,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
 
             {offer.limitations.length > 0 &&
               offer.limitations.map((feature) => (
-                <li
-                  className="flex items-start text-muted-foreground"
-                  key={feature}
-                >
+                <li className="flex items-start text-muted-foreground" key={feature}>
                   <Icons.close className="mr-3 size-5 shrink-0" />
                   <p>{feature}</p>
                 </li>
@@ -98,15 +91,15 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
           </ul>
 
           {userId && subscriptionPlan ? (
-            offer.title === "Starter" ? (
+            offer.title === 'Starter' ? (
               <Link
                 href="/dashboard"
                 className={cn(
                   buttonVariants({
-                    variant: "outline",
-                    rounded: "full",
+                    variant: 'outline',
+                    rounded: 'full',
                   }),
-                  "w-full",
+                  'w-full',
                 )}
               >
                 Go to dashboard
@@ -120,11 +113,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
             )
           ) : (
             <Button
-              variant={
-                offer.title.toLocaleLowerCase() === "pro"
-                  ? "default"
-                  : "outline"
-              }
+              variant={offer.title.toLocaleLowerCase() === 'pro' ? 'default' : 'outline'}
               rounded="full"
               onClick={() => setShowSignInModal(true)}
             >
@@ -145,7 +134,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
           <ToggleGroup
             type="single"
             size="sm"
-            defaultValue={isYearly ? "yearly" : "monthly"}
+            defaultValue={isYearly ? 'yearly' : 'monthly'}
             onValueChange={toggleBilling}
             aria-label="toggle-year"
             className="h-9 overflow-hidden rounded-full border bg-background p-1 *:h-7 *:text-muted-foreground"
@@ -174,18 +163,16 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
         </div>
 
         <p className="mt-3 text-balance text-center text-base text-muted-foreground">
-          Email{" "}
+          Email{' '}
           <a
             className="font-medium text-primary hover:underline"
             href="mailto:support@saas-starter.com"
           >
             support@saas-starter.com
-          </a>{" "}
+          </a>{' '}
           for to contact our support team.
           <br />
-          <strong>
-            You can test the subscriptions and won&apos;t be charged.
-          </strong>
+          <strong>You can test the subscriptions and won&apos;t be charged.</strong>
         </p>
       </section>
     </MaxWidthWrapper>

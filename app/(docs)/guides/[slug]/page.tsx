@@ -1,20 +1,20 @@
-import { allGuides } from "contentlayer/generated";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import { allGuides } from 'contentlayer/generated';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
-import { Mdx } from "@/components/content/mdx-components";
-import { DocsPageHeader } from "@/components/docs/page-header";
-import { Icons } from "@/components/shared/icons";
-import { DashboardTableOfContents } from "@/components/shared/toc";
-import { getTableOfContents } from "@/lib/toc";
+import { Mdx } from '@/components/content/mdx-components';
+import { DocsPageHeader } from '@/components/docs/page-header';
+import { Icons } from '@/components/shared/icons';
+import { DashboardTableOfContents } from '@/components/shared/toc';
+import { getTableOfContents } from '@/lib/toc';
 
-import "@/styles/mdx.css";
+import '@/styles/mdx.css';
 
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
-import { buttonVariants } from "@/components/ui/button";
-import { cn, constructMetadata } from "@/lib/utils";
+import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
+import { buttonVariants } from '@/components/ui/button';
+import { cn, constructMetadata } from '@/lib/utils';
 
 export async function generateStaticParams() {
   return allGuides.map((guide) => ({
@@ -35,7 +35,7 @@ export async function generateMetadata({
   const { title, description } = guide;
 
   return constructMetadata({
-    title: `${title} – SaaS Starter`,
+    title: `${title} - WordWizzz!`,
     description: description,
   });
 }
@@ -63,10 +63,7 @@ export default async function GuidePage({
           <Mdx code={guide.body.code} />
           <hr className="my-4" />
           <div className="flex justify-center py-6 lg:py-10">
-            <Link
-              href="/guides"
-              className={cn(buttonVariants({ variant: "ghost" }))}
-            >
+            <Link href="/guides" className={cn(buttonVariants({ variant: 'ghost' }))}>
               <Icons.chevronLeft className="mr-2 size-4" />
               See all guides
             </Link>

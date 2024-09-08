@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useRouter } from "next/navigation";
-import { SidebarNavItem } from "@/types";
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import { SidebarNavItem } from '@/types';
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import {
   CommandDialog,
   CommandEmpty,
@@ -13,8 +13,8 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import { Icons } from "@/components/shared/icons";
+} from '@/components/ui/command';
+import { Icons } from '@/components/shared/icons';
 
 export function SearchCommand({ links }: { links: SidebarNavItem[] }) {
   const [open, setOpen] = React.useState(false);
@@ -22,13 +22,13 @@ export function SearchCommand({ links }: { links: SidebarNavItem[] }) {
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
       }
     };
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    document.addEventListener('keydown', down);
+    return () => document.removeEventListener('keydown', down);
   }, []);
 
   const runCommand = React.useCallback((command: () => unknown) => {
@@ -41,7 +41,7 @@ export function SearchCommand({ links }: { links: SidebarNavItem[] }) {
       <Button
         variant="outline"
         className={cn(
-          "relative h-9 w-full justify-start rounded-md bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-72",
+          'relative h-9 w-full justify-start rounded-md bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-72',
         )}
         onClick={() => setOpen(true)}
       >
@@ -61,7 +61,7 @@ export function SearchCommand({ links }: { links: SidebarNavItem[] }) {
           {links.map((section) => (
             <CommandGroup key={section.title} heading={section.title}>
               {section.items.map((item) => {
-                const Icon = Icons[item.icon || "arrowRight"];
+                const Icon = Icons[item.icon || 'arrowRight'];
                 return (
                   <CommandItem
                     key={item.title}

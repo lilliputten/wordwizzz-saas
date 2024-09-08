@@ -1,17 +1,11 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useMemo,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 // import { BuiltInProviderType } from "@auth-core";
-import { signIn } from "next-auth/react";
+import { signIn } from 'next-auth/react';
 
-import { siteConfig } from "@/config/site";
-import { Button } from "@/components/ui/button";
-import { Modal } from "@/components/ui/modal";
-import { IconType, Icons } from "@/components/shared/icons";
+import { siteConfig } from '@/config/site';
+import { Button } from '@/components/ui/button';
+import { Modal } from '@/components/ui/modal';
+import { IconType, Icons } from '@/components/shared/icons';
 
 type TSignInParameters = Parameters<typeof signIn>;
 type TProvider = TSignInParameters[0];
@@ -52,7 +46,7 @@ function OAuthSignInButton(props: OAuthSignInButtonProps) {
         <Icons.spinner className="mr-2 size-4 animate-spin" />
       ) : (
         <ProviderIcon className="mr-2 size-4" />
-      )}{" "}
+      )}{' '}
       {text}
     </Button>
   );
@@ -76,8 +70,7 @@ function SignInModal({
           </a>
           <h3 className="font-urban text-2xl font-bold">Sign In</h3>
           <p className="text-sm text-gray-500">
-            This is strictly for demo purposes - only your email and profile
-            picture will be stored.
+            This is strictly for demo purposes - only your email and profile picture will be stored.
           </p>
         </div>
 
@@ -138,10 +131,7 @@ export function useSignInModal() {
 
   const SignInModalCallback = useCallback(() => {
     return (
-      <SignInModal
-        showSignInModal={showSignInModal}
-        setShowSignInModal={setShowSignInModal}
-      />
+      <SignInModal showSignInModal={showSignInModal} setShowSignInModal={setShowSignInModal} />
     );
   }, [showSignInModal, setShowSignInModal]);
 

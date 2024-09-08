@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useTransition } from "react";
-import { generateUserStripe } from "@/actions/generate-user-stripe";
-import { SubscriptionPlan, UserSubscriptionPlan } from "@/types";
+import { useTransition } from 'react';
+import { generateUserStripe } from '@/actions/generate-user-stripe';
+import { SubscriptionPlan, UserSubscriptionPlan } from '@/types';
 
-import { Button } from "@/components/ui/button";
-import { Icons } from "@/components/shared/icons";
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/shared/icons';
 
 interface BillingFormButtonProps {
   offer: SubscriptionPlan;
@@ -13,27 +13,20 @@ interface BillingFormButtonProps {
   year: boolean;
 }
 
-export function BillingFormButton({
-  year,
-  offer,
-  subscriptionPlan,
-}: BillingFormButtonProps) {
+export function BillingFormButton({ year, offer, subscriptionPlan }: BillingFormButtonProps) {
   let [isPending, startTransition] = useTransition();
   const generateUserStripeSession = generateUserStripe.bind(
     null,
-    offer.stripeIds[year ? "yearly" : "monthly"],
+    offer.stripeIds[year ? 'yearly' : 'monthly'],
   );
 
-  const stripeSessionAction = () =>
-    startTransition(async () => await generateUserStripeSession());
+  const stripeSessionAction = () => startTransition(async () => await generateUserStripeSession());
 
-  const userOffer =
-    subscriptionPlan.stripePriceId ===
-    offer.stripeIds[year ? "yearly" : "monthly"];
+  const userOffer = subscriptionPlan.stripePriceId === offer.stripeIds[year ? 'yearly' : 'monthly'];
 
   return (
     <Button
-      variant={userOffer ? "default" : "outline"}
+      variant={userOffer ? 'default' : 'outline'}
       rounded="full"
       className="w-full"
       disabled={isPending}
@@ -44,7 +37,7 @@ export function BillingFormButton({
           <Icons.spinner className="mr-2 size-4 animate-spin" /> Loading...
         </>
       ) : (
-        <>{userOffer ? "Manage Subscription" : "Upgrade"}</>
+        <>{userOffer ? 'Manage Subscription' : 'Upgrade'}</>
       )}
     </Button>
   );

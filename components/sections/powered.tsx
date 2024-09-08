@@ -1,11 +1,11 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
+import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
 
 const logos = [
   {
-    title: "Next.js 14",
-    href: "https://nextjs.org/",
+    title: 'Next.js 14',
+    href: 'https://nextjs.org/',
     icon: (
       <svg
         className="h-[22px] w-auto"
@@ -24,8 +24,8 @@ const logos = [
     ),
   },
   {
-    title: "Vercel",
-    href: "https://vercel.com/",
+    title: 'Vercel',
+    href: 'https://vercel.com/',
     icon: (
       <svg
         className="h-7 w-auto"
@@ -38,8 +38,8 @@ const logos = [
     ),
   },
   {
-    title: "Prisma",
-    href: "https://www.prisma.io/",
+    title: 'Prisma',
+    href: 'https://www.prisma.io/',
     icon: (
       <svg
         width="90"
@@ -59,8 +59,8 @@ const logos = [
     ),
   },
   {
-    title: "Neon",
-    href: "https://neon.tech/",
+    title: 'Neon',
+    href: 'https://neon.tech/',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -124,8 +124,8 @@ const logos = [
     ),
   },
   {
-    title: "Auth.js",
-    href: "https://authjs.dev/",
+    title: 'Auth.js',
+    href: 'https://authjs.dev/',
     icon: (
       <div className="flex items-center gap-x-1.5">
         <svg
@@ -142,8 +142,8 @@ const logos = [
     ),
   },
   {
-    title: "Resend",
-    href: "https://resend.com/",
+    title: 'Resend',
+    href: 'https://resend.com/',
     icon: (
       <svg
         width="60"
@@ -180,15 +180,11 @@ const logos = [
     ),
   },
   {
-    title: "shadcn/ui",
-    href: "https://ui.shadcn.com/",
+    title: 'shadcn/ui',
+    href: 'https://ui.shadcn.com/',
     icon: (
       <div className="flex items-center gap-x-1.5">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 256 256"
-          className="size-[38px]"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="size-[38px]">
           <rect width="256" height="256" fill="none"></rect>
           <line
             x1="208"
@@ -218,8 +214,8 @@ const logos = [
     ),
   },
   {
-    title: "Stripe",
-    href: "https://stripe.com/",
+    title: 'Stripe',
+    href: 'https://stripe.com/',
     icon: (
       <svg
         className="h-[30px] w-auto"
@@ -242,9 +238,7 @@ export default function Powered() {
   return (
     <section className="py-14 text-muted-foreground">
       <MaxWidthWrapper>
-        <h2 className="text-center text-sm font-semibold uppercase">
-          Powered by
-        </h2>
+        <h2 className="text-center text-sm font-semibold uppercase">Powered by</h2>
 
         <div className="mt-10 grid grid-cols-2 place-items-center gap-8 md:grid-cols-4">
           {logos.slice(0, 4).map((logo) => (

@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { Post } from "contentlayer/generated";
+import Link from 'next/link';
+import { Post } from 'contentlayer/generated';
 
-import { cn, formatDate, placeholderBlurhash } from "@/lib/utils";
-import BlurImage from "@/components/shared/blur-image";
+import { cn, formatDate, placeholderBlurhash } from '@/lib/utils';
+import BlurImage from '@/components/shared/blur-image';
 
-import Author from "./author";
+import Author from './author';
 
 export function BlogCard({
   data,
@@ -20,10 +20,8 @@ export function BlogCard({
   return (
     <article
       className={cn(
-        "group relative",
-        horizontale
-          ? "grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6"
-          : "flex flex-col space-y-2",
+        'group relative',
+        horizontale ? 'grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6' : 'flex flex-col space-y-2',
       )}
     >
       {data.image && (
@@ -31,10 +29,7 @@ export function BlogCard({
           <BlurImage
             alt={data.title}
             blurDataURL={data.blurDataURL ?? placeholderBlurhash}
-            className={cn(
-              "size-full object-cover object-center",
-              horizontale ? "lg:h-72" : null,
-            )}
+            className={cn('size-full object-cover object-center', horizontale ? 'lg:h-72' : null)}
             width={800}
             height={400}
             priority={priority}
@@ -45,19 +40,12 @@ export function BlogCard({
         </div>
       )}
       <div
-        className={cn(
-          "flex flex-1 flex-col",
-          horizontale ? "justify-center" : "justify-between",
-        )}
+        className={cn('flex flex-1 flex-col', horizontale ? 'justify-center' : 'justify-between')}
       >
         <div className="w-full">
-          <h2 className="my-1.5 line-clamp-2 font-heading text-2xl">
-            {data.title}
-          </h2>
+          <h2 className="my-1.5 line-clamp-2 font-heading text-2xl">{data.title}</h2>
           {data.description && (
-            <p className="line-clamp-2 text-muted-foreground">
-              {data.description}
-            </p>
+            <p className="line-clamp-2 text-muted-foreground">{data.description}</p>
           )}
         </div>
         <div className="mt-4 flex items-center space-x-3">
@@ -67,11 +55,7 @@ export function BlogCard({
             ))}
           </div>
 
-          {data.date && (
-            <p className="text-sm text-muted-foreground">
-              {formatDate(data.date)}
-            </p>
-          )}
+          {data.date && <p className="text-sm text-muted-foreground">{formatDate(data.date)}</p>}
         </div>
       </div>
       <Link href={data.slug} className="absolute inset-0">

@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useState, useTransition } from "react";
-import { updateUserRole, type FormData } from "@/actions/update-user-role";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { User, UserRole } from "@prisma/client";
-import { useSession } from "next-auth/react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import { useState, useTransition } from 'react';
+import { updateUserRole, type FormData } from '@/actions/update-user-role';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { User, UserRole } from '@prisma/client';
+import { useSession } from 'next-auth/react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
-import { userRoleSchema } from "@/lib/validations/user";
-import { Button } from "@/components/ui/button";
+import { userRoleSchema } from '@/lib/validations/user';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -18,19 +18,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { SectionColumns } from "@/components/dashboard/section-columns";
-import { Icons } from "@/components/shared/icons";
+} from '@/components/ui/select';
+import { SectionColumns } from '@/components/dashboard/section-columns';
+import { Icons } from '@/components/shared/icons';
 
 interface UserNameFormProps {
-  user: Pick<User, "id" | "role">;
+  user: Pick<User, 'id' | 'role'>;
 }
 
 export function UserRoleForm({ user }: UserNameFormProps) {
@@ -53,14 +53,14 @@ export function UserRoleForm({ user }: UserNameFormProps) {
     startTransition(async () => {
       const { status } = await updateUserRoleWithId(data);
 
-      if (status !== "success") {
-        toast.error("Something went wrong.", {
-          description: "Your role was not updated. Please try again.",
+      if (status !== 'success') {
+        toast.error('Something went wrong.', {
+          description: 'Your role was not updated. Please try again.',
         });
       } else {
         await update();
         setUpdated(false);
-        toast.success("Your role has been updated.");
+        toast.success('Your role has been updated.');
       }
     });
   };
@@ -108,7 +108,7 @@ export function UserRoleForm({ user }: UserNameFormProps) {
             />
             <Button
               type="submit"
-              variant={updated ? "default" : "disable"}
+              variant={updated ? 'default' : 'disable'}
               disabled={isPending || !updated}
               className="w-[67px] shrink-0 px-0 sm:w-[130px]"
             >

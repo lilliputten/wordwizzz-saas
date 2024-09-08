@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import { useState, useTransition } from "react";
-import { updateUserName, type FormData } from "@/actions/update-user-name";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { User } from "@prisma/client";
-import { useSession } from "next-auth/react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { useState, useTransition } from 'react';
+import { updateUserName, type FormData } from '@/actions/update-user-name';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { User } from '@prisma/client';
+import { useSession } from 'next-auth/react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
-import { userNameSchema } from "@/lib/validations/user";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { SectionColumns } from "@/components/dashboard/section-columns";
-import { Icons } from "@/components/shared/icons";
+import { userNameSchema } from '@/lib/validations/user';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { SectionColumns } from '@/components/dashboard/section-columns';
+import { Icons } from '@/components/shared/icons';
 
 interface UserNameFormProps {
-  user: Pick<User, "id" | "name">;
+  user: Pick<User, 'id' | 'name'>;
 }
 
 export function UserNameForm({ user }: UserNameFormProps) {
@@ -36,7 +36,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
   } = useForm<FormData>({
     resolver: zodResolver(userNameSchema),
     defaultValues: {
-      name: user?.name || "",
+      name: user?.name || '',
     },
   });
 
@@ -44,14 +44,14 @@ export function UserNameForm({ user }: UserNameFormProps) {
     startTransition(async () => {
       const { status } = await updateUserNameWithId(data);
 
-      if (status !== "success") {
-        toast.error("Something went wrong.", {
-          description: "Your name was not updated. Please try again.",
+      if (status !== 'success') {
+        toast.error('Something went wrong.', {
+          description: 'Your name was not updated. Please try again.',
         });
       } else {
         await update();
         setUpdated(false);
-        toast.success("Your name has been updated.");
+        toast.success('Your name has been updated.');
       }
     });
   });
@@ -70,12 +70,12 @@ export function UserNameForm({ user }: UserNameFormProps) {
             id="name"
             className="flex-1"
             size={32}
-            {...register("name")}
+            {...register('name')}
             onChange={(e) => checkUpdate(e.target.value)}
           />
           <Button
             type="submit"
-            variant={updated ? "default" : "disable"}
+            variant={updated ? 'default' : 'disable'}
             disabled={isPending || !updated}
             className="w-[67px] shrink-0 px-0 sm:w-[130px]"
           >
@@ -90,11 +90,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
           </Button>
         </div>
         <div className="flex flex-col justify-between p-1">
-          {errors?.name && (
-            <p className="pb-0.5 text-[13px] text-red-600">
-              {errors.name.message}
-            </p>
-          )}
+          {errors?.name && <p className="pb-0.5 text-[13px] text-red-600">{errors.name.message}</p>}
           <p className="text-[13px] text-muted-foreground">Max 32 characters</p>
         </div>
       </SectionColumns>
