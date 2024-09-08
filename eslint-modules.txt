@@ -1,0 +1,14 @@
+@babel/eslint-parser @next/eslint-plugin-next eslint-plugin-json eslint-plugin-jsonc eslint-plugin-prettier eslint-plugin-yaml
+
+\(@babel\/eslint-parser\|@next\/eslint-plugin-next\|eslint-config-prettier\|eslint-plugin-json\|eslint-plugin-jsonc\|eslint-plugin-prettier\|eslint-plugin-react\|eslint-plugin-yaml\)
+
+    "@babel/eslint-parser": "^7.25.1",
+    "@next/eslint-plugin-next": "^14.2.5",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-json": "^4.0.0",
+    "eslint-plugin-jsonc": "^2.16.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-yaml": "^1.0.3",
+
