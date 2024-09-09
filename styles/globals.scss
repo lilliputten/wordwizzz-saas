@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * NOTE: Most of colors are in HSL color model.
+ *
+ * @see:
+ *
+ * - https://www.w3schools.com/colors/colors_hsl.asp
+ * - https://htmlcolors.com/hex-to-hsl
+ *
+ * RGB colors:
+ *
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb
+ *
+ * See also:
+ *
+ * - https://medium.com/@oodri/tailwind-dynamic-color-theme-solution-4351d0495c7f
+ */
+
+@layer base {
+  :root {
+    // See also definitions in: `config/theme.ts`
+    --primaryColorRGB: 187 34 34; // #b22
+    --primaryForegroundColorRGB: 255 255 255;
+    --secondaryColorRGB: 255 187 17; // #fb1
+    --secondaryForegroundColorRGB: 0 0 0;
+    --appOrangeColorRGB: 255 187 17; // #fb1
+    --appOrangeForegroundColorRGB: 0 0 0;
+    --appBlueColorRGB: 193 59% 56%; // #4fb4d1
+    --appBlueForegroundColorRGB: 0 0 0;
+
+    // --primaryColorHSL: 0 69% 43%%;
+    // --primaryForegroundColorHSL: 0 0% 98%;
+    // --secondaryColorHSL: 43 100% 53%;
+    // --secondaryForegroundColorHSL: 0 0% 9%;
+
+    --backgroundColorHSL: 0 0% 100%;
+    --foregroundColorHSL: 0 0% 3.9%;
+    --cardColorHSL: 0 0% 100%;
+    --cardForegroundColorHSL: 0 0% 3.9%;
+    --popoverColorHSL: 0 0% 100%;
+    --popoverForegroundColorHSL: 0 0% 3.9%;
+
+    --mutedColorHSL: 0 0% 96.1%;
+    --mutedForegroundColorHSL: 0 0% 45.1%;
+    --accentColorHSL: 0 0% 98%;
+    --accentForegroundColorHSL: 0 0% 9%;
+    --destructiveColorHSL: 0 84.2% 60.2%;
+    --destructiveForegroundColorHSL: 0 0% 98%;
+    --borderColorHSL: 0 0% 89.8%;
+    --inputColorHSL: 0 0% 89.8%;
+    --ringColorHSL: 0 0% 3.9%;
+    --borderRadiusSize: 0.5rem;
+
+    --chart1ColorHSL: 271.5 81.3% 55.9%;
+    --chart2ColorHSL: 270 95% 75%;
+    --chart3ColorHSL: 270 91% 65%;
+    --chart4ColorHSL: 269 97% 85%;
+    --chart5ColorHSL: 269 100% 92%;
+  }
+
+  .dark {
+    --backgroundColorHSL: 0 0% 3.9%;
+    --foregroundColorHSL: 0 0% 98%;
+    --cardColorHSL: 0 0% 3.9%;
+    --cardForegroundColorHSL: 0 0% 98%;
+    --popoverColorHSL: 0 0% 3.9%;
+    --popoverForegroundColorHSL: 0 0% 98%;
+    --primaryColorHSL: 0 0% 98%;
+    --primaryForegroundColorHSL: 0 0% 9%;
+    --secondaryColorHSL: 0 0% 14.9%;
+    --secondaryForegroundColorHSL: 0 0% 98%;
+    --mutedColorHSL: 0 0% 14.9%;
+    --mutedForegroundColorHSL: 0 0% 63.9%;
+    --accentColorHSL: 0 0% 8%;
+    --accentForegroundColorHSL: 0 0% 98%;
+    --destructiveColorHSL: 0 62.8% 30.6%;
+    --destructiveForegroundColorHSL: 0 0% 98%;
+    --borderColorHSL: 0 0% 14.9%;
+    --inputColorHSL: 0 0% 14.9%;
+    --ringColorHSL: 0 0% 83.1%;
+
+    --chart1ColorHSL: 271.5 81.3% 55.9%;
+    --chart2ColorHSL: 270 95% 75%;
+    --chart3ColorHSL: 270 91% 65%;
+    --chart4ColorHSL: 269 97% 85%;
+    --chart5ColorHSL: 269 100% 92%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+}
+
+@layer utilities {
+  .step {
+    counter-increment: step;
+  }
+
+  .step:before {
+    @apply absolute w-9 h-9 bg-muted rounded-full font-mono font-medium text-center text-base inline-flex items-center justify-center -indent-px border-4 border-background;
+    @apply ml-[-50px] mt-[-4px];
+    content: counter(step);
+  }
+}
+
+.text-gradient_indigo-purple {
+  background: linear-gradient(90deg, #6366f1 0%, rgb(168 85 247 / 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

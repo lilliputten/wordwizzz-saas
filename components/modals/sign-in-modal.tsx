@@ -6,6 +6,8 @@ import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/button';
 import { Modal } from '@/components/ui/modal';
 import { IconType, Icons } from '@/components/shared/icons';
+import { Logo } from '@/components/shared/Logo';
+import { cn } from '@/lib/utils';
 
 type TSignInParameters = Parameters<typeof signIn>;
 type TProvider = TSignInParameters[0];
@@ -31,7 +33,9 @@ function OAuthSignInButton(props: OAuthSignInButtonProps) {
   } = props;
   return (
     <Button
-      variant="default"
+      className={cn('--sign-in-modal-button--')}
+      variant="orange"
+      rounded="full"
       disabled={signInClicked}
       onClick={() => {
         setSignInClicked(true);
@@ -63,18 +67,64 @@ function SignInModal({
 
   return (
     <Modal showModal={showSignInModal} setShowModal={setShowSignInModal}>
-      <div className="w-full">
-        <div className="flex flex-col items-center justify-center space-y-3 border-b bg-background px-4 py-6 pt-8 text-center md:px-16">
+      <div className="w-full bg-primary">
+        <div
+          className={cn(
+            // prettier-ignore
+            'flex',
+            'flex-col',
+            'items-center',
+            'justify-center',
+            'space-y-3',
+            'bg-primary',
+            'border-b',
+            'border-primary-400',
+            'px-4',
+            'py-6',
+            'pt-8',
+            'text-center',
+            'text-primary-foreground',
+            'md:px-16',
+          )}
+        >
           <a href={siteConfig.url}>
-            <Icons.logo className="size-10" />
+            <Logo size="lg" className="size-18" />
           </a>
-          <h3 className="font-urban text-2xl font-bold">Sign In</h3>
-          <p className="text-sm text-gray-500">
+          <h3
+            className={cn(
+              // prettier-ignore
+              'font-urban',
+              'text-2xl',
+              'font-bold',
+              'text-brand-orange',
+            )}
+          >
+            Sign In
+          </h3>
+          <p
+            className={cn(
+              // prettier-ignore
+              'text-sm',
+              // 'text-gray-500',
+            )}
+          >
             This is strictly for demo purposes - only your email and profile picture will be stored.
           </p>
         </div>
 
-        <div className="flex flex-col space-y-4 bg-secondary/50 px-4 py-8 md:px-16">
+        <div
+          className={cn(
+            // prettier-ignore
+            'flex',
+            'flex-col',
+            'space-y-4',
+            // 'bg-background',
+            'bg-primary-400',
+            'px-4',
+            'py-8',
+            'md:px-16',
+          )}
+        >
           <OAuthSignInButton
             signInClicked={signInClicked}
             setSignInClicked={setSignInClicked}

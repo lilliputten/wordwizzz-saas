@@ -4,14 +4,35 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background select-none active:scale-[0.98]',
+  cn(
+    'inline-flex',
+    'items-center',
+    'justify-center',
+    'text-sm',
+    'font-medium',
+    'transition',
+    'focus-visible:outline-none',
+    'focus-visible:ring-2',
+    'focus-visible:ring-ring',
+    'focus-visible:ring-offset-2',
+    'disabled:opacity-50',
+    'disabled:cursor-not-allowed',
+    'ring-offset-background',
+    'select-none',
+    'active:scale-[0.98]',
+    'transition-all',
+    // 'duration-200',
+  ),
   {
     variants: {
       variant: {
         default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline: 'border border-input hover:bg-accent hover:text-accent-foreground',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        orange: 'bg-brand-orange text-brand-orange-foreground hover:bg-brand-orange/80',
+        blue: 'bg-brand-blue text-brand-blue-foreground hover:bg-brand-blue/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'underline-offset-4 hover:underline text-primary',
         disable: 'border border-input bg-transparent text-neutral-600 cursor-not-allowed',

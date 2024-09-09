@@ -2,6 +2,7 @@
 
 import { useContext } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
@@ -16,6 +17,7 @@ import { DocsSearch } from '@/components/docs/search';
 import { ModalContext } from '@/components/modals/providers';
 import { Icons } from '@/components/shared/icons';
 import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
+import { Logo } from '@/components/shared/Logo';
 
 interface NavBarProps {
   scroll?: boolean;
@@ -38,33 +40,83 @@ export function NavBar({ scroll = false }: NavBarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all ${
-        scroll ? (scrolled ? 'border-b' : 'bg-transparent') : 'border-b'
-      }`}
+      className={cn(
+        '--navbar--',
+        'sticky',
+        'top-0',
+        'z-40',
+        'flex',
+        'w-full',
+        'justify-center',
+        'transition-all',
+        'bg-primary/85',
+        'backdrop-blur',
+        'before:content-[""]',
+        'before:absolute',
+        'before:inset-0',
+        'before:bg-primary/50',
+        'before:mix-blend-color',
+        scroll ? (scrolled ? 'border-b' : '') : 'border-b',
+      )}
     >
       <MaxWidthWrapper
-        className="flex h-14 items-center justify-between py-4"
+        className={cn(
+          // prettier-ignore
+          'flex',
+          'h-24',
+          'items-center',
+          'justify-between',
+          'py-4',
+          'z-10',
+        )}
         large={documentation}
       >
         <div className="flex gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-1.5">
-            <Icons.logo />
-            <span className="font-urban text-xl font-bold">{siteConfig.name}</span>
+          <Link
+            href="/"
+            className={cn(
+              // prettier-ignore
+              'flex',
+              'items-center',
+              'space-x-1.5',
+              'gap-2',
+              'transition-all',
+              'hover:opacity-80',
+            )}
+          >
+            <Logo size="lg" className="size-20" />
+            <span
+              className={cn(
+                // prettier-ignore
+                'font-urban',
+                'text-xl',
+                'text-primary-foreground',
+                'font-bold',
+              )}
+            >
+              {siteConfig.name}
+            </span>
           </Link>
 
           {links && links.length > 0 ? (
             <nav className="hidden gap-6 md:flex">
               {links.map((item, index) => (
                 <Link
-                  key={index}
+                  key={'navbar-' + String(index)}
                   href={item.disabled ? '#' : item.href}
                   prefetch
                   className={cn(
-                    'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
-                    item.href.startsWith(`/${selectedLayout}`)
-                      ? 'text-foreground'
-                      : 'text-foreground/60',
-                    item.disabled && 'cursor-not-allowed opacity-80',
+                    'flex',
+                    'items-center',
+                    'text-lg',
+                    'font-medium',
+                    'transition-all',
+                    'text-primary-foreground/80',
+                    'opacity-100',
+                    'hover:opacity-80',
+                    'sm:text-sm',
+                    item.href.startsWith(`/${selectedLayout}`) && 'text-brand-orange',
+                    item.disabled && 'cursor-not-allowed opacity-50',
                   )}
                 >
                   {item.title}
@@ -82,10 +134,15 @@ export function NavBar({ scroll = false }: NavBarProps) {
                 <DocsSearch />
               </div>
               <div className="flex lg:hidden">
-                <Icons.search className="size-6 text-muted-foreground" />
+                <Icons.search className="size-6 text-primary-foreground" />
               </div>
               <div className="flex space-x-4">
-                <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
+                <Link
+                  href={siteConfig.links.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cn('text-primary-foreground')}
+                >
                   <Icons.github className="size-7" />
                   <span className="sr-only">GitHub</span>
                 </Link>
@@ -105,7 +162,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
           ) : status === 'unauthenticated' ? (
             <Button
               className="hidden gap-2 px-5 md:flex"
-              variant="default"
+              variant="orange"
               size="sm"
               rounded="full"
               onClick={() => setShowSignInModal(true)}

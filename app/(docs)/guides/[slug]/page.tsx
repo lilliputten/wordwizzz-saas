@@ -8,7 +8,7 @@ import { Icons } from '@/components/shared/icons';
 import { DashboardTableOfContents } from '@/components/shared/toc';
 import { getTableOfContents } from '@/lib/toc';
 
-import '@/styles/mdx.css';
+import '@/styles/mdx.scss';
 
 import { Metadata } from 'next';
 
