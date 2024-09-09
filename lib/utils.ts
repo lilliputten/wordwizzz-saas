@@ -89,7 +89,10 @@ export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
   return `${ms(Date.now() - new Date(timestamp).getTime())}${timeOnly ? '' : ' ago'}`;
 };
 
-export async function fetcher<JSON = any>(input: RequestInfo, init?: RequestInit): Promise<JSON> {
+export async function fetcher<JSON = unknown>(
+  input: RequestInfo,
+  init?: RequestInit,
+): Promise<JSON> {
   const res = await fetch(input, init);
 
   if (!res.ok) {
@@ -154,7 +157,7 @@ export const getBlurDataURL = async (url: string | null) => {
     const base64 = Buffer.from(buffer).toString('base64');
 
     return `data:image/png;base64,${base64}`;
-  } catch (error) {
+  } catch /* (error) */ {
     return 'data:image/webp;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=';
   }
 };

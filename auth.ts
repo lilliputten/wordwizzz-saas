@@ -37,6 +37,7 @@ export const {
         }
 
         if (token.role) {
+          // @see JWT type extension in `types/next-auth.d.ts`
           session.user.role = token.role;
         }
 

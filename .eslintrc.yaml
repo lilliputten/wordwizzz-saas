@@ -238,35 +238,35 @@ overrides:
         - 'warn'
         - 'always'
 
-  - # Raw js project files...
-    files: '**/*.js'
-    parser: null
-    env:
-      es6: true
-      browser: true
-    globals:
-      modules: true
-    extends:
-      - 'eslint:recommended'
-      - 'plugin:prettier/recommended'
-    plugins:
-      - 'prettier' # prettier: Slighly slower (+~0.3s)
-    rules:
-      no-var: 'warn'
-      prettier/prettier: 'warn'
-      no-unused-vars:
-        - 'warn'
-        - argsIgnorePattern: '^_'
-      no-console: 'warn'
-      no-debugger: 'warn'
-      no-extra-semi: 'warn'
-      no-redeclare: 'warn'
-      no-undef: 'error'
-      no-unreachable: 'warn'
-      prefer-const: 'warn'
-      semi:
-        - 'warn'
-        - 'always'
+  # - # Raw js project files...
+  #   files: '**/*.js'
+  #   parser: null
+  #   env:
+  #     es6: true
+  #     browser: true
+  #   globals:
+  #     modules: true
+  #   extends:
+  #     - 'eslint:recommended'
+  #     - 'plugin:prettier/recommended'
+  #   plugins:
+  #     - 'prettier' # prettier: Slighly slower (+~0.3s)
+  #   rules:
+  #     no-var: 'warn'
+  #     prettier/prettier: 'warn'
+  #     no-unused-vars:
+  #       - 'warn'
+  #       - argsIgnorePattern: '^_'
+  #     no-console: 'warn'
+  #     no-debugger: 'warn'
+  #     no-extra-semi: 'warn'
+  #     no-redeclare: 'warn'
+  #     no-undef: 'error'
+  #     no-unreachable: 'warn'
+  #     prefer-const: 'warn'
+  #     semi:
+  #       - 'warn'
+  #       - 'always'
 
   - # json files (@see https://www.npmjs.com/package/eslint-plugin-json)...
     files: '**/*.json'

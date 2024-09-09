@@ -11,7 +11,7 @@ interface CustomerPortalButtonProps {
 }
 
 export function CustomerPortalButton({ userStripeId }: CustomerPortalButtonProps) {
-  let [isPending, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
   const generateUserStripeSession = openCustomerPortal.bind(null, userStripeId);
 
   const stripeSessionAction = () => startTransition(async () => await generateUserStripeSession());

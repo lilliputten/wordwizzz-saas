@@ -3,14 +3,17 @@ import { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 import { getColorSpread } from './build-utils/getColorSpread';
-import { brandBlueColor, brandOrangeColor, primaryColor, secondaryColor } from './config/theme';
+import { brandBlueColor, brandOrangeColor, primaryColor } from './config/theme';
+
+import tailwindcssAnimate from 'tailwindcss-animate';
+import tailwindcssTypography from '@tailwindcss/typography';
 
 // Core app color definitions
 // UNUSED? Construct primary/secondary colors spread tables
 // (with keys 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950) from key colors.
 const primaryColorSpread = getColorSpread('primary', primaryColor);
-const brandOrangeColorSpread = getColorSpread('app-orange', brandOrangeColor);
-const brandBlueColorSpread = getColorSpread('app-blue', brandBlueColor);
+const brandOrangeColorSpread = getColorSpread('brand-orange', brandOrangeColor);
+const brandBlueColorSpread = getColorSpread('brand-blue', brandBlueColor);
 const secondaryColorSpread = brandOrangeColorSpread; // getColorSpread('secondary', secondaryColor);
 
 const config = {
@@ -155,7 +158,7 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [tailwindcssAnimate, tailwindcssTypography],
 } satisfies Config;
 
 export default config;
