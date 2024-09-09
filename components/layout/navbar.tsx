@@ -58,7 +58,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
                 <Link
                   key={index}
                   href={item.disabled ? '#' : item.href}
-                  prefetch={true}
+                  prefetch
                   className={cn(
                     'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
                     item.href.startsWith(`/${selectedLayout}`)

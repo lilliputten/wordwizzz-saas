@@ -6,16 +6,20 @@ export const BLOG_CATEGORIES: {
   {
     title: 'News',
     slug: 'news',
-    description: 'Updates and announcements from Next WordWizzz!.',
+    description: 'Updates and announcements from WordWizzz!',
   },
   {
     title: 'Education',
     slug: 'education',
-    description: 'Educational content about SaaS management.',
+    description: 'Educational content about English language learning.',
   },
 ];
 
 export const BLOG_AUTHORS = {
+  lilliputten: {
+    name: 'lilliputten',
+    image: '/_static/avatars/lilliputten.jpeg',
+  },
   mickasmt: {
     name: 'mickasmt',
     image: '/_static/avatars/mickasmt.png',

@@ -47,7 +47,7 @@ export default function InfoLanding({ data, reverse = false }: InfoLandingProps)
               alt={data.title}
               width={1000}
               height={500}
-              priority={true}
+              priority
             />
           </div>
         </div>

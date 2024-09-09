@@ -8,7 +8,7 @@ import { Icons } from '@/components/shared/icons';
 
 export default async function HeroLanding() {
   const { stargazers_count: stars } = await fetch(
-    'https://api.github.com/repos/mickasmt/next-saas-stripe-starter',
+    'https://api.github.com/repos/lilliputten/next-saas-stripe-starter',
     {
       ...(env.GITHUB_OAUTH_TOKEN && {
         headers: {
@@ -58,7 +58,7 @@ export default async function HeroLanding() {
         >
           <Link
             href="/pricing"
-            prefetch={true}
+            prefetch
             className={cn(buttonVariants({ size: 'lg', rounded: 'full' }), 'gap-2')}
           >
             <span>Go Pricing</span>

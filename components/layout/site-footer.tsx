@@ -42,12 +42,12 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           <p className="text-left text-sm text-muted-foreground">
             Built by{' '}
             <Link
-              href={siteConfig.links.twitter}
+              href={siteConfig.links.website}
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
-              mickasmt
+              lilliputten
             </Link>
             . Hosted on{' '}
             <Link

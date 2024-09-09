@@ -14,7 +14,7 @@ export default function PreviewLanding() {
               alt="preview landing"
               width={2000}
               height={1000}
-              priority={true}
+              priority
             />
           </div>
         </div>
