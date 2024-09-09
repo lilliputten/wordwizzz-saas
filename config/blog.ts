@@ -19,6 +19,7 @@ export const BLOG_AUTHORS = {
   lilliputten: {
     name: 'lilliputten',
     image: '/_static/avatars/lilliputten.jpeg',
+    website: 'https://lilliputten.com',
   },
   mickasmt: {
     name: 'mickasmt',
