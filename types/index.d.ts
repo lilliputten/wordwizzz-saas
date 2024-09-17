@@ -44,7 +44,9 @@ export type DocsConfig = {
 };
 
 // subcriptions
+export type SubscriptionPlanType = 'free' | 'pro' | 'business';
 export type SubscriptionPlan = {
+  id: SubscriptionPlanType;
   title: string;
   description: string;
   benefits: string[];

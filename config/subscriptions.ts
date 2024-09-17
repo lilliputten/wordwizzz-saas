@@ -3,8 +3,9 @@ import { env } from '@/env.mjs';
 
 export const pricingData: SubscriptionPlan[] = [
   {
-    title: 'Starter',
-    description: 'For Beginners',
+    id: 'free',
+    title: 'Free',
+    description: 'Basic Features for Everyone',
     benefits: [
       'Up to 100 monthly posts',
       'Basic analytics and reporting',
@@ -26,6 +27,7 @@ export const pricingData: SubscriptionPlan[] = [
     },
   },
   {
+    id: 'pro',
     title: 'Pro',
     description: 'Unlock Advanced Features',
     benefits: [
@@ -46,6 +48,7 @@ export const pricingData: SubscriptionPlan[] = [
     },
   },
   {
+    id: 'business',
     title: 'Business',
     description: 'For Power Users',
     benefits: [

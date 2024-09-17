@@ -30,7 +30,8 @@ export function NavBar({ scroll = false }: NavBarProps) {
   const { setShowSignInModal } = useContext(ModalContext);
 
   const selectedLayout = useSelectedLayoutSegment();
-  const documentation = selectedLayout === 'docs';
+  const showDocumentation = selectedLayout === 'docs';
+  const showExtraButtons = false; // showDocumentation;
 
   const configMap = {
     docs: docsConfig.mainNav,
@@ -69,7 +70,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
           'py-4',
           'z-10',
         )}
-        large={documentation}
+        large={showDocumentation}
       >
         <div className="flex gap-6 md:gap-10">
           <Link
@@ -128,7 +129,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
 
         <div className="flex items-center space-x-3">
           {/* right header for docs */}
-          {documentation ? (
+          {showExtraButtons ? (
             <div className="hidden flex-1 items-center space-x-4 sm:justify-end lg:flex">
               <div className="hidden lg:flex lg:grow-0">
                 <DocsSearch />
@@ -136,6 +137,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
               <div className="flex lg:hidden">
                 <Icons.search className="size-6 text-primary-foreground" />
               </div>
+              {/* // Github button
               <div className="flex space-x-4">
                 <Link
                   href={siteConfig.links.github}
@@ -147,6 +149,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
                   <span className="sr-only">GitHub</span>
                 </Link>
               </div>
+              */}
             </div>
           ) : null}
 
@@ -155,7 +158,13 @@ export function NavBar({ scroll = false }: NavBarProps) {
               href={session.user.role === 'ADMIN' ? '/admin' : '/dashboard'}
               className="hidden md:block"
             >
-              <Button className="gap-2 px-5" variant="default" size="sm" rounded="full">
+              <Button
+                className="gap-2 px-5"
+                variant="orange"
+                // variant="default"
+                size="sm"
+                rounded="full"
+              >
                 <span>Dashboard</span>
               </Button>
             </Link>

@@ -13,6 +13,8 @@ export const sidebarLinks: SidebarNavItem[] = [
         authorizeOnly: UserRole.ADMIN,
       },
       { href: '/dashboard', icon: 'dashboard', title: 'Dashboard' },
+      { href: '/dashboard/languages', icon: 'languages', title: 'Used languages' },
+      { href: '/dashboard/words', icon: 'wordsList', title: 'Words list' },
       {
         href: '/dashboard/billing',
         icon: 'billing',

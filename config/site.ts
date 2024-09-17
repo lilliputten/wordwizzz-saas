@@ -10,7 +10,7 @@ export const siteConfig: SiteConfig = {
   ogImage: `${siteUrl}/_static/og.jpg`,
   links: {
     website: 'https://lilliputten.com/',
-    github: 'https://github.com/lilliputten/next-saas-stripe-starter',
+    github: 'https://github.com/lilliputten/wordwizzz-saas',
   },
   mailSupport: 'support@saas-starter.com',
 };

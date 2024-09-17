@@ -35,7 +35,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
       <div
         className={cn(
           'relative flex flex-col overflow-hidden rounded-3xl border shadow-sm',
-          offer.title.toLocaleLowerCase() === 'pro' ? '-m-0.5 border-2 border-purple-400' : '',
+          offer.title.toLocaleLowerCase() === 'pro' ? '-m-0.5 border-2 border-primary-500' : '',
         )}
         key={offer.title}
       >
@@ -76,7 +76,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
           <ul className="space-y-2 text-left text-sm font-medium leading-normal">
             {offer.benefits.map((feature) => (
               <li className="flex items-start gap-x-3" key={feature}>
-                <Icons.check className="size-5 shrink-0 text-purple-500" />
+                <Icons.check className="size-5 shrink-0 text-primary-500" />
                 <p>{feature}</p>
               </li>
             ))}
@@ -84,7 +84,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
             {offer.limitations.length > 0 &&
               offer.limitations.map((feature) => (
                 <li className="flex items-start text-muted-foreground" key={feature}>
-                  <Icons.close className="mr-3 size-5 shrink-0" />
+                  <Icons.close className="mr-3 size-5 shrink-0 opacity-30" />
                   <p>{feature}</p>
                 </li>
               ))}
@@ -126,9 +126,9 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   };
 
   return (
-    <MaxWidthWrapper>
+    <MaxWidthWrapper className="--pricing-cards--">
       <section className="flex flex-col items-center text-center">
-        <HeaderSection label="Pricing" title="Start at full speed !" />
+        <HeaderSection label="Pricing" title="Start at full speed!" />
 
         <div className="mb-4 mt-10 flex items-center gap-5">
           <ToggleGroup

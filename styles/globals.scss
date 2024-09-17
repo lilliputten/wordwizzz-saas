@@ -54,11 +54,26 @@
     --ringColorHSL: 0 0% 3.9%;
     --borderRadiusSize: 0.5rem;
 
-    --chart1ColorHSL: 271.5 81.3% 55.9%;
-    --chart2ColorHSL: 270 95% 75%;
-    --chart3ColorHSL: 270 91% 65%;
-    --chart4ColorHSL: 269 97% 85%;
-    --chart5ColorHSL: 269 100% 92%;
+    /* // Original (purple) based chart colorss:
+     * --chart1ColorHSL: 271.5 81.3% 55.9%;
+     * --chart2ColorHSL: 270 95% 75%;
+     * --chart3ColorHSL: 270 91% 65%;
+     * --chart4ColorHSL: 269 97% 85%;
+     * --chart5ColorHSL: 269 100% 92%;
+     */
+    /* // Primary (red) based chart colorss:
+     * --chart1ColorHSL: 0, 69%, 40%; // 271.5 81.3% 55.9%;
+     * --chart2ColorHSL: 0, 69%, 50%; // 270 95% 75%;
+     * --chart3ColorHSL: 0, 69%, 60%; // 270 91% 65%;
+     * --chart4ColorHSL: 0, 69%, 70%; // 269 97% 85%;
+     * --chart5ColorHSL: 0, 69%, 80%; // 269 100% 92%;
+     */
+    // Secondary (orange) based chart colorss:
+    --chart1ColorHSL: 43, 100%, 50%; // 271.5 81.3% 55.9%;
+    --chart2ColorHSL: 43, 100%, 60%; // 270 95% 75%;
+    --chart3ColorHSL: 43, 100%, 70%; // 270 91% 65%;
+    --chart4ColorHSL: 43, 100%, 80%; // 269 97% 85%;
+    --chart5ColorHSL: 43, 100%, 90%; // 269 100% 92%;
   }
 
   .dark {
@@ -82,11 +97,13 @@
     --inputColorHSL: 0 0% 14.9%;
     --ringColorHSL: 0 0% 83.1%;
 
-    --chart1ColorHSL: 271.5 81.3% 55.9%;
-    --chart2ColorHSL: 270 95% 75%;
-    --chart3ColorHSL: 270 91% 65%;
-    --chart4ColorHSL: 269 97% 85%;
-    --chart5ColorHSL: 269 100% 92%;
+    /* / Define specific chart colors for the dark theme
+     * --chart1ColorHSL: 271.5 81.3% 55.9%;
+     * --chart2ColorHSL: 270 95% 75%;
+     * --chart3ColorHSL: 270 91% 65%;
+     * --chart4ColorHSL: 269 97% 85%;
+     * --chart5ColorHSL: 269 100% 92%;
+     */
   }
 }
 

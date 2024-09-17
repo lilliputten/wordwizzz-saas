@@ -5,15 +5,21 @@ import { Label, PolarGrid, PolarRadiusAxis, RadialBar, RadialBarChart } from 're
 
 import {
   Card,
+  CardFooter,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 import { ChartConfig, ChartContainer } from '@/components/ui/chart';
 
-const chartData = [{ browser: 'safari', visitors: 200, fill: 'var(--color-safari)' }];
+const chartData = [
+  {
+    browser: 'safari',
+    visitors: 200,
+    fill: 'var(--color-safari)',
+  },
+];
 
 const chartConfig = {
   visitors: {
@@ -28,10 +34,12 @@ const chartConfig = {
 export function RadialTextChart() {
   return (
     <Card className="flex flex-col">
-      {/* <CardHeader className="items-center pb-0">
+      {/*
+      <CardHeader className="items-center pb-0">
         <CardTitle>Radial Chart - Text</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
-      </CardHeader> */}
+      </CardHeader>
+      */}
       <CardContent className="flex-1 pb-0">
         <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[250px]">
           <RadialBarChart
@@ -45,7 +53,7 @@ export function RadialTextChart() {
               gridType="circle"
               radialLines={false}
               stroke="none"
-              className="first:fill-muted last:fill-background"
+              // className="first:fill-muted last:fill-background"
               polarRadius={[86, 74]}
             />
             <RadialBar dataKey="visitors" background cornerRadius={10} />
