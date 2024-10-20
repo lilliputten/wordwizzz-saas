@@ -39,7 +39,7 @@ next-env.d.ts
 # email
 /.react-email/
 
-.vscode
+# .vscode
 .contentlayer
 
 # Temporariy, swap & ignored files
