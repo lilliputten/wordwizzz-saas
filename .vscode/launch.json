@@ -46,9 +46,7 @@
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/gulp/bin/gulp.js",
       "console": "integratedTerminal",
-      "args": [
-        "build"
-      ]
+      "args": ["build"]
     },
     {
       "name": "Node: webpack",
@@ -56,27 +54,16 @@
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/gulp/bin/gulp.js",
       "console": "integratedTerminal",
-      "args": [
-        "build"
-      ]
+      "args": ["build"]
     },
     {
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": [
-        "jest",
-        "${file}",
-        "--no-cache",
-        "--watchAll=false",
-        "--runInBand"
-      ],
+      "runtimeArgs": ["jest", "${file}", "--no-cache", "--watchAll=false", "--runInBand"],
       "console": "integratedTerminal",
       "protocol": "inspector",
-      "skipFiles": [
-        "${workspaceFolder}/node_modules/**/*.js",
-        "<node_internals>/**/*.js"
-      ]
+      "skipFiles": ["${workspaceFolder}/node_modules/**/*.js", "<node_internals>/**/*.js"]
     }
   ]
 }

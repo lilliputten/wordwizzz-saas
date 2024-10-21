@@ -123,6 +123,7 @@ overrides:
       # NOTE 2024.09.08, 23:49 -- Disabled due to multiple 'Use an `interface` instead of a `type`'
       # '@typescript-eslint/consistent-type-definitions': 'error'
       # 'type-annotation-spacing': 'error' # ???
+      react/no-unescaped-entities: off
       react/prop-types: 'off'
       react/no-multi-comp:
         - 'error'

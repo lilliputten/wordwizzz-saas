@@ -1,5 +1,6 @@
 {
   "search.exclude": {
+    "*.session": true,
     "pnpm-lock.yaml": true,
     "preview-public": true,
     "compiled-assets": true,
