@@ -1,34 +1,30 @@
 'use client';
 
 import React from 'react';
-// import { useState, useTransition } from 'react';
-import { updateUserName } from '@/actions/update-user-name';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { User } from '@prisma/client';
-import { useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { SectionColumns } from '@/components/dashboard/section-columns';
 import { Icons } from '@/components/shared/icons';
 
 import { TLanguage, TLanguageId } from './types/TLanguage';
+import { getErrorText } from '@/shared/helpers/strings';
 
-type FormData = TLanguage;
+const minIdLength = 2;
+const maxIdLength = 16;
+const minNameLength = 3;
+const maxNameLength = 32;
 
-export const formSchema = z.object({
-  id: z.string().min(2 /* , { message: 'ID is required' } */).max(16),
-  name: z.string().min(4).max(32),
-});
+type TFormData = TLanguage;
 
 interface TProps {
   languages: TLanguage[];
-  onAddLanguage: (language: TLanguage) => void;
+  onAddLanguage: (language: TLanguage) => Promise<void>;
 }
 
 const defaultValues: TLanguage = {
@@ -38,13 +34,34 @@ const defaultValues: TLanguage = {
 
 export const AddLanguageBlock: React.FC<TProps> = (props) => {
   const { languages, onAddLanguage } = props;
-  // return <>AddLanguageBlock</>;
-  // const { update } = useSession();
-  // const [updated, setUpdated] = React.useState(false);
   const [isPending, startTransition] = React.useTransition();
-  // const updateUserNameWithId = updateUserName.bind(null, user.id);
+
+  const refineLanguageId = React.useCallback(
+    (value: TLanguageId) => {
+      const found = languages.find((lang) => lang.id === value);
+      const isError = !!found;
+      console.log('[AddLanguageBlock:refineLanguageId]', {
+        value,
+        isError,
+        languages,
+      });
+      return !isError;
+    },
+    [languages],
+  );
+  const formSchema = React.useMemo(
+    () =>
+      z.object({
+        id: z.string().min(minIdLength).max(maxIdLength).refine(refineLanguageId, {
+          message: 'This language id already exists in your languages list',
+        }),
+        name: z.string().min(minNameLength).max(maxNameLength),
+      }),
+    [refineLanguageId],
+  );
 
   const {
+    // @see https://react-hook-form.com/docs/useform
     formState, // FormState<TFieldValues>;
     handleSubmit, // UseFormHandleSubmit<TFieldValues, TTransformedValues>;
     register, // UseFormRegister<TFieldValues>;
@@ -52,21 +69,32 @@ export const AddLanguageBlock: React.FC<TProps> = (props) => {
     // watch, // UseFormWatch<TFieldValues>;
     // getValues, // UseFormGetValues<TFieldValues>;
     // getFieldState, // UseFormGetFieldState<TFieldValues>;
-    setError, // UseFormSetError<TFieldValues>;
-    clearErrors, // UseFormClearErrors<TFieldValues>;
+    // setError, // UseFormSetError<TFieldValues>;
+    // clearErrors, // UseFormClearErrors<TFieldValues>;
     // setValue, // UseFormSetValue<TFieldValues>;
     // resetField, // UseFormResetField<TFieldValues>;
-    // reset, // UseFormReset<TFieldValues>;
+    reset, // UseFormReset<TFieldValues>;
     // unregister, // UseFormUnregister<TFieldValues>;
     // control, // Control<TFieldValues, TContext>;
     // setFocus, // UseFormSetFocus<TFieldValues>;
-  } = useForm<FormData>({
-    criteriaMode: 'all',
+  } = useForm<TFormData>({
+    // @see https://react-hook-form.com/docs/useform
+    mode: 'all', // Validation strategy before submitting behaviour.
+    criteriaMode: 'all', // Display all validation errors or one at a time.
     resolver: zodResolver(formSchema),
-    defaultValues,
+    defaultValues, // Default values for the form.
+    // shouldFocusError: true, // Enable or disable built-in focus management.
+    // reValidateMode, // Validation strategy after submitting behaviour.
+    // values, // Reactive values to update the form values.
+    // errors, // Reactive errors to update the form errors.
+    // resetOptions, // Option to reset form state update while updating new form values.
+    // delayError, // Delay error from appearing instantly.
+    // shouldUseNativeValidation, // Use browser built-in form constraint API.
+    // shouldUnregister, // Enable and disable input unregister after unmount.
   });
 
   const {
+    // @see https://react-hook-form.com/docs/useform/formstate
     isDirty, // boolean;
     errors, // FieldErrors<TFieldValues>;
     isValid, // boolean;
@@ -83,88 +111,45 @@ export const AddLanguageBlock: React.FC<TProps> = (props) => {
     // // defaultValues, // undefined | Readonly<DeepPartial<TFieldValues>>;
   } = formState;
 
-  const hasErrors = !!Object.keys(errors).length;
+  /* // Effect: Languages has been updated
+   * // eslint-disable-next-line react-hooks/exhaustive-deps
+   * const originalLanguages = React.useMemo(() => languages, []);
+   * React.useEffect(() => {
+   *   if (originalLanguages !== languages) {
+   *     console.log('[AddLanguageBlock:Effect: Languages has been updated]', {
+   *       keys: Object.keys(languages),
+   *       languages,
+   *     });
+   *     debugger;
+   *     trigger('id');
+   *   }
+   * }, [originalLanguages, languages, trigger]);
+   */
+
+  const isSubmitEnabled = !isPending && isDirty && isValid;
 
   const onSubmit = handleSubmit((language) => {
     console.log('[AddLanguageBlock:onSubmit]', {
       language,
     });
-    onAddLanguage(language);
-    /* // SAMPLE
     startTransition(async () => {
-      const { status } = await updateUserNameWithId(data);
-      if (status !== 'success') {
-        toast.error('Something went wrong.', {
-          description: 'Your name was not updated. Please try again.',
+      onAddLanguage(language)
+        .then(() => {
+          toast.success('New language has been already added.');
+          reset();
+        })
+        .catch((error) => {
+          const message = getErrorText(error) || 'An unknown error has occurred.';
+          // eslint-disable-next-line no-console
+          console.error('[AddLanguageBlock:onSubmit]', message, {
+            error,
+          });
+          debugger; // eslint-disable-line no-debugger
+          toast.error('Something went wrong.', {
+            description: message,
+          });
         });
-      } else {
-        await update();
-        setUpdated(false);
-        toast.success('Your name has been updated.');
-      }
     });
-    */
-  });
-
-  const checkId = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { target } = e;
-      const id = target.value as TLanguageId;
-      const found = languages.find((lang) => lang.id === id);
-      console.log('[AddLanguageBlock:checkId]', {
-        found,
-        id,
-        target,
-      });
-      if (found) {
-        setError('id', {
-          type: 'found',
-          message: 'This language id already exists in your languages list',
-        });
-      } else {
-        clearErrors('id');
-      }
-    },
-    [languages, setError, clearErrors],
-  );
-
-  /* // UNUSED
-   * const checkUpdate = (value) => {
-   *   setUpdated(!!value);
-   * };
-   * const handleCheckUpdate = React.useCallback(
-   *   (e: React.ChangeEvent<HTMLInputElement>) => {
-   *     const { target } = e;
-   *     const { value } = target;
-   *     const id = target.id as keyof FormData;
-   *     console.log('[AddLanguageBlock:handleCheckUpdate]', {
-   *       value,
-   *       id,
-   *       target,
-   *     });
-   *     setTimeout(() => {
-   *       trigger(id, { shouldFocus: true }).then((result) => {
-   *         console.log('[AddLanguageBlock:handleCheckUpdate] result', {
-   *           result,
-   *           value,
-   *           id,
-   *           target,
-   *         });
-   *       });
-   *     }, 10);
-   *   },
-   *   [trigger],
-   * );
-   */
-
-  const isSubmitEnabled = !isPending && isDirty && isValid;
-
-  console.log('XXX', {
-    isSubmitEnabled,
-    isValid,
-    isDirty,
-    hasErrors,
-    errors,
   });
 
   return (
@@ -184,13 +169,16 @@ export const AddLanguageBlock: React.FC<TProps> = (props) => {
               <Input
                 id="id"
                 className="flex-1"
-                size={32}
-                {...register('id', { required: true })}
-                // onChange={handleCheckUpdate}
-                onChange={checkId}
+                size={maxIdLength}
+                // @see https://react-hook-form.com/docs/useform/register
+                {...register('id', {
+                  required: true,
+                })}
               />
               {errors?.id && <p className="pb-0.5 text-[13px] text-red-600">{errors.id.message}</p>}
-              <p className="text-[13px] text-muted-foreground">Max 16 characters</p>
+              <p className="text-[13px] text-muted-foreground">
+                Should be an unique value. {minIdLength}-{maxIdLength} characters.
+              </p>
             </div>
             <div className="flex w-full flex-col gap-4">
               <Label className="-sr-only" htmlFor="name">
@@ -199,14 +187,16 @@ export const AddLanguageBlock: React.FC<TProps> = (props) => {
               <Input
                 id="name"
                 className="flex-1"
-                size={32}
+                size={maxNameLength}
+                // @see https://react-hook-form.com/docs/useform/register
                 {...register('name', { required: true })}
-                // onChange={handleCheckUpdate}
               />
               {errors?.name && (
                 <p className="pb-0.5 text-[13px] text-red-600">{errors.name.message}</p>
               )}
-              <p className="text-[13px] text-muted-foreground">Max 32 characters</p>
+              <p className="text-[13px] text-muted-foreground">
+                {minNameLength}-{maxNameLength} characters.
+              </p>
             </div>
             {/*
             <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />

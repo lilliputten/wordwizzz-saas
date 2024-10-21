@@ -3,7 +3,6 @@
 import React from 'react';
 
 import { constructMetadata } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import { EmptyPlaceholder } from '@/components/shared/empty-placeholder';
 import { siteConfig } from '@/config/site';
 
@@ -39,18 +38,21 @@ function NoLanguages() {
 
 export function LanguagesList() {
   const [languages, setLanguages] = React.useState(sampleLanguages);
-  const handleDeleteLanguage = React.useCallback((id: TLanguageId) => {
+  const onDeleteLanguage = React.useCallback((id: TLanguageId) => {
     setLanguages((languages) => {
       return languages.filter((lang) => lang.id !== id);
     });
     // TODO: Update in store / on server...
   }, []);
-  const handleAddLanguage = React.useCallback((language: TLanguage) => {
-    debugger;
+  const onAddLanguage = React.useCallback((language: TLanguage) => {
     setLanguages((languages) => {
       return languages.concat(language);
     });
     // TODO: Update in store / on server...
+    return Promise.resolve();
+    /* // DEBUG: Demo error
+     * return Promise.reject('Sample error');
+     */
   }, []);
   const hasLanguages = !!languages.length;
   // const { setShowAddLanguageModal, AddLanguageModal } = useAddLanguageModal();
@@ -59,8 +61,8 @@ export function LanguagesList() {
   }
   return (
     <>
-      <LanguagesListTable languages={languages} onDeleteLanguage={handleDeleteLanguage} />
-      <AddLanguageBlock languages={languages} onAddLanguage={handleAddLanguage} />
+      <LanguagesListTable languages={languages} onDeleteLanguage={onDeleteLanguage} />
+      <AddLanguageBlock languages={languages} onAddLanguage={onAddLanguage} />
       {/*
       <AddLanguageModal />
       */}
