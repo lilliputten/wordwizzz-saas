@@ -17,7 +17,7 @@ interface TProps {
 export const AddLanguageBlock: React.FC<TProps> = (props) => {
   const { languages, onAddLanguage } = props;
   return (
-    <Tabs className="__AddLanguageBlock_Tabs" defaultValue="AddCustomLanguage">
+    <Tabs className="__AddLanguageBlock_Tabs" defaultValue="AddPredefinedLanguage">
       <TabsList>
         <TabsTrigger className="TabsTrigger" value="AddCustomLanguage">
           Add custom language

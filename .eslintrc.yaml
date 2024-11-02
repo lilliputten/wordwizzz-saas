@@ -160,7 +160,7 @@ overrides:
               - 'render'
       # react/sort-prop-types: 'warn'
       react/jsx-closing-tag-location: 'warn'
-      react/jsx-curly-newline: 'error'
+      react/jsx-curly-newline: 'off'
       react/jsx-curly-spacing: 'error'
       react/jsx-equals-spacing: 'error'
       react/jsx-indent:

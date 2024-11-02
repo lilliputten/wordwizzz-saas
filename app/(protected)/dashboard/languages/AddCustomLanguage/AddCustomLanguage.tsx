@@ -36,11 +36,12 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
     (value: TLanguageId) => {
       const found = languages.find((lang) => lang.id === value);
       const isError = !!found;
-      console.log('[AddCustomLanguage:refineLanguageId]', {
-        value,
-        isError,
-        languages,
-      });
+      /* console.log('[AddCustomLanguage:refineLanguageId]', {
+       *   value,
+       *   isError,
+       *   languages,
+       * });
+       */
       return !isError;
     },
     [languages],
@@ -49,7 +50,7 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
     () =>
       z.object({
         id: z.string().min(minIdLength).max(maxIdLength).refine(refineLanguageId, {
-          message: 'This language id already exists in your languages list',
+          message: 'The language id already exists in your languages list',
         }),
         name: z.string().min(minNameLength).max(maxNameLength),
       }),
@@ -125,9 +126,10 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
   const isSubmitEnabled = !isPending && isDirty && isValid;
 
   const onSubmit = handleSubmit((language) => {
-    console.log('[AddCustomLanguage:onSubmit]', {
-      language,
-    });
+    /* console.log('[AddCustomLanguage:onSubmit]', {
+     *   language,
+     * });
+     */
     startTransition(async () => {
       onAddLanguage(language)
         .then(() => {
@@ -164,7 +166,7 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
           Add your own language with a custom (but unique) identifier and name.
         </p>
         <form onSubmit={onSubmit}>
-          <div className="flex w-full flex-col items-center gap-4">
+          <div className="mt-4 flex w-full flex-col items-center gap-4">
             <div className="flex w-full flex-col gap-4">
               <Label className="-sr-only" htmlFor="id">
                 ID
