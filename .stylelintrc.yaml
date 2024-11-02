@@ -7,9 +7,13 @@ extends:
   # - stylelint-config-styled-components
   # - stylelint-config-standard
   - stylelint-config-recommended-scss
+  - stylelint-config-tailwindcss/scss
   # - stylelint-config-css-modules
   # - stylelint-config-tailwindcss
-  - stylelint-config-tailwindcss/scss
+
+plugins:
+  - stylelint-order
+  - stylelint-scss
 
 files:
   - './**/*.css'
@@ -22,6 +26,9 @@ ignoreFiles:
   - '**/*_'
 
 rules:
+  at-rule-no-unknown: null
+  # scss/at-rule-no-unknown: null
+  # scss/at-import-no-partial-leading-underscore: null # ???
   # indentation:
   #   - 2
   #   - severity: warning

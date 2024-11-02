@@ -1,3 +1,7 @@
+@use 'sass:color';
+@use 'utils' as *;
+@use 'variables' as *;
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,20 +25,25 @@
 
 @layer base {
   :root {
+    // Colors
     // See also definitions in: `config/theme.ts`
-    --primaryColorRGB: 187 34 34; // #b22
-    --primaryForegroundColorRGB: 255 255 255;
-    --secondaryColorRGB: 255 187 17; // #fb1
-    --secondaryForegroundColorRGB: 0 0 0;
-    --appOrangeColorRGB: 255 187 17; // #fb1
-    --appOrangeForegroundColorRGB: 0 0 0;
-    --appBlueColorRGB: 193 59% 56%; // #4fb4d1
-    --appBlueForegroundColorRGB: 0 0 0;
 
-    // --primaryColorHSL: 0 69% 43%%;
-    // --primaryForegroundColorHSL: 0 0% 98%;
-    // --secondaryColorHSL: 43 100% 53%;
-    // --secondaryForegroundColorHSL: 0 0% 9%;
+    --primaryColor: #{$primaryColor};
+    --primaryColorRGB: #{rgbComponents($primaryColor)};
+    --primaryForegroundColor: #{$primaryForegroundColor};
+    --primaryForegroundColorRGB: #{rgbComponents($primaryForegroundColor)};
+    --secondaryColor: #{$secondaryColor};
+    --secondaryColorRGB: #{rgbComponents($secondaryColor)};
+    --secondaryForegroundColor: #{$secondaryForegroundColor};
+    --secondaryForegroundColorRGB: #{rgbComponents($secondaryForegroundColor)};
+    --appOrangeColor: #{$appOrangeColor};
+    --appOrangeColorRGB: #{rgbComponents($appOrangeColor)};
+    --appOrangeForegroundColor: #{$appOrangeForegroundColor};
+    --appOrangeForegroundColorRGB: #{rgbComponents($appOrangeForegroundColor)};
+    --appBlueColor: #{$appBlueColor};
+    --appBlueColorRGB: #{rgbComponents($appBlueColor)};
+    --appBlueForegroundColor: #{$appBlueForegroundColor};
+    --appBlueForegroundColorRGB: #{rgbComponents($appBlueForegroundColor)};
 
     --backgroundColorHSL: 0 0% 100%;
     --foregroundColorHSL: 0 0% 3.9%;
@@ -74,6 +83,18 @@
     --chart3ColorHSL: 43, 100%, 70%; // 270 91% 65%;
     --chart4ColorHSL: 43, 100%, 80%; // 269 97% 85%;
     --chart5ColorHSL: 43, 100%, 90%; // 269 100% 92%;
+
+    // Adaptive layouts
+
+    --smallTreshold: #{$smallTreshold};
+    --mobileTreshold: #{$mobileTreshold};
+    --wideTreshold: #{$wideTreshold};
+
+    // Delays
+
+    --transitionTimeMs: #{$transitionTimeMs};
+    --animationTimeMs: #{$animationTimeMs};
+    --disappearTimeMs: #{$disappearTimeMs};
   }
 
   .dark {
@@ -132,8 +153,12 @@
   }
 }
 
-.text-gradient_indigo-purple {
-  background: linear-gradient(90deg, #6366f1 0%, rgb(168 85 247 / 0.8) 100%);
+.text-gradient_brand {
+  background: linear-gradient(
+    15deg,
+    rgba(var(--secondaryColorRGB) / 80%) 0%,
+    var(--primaryColor) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -1,13 +1,18 @@
 import localFont from 'next/font/local';
-import { Inter as FontSans, Urbanist } from 'next/font/google';
+import {
+  Inter as FontSans,
+  // Urbanist,
+} from 'next/font/google';
 
 export const fontSans = FontSans({
-  subsets: ['latin'],
+  subsets: ['latin', 'cyrillic'],
   variable: '--font-sans',
 });
 
-export const fontUrban = Urbanist({
-  subsets: ['latin'],
+// export const fontUrban = Urbanist({ // ???
+
+export const fontUrban = FontSans({
+  subsets: ['latin', 'cyrillic'],
   variable: '--font-urban',
 });
 

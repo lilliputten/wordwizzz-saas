@@ -1,0 +1,22 @@
+// Colors...
+
+$primaryColor: #b22;
+$primaryForegroundColor: #fff;
+$secondaryColor: #fb1;
+$secondaryForegroundColor: #000;
+$appOrangeColor: #fb1;
+$appOrangeForegroundColor: #000;
+$appBlueColor: #4fb4d1;
+$appBlueForegroundColor: #000;
+
+// Adaptive layouts (TODO: Adjust to radix variables)...
+
+$smallTreshold: 660px;
+$mobileTreshold: 980px;
+$wideTreshold: 1200px;
+
+// Delays
+
+$transitionTimeMs: 250ms;
+$animationTimeMs: 500ms;
+$disappearTimeMs: 1000ms;

@@ -1,0 +1,29 @@
+@use 'variables' as *;
+
+// stylelint-disable selector-pseudo-class-no-unknown, property-no-unknown
+:export {
+  // Export variables (see re-exports in `cssVariables.ts`)
+
+  // Colors
+
+  primaryColor: #{$primaryColor};
+  primaryForegroundColor: #{$primaryForegroundColor};
+  secondaryColor: #{$secondaryColor};
+  secondaryForegroundColor: #{$secondaryForegroundColor};
+  appOrangeColor: #{$appOrangeColor};
+  appOrangeForegroundColor: #{$appOrangeForegroundColor};
+  appBlueColor: #{$appBlueColor};
+  appBlueForegroundColor: #{$appBlueForegroundColor};
+
+  // Adaptive layouts
+
+  smallTreshold: #{$smallTreshold};
+  mobileTreshold: #{$mobileTreshold};
+  wideTreshold: #{$wideTreshold};
+
+  // Delays
+
+  transitionTimeMs: #{$transitionTimeMs};
+  animationTimeMs: #{$animationTimeMs};
+  disappearTimeMs: #{$disappearTimeMs};
+}

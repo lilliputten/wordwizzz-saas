@@ -27,7 +27,7 @@ export default async function BillingPage() {
     <>
       <DashboardHeader heading="Billing" text="Manage billing and your subscription plan." />
       <div className="grid gap-8">
-        <Alert className="!pl-14">
+        <Alert className="-z-10 !pl-14">
           <Icons.warning />
           <AlertTitle>This is a demo app.</AlertTitle>
           <AlertDescription className="text-balance">
