@@ -3,14 +3,14 @@
 import { prisma } from '@/lib/db';
 import { TUserId } from '@/shared/types/TUser';
 
-import { TPrismaLanguage } from '../types/TPrismaLanguage';
-import { TLanguage } from '../types/TLanguage';
-import { convertClientLanguagesToPrisma } from '../helpers/convertClientLanguagesToPrisma';
+import { TPrismaLanguage, TLanguage } from '../types';
+import { convertClientLanguagesToPrisma } from '../helpers';
 
 export async function updateLanguages(userId: TUserId, languages: TLanguage[]) {
   try {
     const prismaLanguages: TPrismaLanguage[] = convertClientLanguagesToPrisma(userId, languages);
     const prismaUser = prisma.user;
+    // const prismaUsedLanguages = prisma.usedLanguages;
     console.log('[updateLanguages]', {
       userId,
       prismaLanguages,
@@ -18,14 +18,14 @@ export async function updateLanguages(userId: TUserId, languages: TLanguage[]) {
       prismaUser,
       prisma,
     });
-    debugger;
-    const result = await prismaUser.update({
+    const updateResult = await prismaUser.update({
       where: {
         id: userId,
       },
       data: {
         // @see https://www.prisma.io/docs/orm/prisma-client/queries/relation-queries
         // @see https://www.prisma.io/docs/orm/prisma-client/queries
+        // @see https://www.prisma.io/docs/orm/prisma-client/queries/crud
         usedLanguages: {
           // XXX: Stuck here on 2024.11.03, 07:57
           set: prismaLanguages,
@@ -33,6 +33,13 @@ export async function updateLanguages(userId: TUserId, languages: TLanguage[]) {
         stripeCustomerId: userId,
       },
     });
+    console.log('[updateLanguages] result', {
+      updateResult
+    });
+    debugger;
+    // const transactionResult = await prisma.$transaction([
+    //   updateResult,
+    // ]);
     await new Promise((resolve) => setTimeout(resolve, 2000));
     // TODO: Save?
     // DEBUG
@@ -46,7 +53,7 @@ export async function updateLanguages(userId: TUserId, languages: TLanguage[]) {
     });
     console.log('[updateLanguages] done', {
       test,
-      result,
+      updateResult,
     });
     debugger;
   } catch (error) {

@@ -7,7 +7,7 @@ export function NoLanguages() {
         <EmptyPlaceholder.Icon name="package" />
         <EmptyPlaceholder.Title>No languages</EmptyPlaceholder.Title>
         <EmptyPlaceholder.Description>
-          You dont have any languages yet. Add any language to yur profile.
+          You dont have any languages yet. Add any language to your profile.
         </EmptyPlaceholder.Description>
       </EmptyPlaceholder>
     </>

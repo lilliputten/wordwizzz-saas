@@ -2,7 +2,6 @@ import React from 'react';
 // import Link from 'next/link';
 // import { ArrowUpRight } from 'lucide-react';
 
-// import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -47,12 +46,6 @@ export const LanguagesListTable: React.FC<TProps> = (props) => {
           <TableHeader>
             <TableRow>
               <TableHead>Language</TableHead>
-              {/*
-              <TableHead className="hidden xl:table-column">Type</TableHead>
-              <TableHead className="hidden xl:table-column">Status</TableHead>
-              <TableHead className="hidden xl:table-column">Date</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
-              */}
             </TableRow>
           </TableHeader>
           <TableBody>

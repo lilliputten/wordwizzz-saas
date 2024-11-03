@@ -21,9 +21,9 @@ import { Icons } from '@/components/shared/icons';
 
 import { getErrorText } from '@/shared/helpers/strings';
 
-import { TLanguage, TLanguageId } from '../types/TLanguage';
+import { TLanguage, TLanguageId } from '../types';
 import { minIdLength, maxIdLength } from '../constants/inputFields';
-import { predefinedLanguages } from '../constants/predefinedLanguages';
+import { predefinedLanguages } from '../constants';
 
 interface TFormData {
   id?: TLanguageId;
@@ -63,7 +63,8 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
     () =>
       z.object({
         id: z.string().min(minIdLength).max(maxIdLength).refine(refineLanguageId, {
-          message: 'This language is not unique: The language id already exists in your languages list',
+          message:
+            'This language is not unique: The language id already exists in your languages list',
         }),
       }),
     [refineLanguageId],

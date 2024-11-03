@@ -3,7 +3,10 @@
 import { prisma } from '@/lib/db';
 import { TUserId } from '@/shared/types/TUser';
 
-import { TPrismaLanguage } from '../types/TPrismaLanguage';
+import { TPrismaLanguage } from '../types';
+import { convertPrismaLanguagesToClient } from '../helpers';
+
+export type TFetchLanguagesAction = typeof fetchLanguages;
 
 export async function fetchLanguages(userId: TUserId) {
   const result = await prisma.user.findUnique({
@@ -25,5 +28,5 @@ export async function fetchLanguages(userId: TUserId) {
     result,
     userId,
   });
-  return usedLanguages;
+  return convertPrismaLanguagesToClient(usedLanguages);
 }

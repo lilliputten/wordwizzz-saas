@@ -13,7 +13,7 @@ import { Icons } from '@/components/shared/icons';
 
 import { getErrorText } from '@/shared/helpers/strings';
 
-import { TLanguage, TLanguageId } from '../types/TLanguage';
+import { TLanguage, TLanguageId } from '../types';
 import { minIdLength, maxIdLength, minNameLength, maxNameLength } from '../constants/inputFields';
 
 type TFormData = TLanguage;
@@ -50,7 +50,8 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
     () =>
       z.object({
         id: z.string().min(minIdLength).max(maxIdLength).refine(refineLanguageId, {
-          message: 'This language is not unique: The language id already exists in your languages list',
+          message:
+            'This language is not unique: The language id already exists in your languages list',
         }),
         name: z.string().min(minNameLength).max(maxNameLength),
       }),

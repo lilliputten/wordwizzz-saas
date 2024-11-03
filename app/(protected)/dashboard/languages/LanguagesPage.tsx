@@ -7,12 +7,9 @@ import { siteConfig } from '@/config/site';
 
 import { LanguagesList } from './LanguagesList';
 import { LanguagePageError } from './LanguagePageError';
-import { TPrismaLanguage } from './types/TPrismaLanguage';
-import { TLanguage } from './types/TLanguage';
-import { convertPrismaLanguagesToClient } from './helpers/convertPrismaLanguagesToClient';
+import { TLanguage } from './types';
 
-import { updateLanguages } from './actions/updateLanguages';
-import { fetchLanguages } from './actions/fetchLanguages';
+import { fetchLanguages, addLanguage, deleteLanguage } from './actions';
 
 export const metadata = constructMetadata({
   title: 'Languages - ' + siteConfig.name,
@@ -31,15 +28,18 @@ export async function LanguagesPage() {
    * });
    */
   try {
-    const prismaLanguages: TPrismaLanguage[] = await fetchLanguages(userId);
-    const clientLanguages: TLanguage[] = convertPrismaLanguagesToClient(prismaLanguages);
+    const initialLanguages: TLanguage[] = await fetchLanguages(userId);
     return (
       <>
-        <DashboardHeader heading="Languages" text="Check and manage your latest languages." />
+        <DashboardHeader
+          heading="Languages"
+          text="Check and manage languages what you could use for all your applications."
+        />
         <LanguagesList
           userId={userId}
-          initialLanguages={clientLanguages}
-          updateLanguages={updateLanguages}
+          initialLanguages={initialLanguages}
+          addLanguage={addLanguage}
+          deleteLanguage={deleteLanguage}
         />
       </>
     );
