@@ -14,6 +14,8 @@ export interface TVariables {
   appOrangeForegroundColor: string;
   appBlueColor: string;
   appBlueForegroundColor: string;
+  appDestructiveColor: string;
+  appDestructiveForegroundColor: string;
 
   // Themed colors (light)
 
@@ -78,7 +80,7 @@ export interface TVariables {
   disappearTimeMsPx: number;
 }
 
-const vars = cssVariables as TVariables;
+const vars = cssVariables as unknown as TVariables;
 
 const {
   // Colors
@@ -91,6 +93,8 @@ const {
   appOrangeForegroundColor,
   appBlueColor,
   appBlueForegroundColor,
+  appDestructiveColor,
+  appDestructiveForegroundColor,
 
   // Themed colors (light)
 
@@ -167,6 +171,8 @@ export {
   appOrangeForegroundColor,
   appBlueColor,
   appBlueForegroundColor,
+  appDestructiveColor,
+  appDestructiveForegroundColor,
 
   // Themed colors (light)
   backgroundLightColor,

@@ -25,8 +25,7 @@
 
 @layer base {
   :root {
-    // Colors
-    // See also definitions in: `config/theme.ts`
+    // NOTE: See also (duplicating) definitions in: `config/theme.ts`
 
     // Core colors
 
@@ -34,43 +33,34 @@
     --primaryColorRGB: #{rgbComponents($primaryColor)};
     --primaryForegroundColor: #{$primaryForegroundColor};
     --primaryForegroundColorRGB: #{rgbComponents($primaryForegroundColor)};
+
     --secondaryColor: #{$secondaryColor};
     --secondaryColorRGB: #{rgbComponents($secondaryColor)};
     --secondaryForegroundColor: #{$secondaryForegroundColor};
     --secondaryForegroundColorRGB: #{rgbComponents($secondaryForegroundColor)};
+
     --appOrangeColor: #{$appOrangeColor};
     --appOrangeColorRGB: #{rgbComponents($appOrangeColor)};
     --appOrangeForegroundColor: #{$appOrangeForegroundColor};
     --appOrangeForegroundColorRGB: #{rgbComponents($appOrangeForegroundColor)};
+
     --appBlueColor: #{$appBlueColor};
     --appBlueColorRGB: #{rgbComponents($appBlueColor)};
     --appBlueForegroundColor: #{$appBlueForegroundColor};
     --appBlueForegroundColorRGB: #{rgbComponents($appBlueForegroundColor)};
 
-    --borderRadiusSize: 0.5rem;
+    --appDestructiveColor: #{$appDestructiveColor};
+    --appDestructiveColorRGB: #{rgbComponents($appDestructiveColor)};
+    --appDestructiveForegroundColor: #{$appDestructiveForegroundColor};
+    --appDestructiveForegroundColorRGB: #{rgbComponents($appDestructiveForegroundColor)};
 
-    /* // Original (purple) based chart colors:
-     * --chart1ColorHSL: 271.5 81.3% 55.9%;
-     * --chart2ColorHSL: 270 95% 75%;
-     * --chart3ColorHSL: 270 91% 65%;
-     * --chart4ColorHSL: 269 97% 85%;
-     * --chart5ColorHSL: 269 100% 92%;
-     */
-    /* // Primary (red) based chart colors:
-     * --chart1ColorHSL: 0 69% 40%; // 271.5 81.3% 55.9%;
-     * --chart2ColorHSL: 0 69% 50%; // 270 95% 75%;
-     * --chart3ColorHSL: 0 69% 60%; // 270 91% 65%;
-     * --chart4ColorHSL: 0 69% 70%; // 269 97% 85%;
-     * --chart5ColorHSL: 0 69% 80%; // 269 100% 92%;
-     */
-    // Secondary (orange) based chart colors:
-    // 43, 100, 50
-    // 43 100% 50%
-    // 249,211,232
-    // F9D3E8
+    // Dimensions
+
+    --borderRadiusSize: 0.5rem;
 
     // Chart colors
 
+    // XXX: OLD
     // --chart1ColorHSL: 43 100% 50%; // 271.5 81.3% 55.9%;
     // --chart2ColorHSL: 43 100% 60%; // 270 95% 75%;
     // --chart3ColorHSL: 43 100% 70%; // 270 91% 65%;
@@ -100,8 +90,8 @@
     --animationTimeMs: #{$animationTimeMs};
     --disappearTimeMs: #{$disappearTimeMs};
 
-    // Themed colors (regexp): \<\(backgroundColorHSL\|foregroundColorHSL\|cardColorHSL\|cardForegroundColorHSL\|popoverColorHSL\|popoverForegroundColorHSL\|primaryColorHSL\|primaryForegroundColorHSL\|secondaryColorHSL\|secondaryForegroundColorHSL\|mutedColorHSL\|mutedForegroundColorHSL\|accentColorHSL\|accentForegroundColorHSL\|destructiveColorHSL\|destructiveForegroundColorHSL\|borderColorHSL\|inputColorHSL\|ringColorHSL\)\>
-    // Themed colors (regexp): \<\(backgroundColor\|foregroundColor\|cardColor\|cardForegroundColor\|popoverColor\|popoverForegroundColor\|primaryColor\|primaryForegroundColor\|secondaryColor\|secondaryForegroundColor\|mutedColor\|mutedForegroundColor\|accentColor\|accentForegroundColor\|destructiveColor\|destructiveForegroundColor\|borderColor\|inputColor\|ringColor\)
+    // Themed colors (with HSL, regexp): \<\(backgroundColorHSL\|foregroundColorHSL\|cardColorHSL\|cardForegroundColorHSL\|popoverColorHSL\|popoverForegroundColorHSL\|primaryColorHSL\|primaryForegroundColorHSL\|secondaryColorHSL\|secondaryForegroundColorHSL\|mutedColorHSL\|mutedForegroundColorHSL\|accentColorHSL\|accentForegroundColorHSL\|destructiveColorHSL\|destructiveForegroundColorHSL\|borderColorHSL\|inputColorHSL\|ringColorHSL\)\>
+    // Themed colors (bare, regexp): \<\(backgroundColor\|foregroundColor\|cardColor\|cardForegroundColor\|popoverColor\|popoverForegroundColor\|primaryColor\|primaryForegroundColor\|secondaryColor\|secondaryForegroundColor\|mutedColor\|mutedForegroundColor\|accentColor\|accentForegroundColor\|destructiveColor\|destructiveForegroundColor\|borderColor\|inputColor\|ringColor\)
 
     // Themed light colors
 
@@ -121,9 +111,6 @@
     // --borderColorHSL: 0 0% 89.8%;
     // --inputColorHSL: 0 0% 89.8%;
     // --ringColorHSL: 0 0% 3.9%;
-
-    // --\1: #{$\1};
-    // --\1RGB: #{rgbComponents($\1)};
 
     --backgroundLightColor: #{$backgroundLightColor};
     --backgroundLightColorRGB: #{rgbComponents($backgroundLightColor)};
@@ -170,12 +157,11 @@
   .dark {
     // Themed dark colors
 
-    // XXX
+    // XXX: OLD
     // --primaryColorHSL: 0 0% 98%;
     // --primaryForegroundColorHSL: 0 0% 9%;
     // --secondaryColorHSL: 0 0% 14.9%;
     // --secondaryForegroundColorHSL: 0 0% 98%;
-    //
     // --backgroundColorHSL: 0 0% 3.9%;
     // --foregroundColorHSL: 0 0% 98%;
     // --cardColorHSL: 0 0% 3.9%;
@@ -222,14 +208,6 @@
     --inputColorRGB: #{rgbComponents($inputDarkColor)};
     --ringColor: #{$ringDarkColor};
     --ringColorRGB: #{rgbComponents($ringDarkColor)};
-
-    /* / Define specific chart colors for the dark theme
-     * --chart1ColorHSL: 271.5 81.3% 55.9%;
-     * --chart2ColorHSL: 270 95% 75%;
-     * --chart3ColorHSL: 270 91% 65%;
-     * --chart4ColorHSL: 269 97% 85%;
-     * --chart5ColorHSL: 269 100% 92%;
-     */
   }
 }
 

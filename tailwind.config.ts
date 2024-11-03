@@ -4,8 +4,14 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 
 import { getColorSpread } from './build-utils/getColorSpread';
 // NOTE: It's not possible to export css modules on this stage
-// import { appBlueColor, appOrangeColor, primaryColor } from './styles/cssVariables';
-import { appBlueColor, appOrangeColor, primaryColor } from './config/theme';
+// import { appBlueColor, appOrangeColor, primaryColor , secondaryColor} from './styles/cssVariables';
+import {
+  appBlueColor,
+  appOrangeColor,
+  primaryColor,
+  secondaryColor,
+  appDestructiveColor,
+} from './config/theme';
 
 import tailwindcssAnimate from 'tailwindcss-animate';
 import tailwindcssTypography from '@tailwindcss/typography';
@@ -14,9 +20,10 @@ import tailwindcssTypography from '@tailwindcss/typography';
 // UNUSED? Construct primary/secondary colors spread tables
 // (with keys 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950) from key colors.
 const primaryColorSpread = getColorSpread('primary', primaryColor);
+const secondaryColorSpread = getColorSpread('secondary', secondaryColor);
 const appOrangeColorSpread = getColorSpread('app-orange', appOrangeColor);
 const appBlueColorSpread = getColorSpread('app-blue', appBlueColor);
-const secondaryColorSpread = appOrangeColorSpread; // getColorSpread('secondary', secondaryColor);
+const appDestructiveColorSpread = getColorSpread('app-destructive', appDestructiveColor);
 
 const config = {
   darkMode: ['class'],
@@ -41,6 +48,7 @@ const config = {
         ...appOrangeColorSpread,
         ...appBlueColorSpread,
         ...secondaryColorSpread,
+        ...appDestructiveColorSpread,
         /* // UNUSED, see spreads above
          * primary: {
          *   DEFAULT: 'rgb(var(--primaryColorRGB))',
@@ -61,8 +69,8 @@ const config = {
         background: 'var(--backgroundColor)',
         foreground: 'var(--foregroundColor)',
         destructive: {
-          DEFAULT: 'var(--destructiveColor)',
-          foreground: 'var(--destructiveForegroundColor)',
+          DEFAULT: 'var(--appDestructiveColor)',
+          foreground: 'var(--appDestructiveForegroundColor)',
         },
         muted: {
           DEFAULT: 'var(--mutedColor)',

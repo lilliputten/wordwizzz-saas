@@ -14,13 +14,10 @@
   appOrangeForegroundColor: #{$appOrangeForegroundColor};
   appBlueColor: #{$appBlueColor};
   appBlueForegroundColor: #{$appBlueForegroundColor};
+  appDestructiveColor: #{$appDestructiveColor};
+  appDestructiveForegroundColor: #{$appDestructiveForegroundColor};
 
   // Themed colors (light)
-
-  // backgroundLightColor: #{$backgroundLightColor};
-  // backgroundDarkColor: #{$backgroundDarkColor};
-  // foregroundLightColor: #{$foregroundLightColor};
-  // foregroundDarkColor: #{$foregroundDarkColor};
 
   backgroundLightColor: #{$backgroundLightColor};
   foregroundLightColor: #{$foregroundLightColor};
@@ -39,11 +36,6 @@
   ringLightColor: #{$ringLightColor};
 
   // Themed colors (dark)
-
-  // primaryDarkColor: #{$primaryDarkColor};
-  // primaryForegroundDarkColor: #{$primaryForegroundDarkColor};
-  // secondaryDarkColor: #{$secondaryDarkColor};
-  // secondaryForegroundDarkColor: #{$secondaryForegroundDarkColor};
 
   backgroundDarkColor: #{$backgroundDarkColor};
   foregroundDarkColor: #{$foregroundDarkColor};
