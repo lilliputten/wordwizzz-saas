@@ -48,12 +48,6 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
     (value: TLanguageId) => {
       const found = languages.find((lang) => lang.id === value);
       const isError = !!found;
-      /* console.log('[AddPredefinedLanguage:refineLanguageId]', {
-       *   value,
-       *   isError,
-       *   languages,
-       * });
-       */
       return !isError;
     },
     [languages],
@@ -96,22 +90,16 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
   const onSubmit = handleSubmit((formData) => {
     const { id: languageId } = formData;
     const language = languagesList.find(({ id }) => id === languageId);
-    /* console.log('[AddPredefinedLanguage:onSubmit]', {
-     *   languageId,
-     *   languagesList,
-     *   language,
-     * });
-     */
     if (!language) {
       toast.error(`Cannot find a language for the id: "${languageId}"`);
       return;
     }
-    startTransition(async () => {
-      // DEBUG: Delay
-      await new Promise((resolve) => setTimeout(resolve, 5000));
+    startTransition(() => {
+      /* // DEBUG: Delay
+       * await new Promise((resolve) => setTimeout(resolve, 5000));
+       */
       onAddLanguage(language)
         .then((_updatedLanguages) => {
-          // toast.success('New language has been already added.');
           reset();
         })
         .catch((error) => {
@@ -121,44 +109,20 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
             error,
           });
           debugger; // eslint-disable-line no-debugger
-          // toast.error('Something went wrong.', {
-          //   description: message,
-          // });
         });
     });
   });
 
   const registerSelectField = register('id', { required: true });
 
-  /* // DEBUG
-   * React.useEffect(() => {
-   *   console.log('[AddPredefinedLanguage:DEBUG]', {
-   *     registerSelectField,
-   *     formState, // FormState<TFieldValues>;
-   *     isDirty, // boolean;
-   *     errors, // FieldErrors<TFieldValues>;
-   *     isValid, // boolean;
-   *   });
-   * }, [
-   *   // prettier-ignore
-   *   registerSelectField,
-   *   formState, // FormState<TFieldValues>;
-   *   isDirty, // boolean;
-   *   errors, // FieldErrors<TFieldValues>;
-   *   isValid, // boolean;
-   * ]);
-   */
-
   return (
     <>
-      <div className="__AddPredefinedLanguage p-2 pt-4">
-        {/* // Prepending text
-        <p className="Text">
-          TODO: Add a language from the list.
+      <div className="__AddPredefinedLanguage p-2">
+        <p className="Text mb-4 text-[13px] text-muted-foreground">
+          Add a language from the predefined list.
         </p>
-        */}
         <form onSubmit={onSubmit}>
-          <div className="mt-4 flex w-full flex-col items-center gap-4">
+          <div className="flex w-full flex-col items-center gap-4">
             <div className="flex w-full flex-col gap-4">
               <Label className="-sr-only" htmlFor="id">
                 Select language
@@ -186,7 +150,9 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
               {errors?.id && <p className="pb-0.5 text-[13px] text-red-600">{errors.id.message}</p>}
               <p className="text-[13px] text-muted-foreground">Select a language form the list.</p>
             </div>
+            {/*
             <div className="flex flex-col justify-between p-1"></div>
+            */}
             <div className="flex w-full gap-4">
               <Button
                 type="submit"
@@ -205,7 +171,9 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
               </Button>
             </div>
           </div>
+          {/*
           <div className="flex flex-col justify-between p-1"></div>
+          */}
         </form>
       </div>
     </>

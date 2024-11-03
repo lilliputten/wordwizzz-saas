@@ -1,9 +1,11 @@
 import { EmptyPlaceholder } from '@/components/shared/empty-placeholder';
+import { TPropsWithClassName } from '@/types/generic';
 
-export function NoLanguages() {
+export function NoLanguages(props: TPropsWithClassName) {
+  const { className } = props;
   return (
     <>
-      <EmptyPlaceholder>
+      <EmptyPlaceholder className={className}>
         <EmptyPlaceholder.Icon name="package" />
         <EmptyPlaceholder.Title>No languages</EmptyPlaceholder.Title>
         <EmptyPlaceholder.Description>

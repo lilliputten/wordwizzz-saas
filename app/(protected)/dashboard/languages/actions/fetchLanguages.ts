@@ -23,12 +23,14 @@ export async function fetchLanguages(userId: TUserId) {
     throw new Error(`No data returned for the user id "${userId}"`);
   }
   const usedLanguages = result.usedLanguages as TPrismaLanguage[];
-  console.log('[LanguagesPage:fetchLanguages] result', {
-    usedLanguages,
-    result,
-    userId,
-  });
-  // DEBUG: Delay
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  /* console.log('[LanguagesPage:fetchLanguages] result', {
+   *   usedLanguages,
+   *   result,
+   *   userId,
+   * });
+   */
+  /* // DEBUG: Delay
+   * await new Promise((resolve) => setTimeout(resolve, 3000));
+   */
   return convertPrismaLanguagesToClient(usedLanguages);
 }

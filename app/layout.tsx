@@ -9,6 +9,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { Analytics } from '@/components/analytics';
 import ModalProvider from '@/components/modals/providers';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
+import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
+          tailwindClippingLayout({ vertical: true }),
           fontSans.variable,
           fontUrban.variable,
           fontHeading.variable,

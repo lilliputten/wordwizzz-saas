@@ -4,11 +4,9 @@ import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-// import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Icons } from '@/components/shared/icons';
 
 import { getErrorText } from '@/shared/helpers/strings';
@@ -109,32 +107,12 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
     // defaultValues, // undefined | Readonly<DeepPartial<TFieldValues>>;
   } = formState;
 
-  /* // Effect: Languages has been updated
-   * // eslint-disable-next-line react-hooks/exhaustive-deps
-   * const originalLanguages = React.useMemo(() => languages, []);
-   * React.useEffect(() => {
-   *   if (originalLanguages !== languages) {
-   *     console.log('[AddCustomLanguage:Effect: Languages has been updated]', {
-   *       keys: Object.keys(languages),
-   *       languages,
-   *     });
-   *     debugger;
-   *     trigger('id');
-   *   }
-   * }, [originalLanguages, languages, trigger]);
-   */
-
   const isSubmitEnabled = !isPending && isDirty && isValid;
 
   const onSubmit = handleSubmit((language) => {
-    /* console.log('[AddCustomLanguage:onSubmit]', {
-     *   language,
-     * });
-     */
     startTransition(async () => {
       onAddLanguage(language)
         .then((_updatedLanguages) => {
-          // toast.success('New language has been already added.');
           reset();
         })
         .catch((error) => {
@@ -144,70 +122,68 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
             error,
           });
           debugger; // eslint-disable-line no-debugger
-          // toast.error('Something went wrong.', {
-          //   description: message,
-          // });
         });
     });
   });
 
   return (
     <>
-      {/*
-      <Card className="xl:col-span-2">
-        <CardHeader className="flex flex-row items-center">
-          <div className="grid gap-2">
-            <CardTitle>Add a new language</CardTitle>
-          </div>
-        </CardHeader>
-      </Card>
-      */}
-      <div className="__AddCustomLanguage p-2 pt-4">
-        <p className="Text">
+      <div className="__AddCustomLanguage p-2">
+        <p className="Text mb-4 text-[13px] text-muted-foreground">
           Add your own language with a custom (but unique) identifier and name.
         </p>
         <form onSubmit={onSubmit}>
-          <div className="mt-4 flex w-full flex-col items-center gap-4">
+          <div className="flex w-full flex-col items-center gap-4">
             <div className="flex w-full flex-col gap-4">
+              {/*
               <Label className="-sr-only" htmlFor="id">
                 ID
               </Label>
+              */}
               <Input
                 id="id"
                 className="flex-1"
                 size={maxIdLength}
+                placeholder="ID"
                 // @see https://react-hook-form.com/docs/useform/register
                 {...register('id', {
                   required: true,
                 })}
               />
               {errors?.id && <p className="pb-0.5 text-[13px] text-red-600">{errors.id.message}</p>}
+              {/*
               <p className="text-[13px] text-muted-foreground">
                 Should be an unique value. {minIdLength}-{maxIdLength} characters.
               </p>
+              */}
             </div>
             <div className="flex w-full flex-col gap-4">
+              {/*
               <Label className="-sr-only" htmlFor="name">
                 Name
               </Label>
+              */}
               <Input
                 id="name"
                 className="flex-1"
                 size={maxNameLength}
+                placeholder="Name"
                 // @see https://react-hook-form.com/docs/useform/register
                 {...register('name', { required: true })}
               />
               {errors?.name && (
                 <p className="pb-0.5 text-[13px] text-red-600">{errors.name.message}</p>
               )}
+              {/*
               <p className="text-[13px] text-muted-foreground">
                 {minNameLength}-{maxNameLength} characters.
               </p>
+              */}
             </div>
             {/*
             <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
-            */}
             <div className="flex flex-col justify-between p-1"></div>
+            */}
             <div className="flex w-full gap-4">
               <Button
                 type="submit"
@@ -226,7 +202,9 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
               </Button>
             </div>
           </div>
+          {/*
           <div className="flex flex-col justify-between p-1"></div>
+          */}
         </form>
       </div>
     </>

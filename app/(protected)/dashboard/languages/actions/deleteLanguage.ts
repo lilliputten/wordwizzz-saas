@@ -11,12 +11,13 @@ export type TDeleteLanguageAction = typeof deleteLanguage;
 export async function deleteLanguage(userId: TUserId, languageId: TLanguageId) {
   try {
     const prismaUser = prisma.user;
-    console.log('[deleteLanguage] start', {
-      userId,
-      languageId,
-      prismaUser,
-      prisma,
-    });
+    /* console.log('[deleteLanguage] start', {
+     *   userId,
+     *   languageId,
+     *   prismaUser,
+     *   prisma,
+     * });
+     */
     const updateResult = await prismaUser.update({
       where: {
         id: userId,
@@ -35,14 +36,16 @@ export async function deleteLanguage(userId: TUserId, languageId: TLanguageId) {
       },
     });
     const updatedLanguages = updateResult.usedLanguages;
-    console.log('[deleteLanguage] done', {
-      updatedLanguages,
-      updateResult,
-      userId,
-      languageId,
-    });
-    // DEBUG: Delay
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    /* console.log('[deleteLanguage] done', {
+     *   updatedLanguages,
+     *   updateResult,
+     *   userId,
+     *   languageId,
+     * });
+     */
+    /* // DEBUG: Delay
+     * await new Promise((resolve) => setTimeout(resolve, 5000));
+     */
     return convertPrismaLanguagesToClient(updatedLanguages);
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -50,7 +53,7 @@ export async function deleteLanguage(userId: TUserId, languageId: TLanguageId) {
       error,
     });
     debugger; // eslint-disable-line no-debugger
-    // DEBUG: Re-throw an error
+    // NOTE: Re-throw an error
     throw error;
   }
 }

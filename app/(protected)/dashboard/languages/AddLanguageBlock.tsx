@@ -8,29 +8,34 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 import { AddCustomLanguage } from './AddCustomLanguage';
 import { AddPredefinedLanguage } from './AddPredefinedLanguage';
+import { cn } from '@/lib/utils';
 
 interface TProps {
   languages: TLanguage[];
   onAddLanguage: (language: TLanguage) => Promise<TLanguage[]>;
+  className?: string;
 }
 
 export const AddLanguageBlock: React.FC<TProps> = (props) => {
-  const { languages, onAddLanguage } = props;
+  const { className, languages, onAddLanguage } = props;
   return (
-    <Tabs className="__AddLanguageBlock_Tabs" defaultValue="AddPredefinedLanguage">
+    <Tabs
+      className={cn(className, '__AddLanguageBlock_Tabs', 'mt-4')}
+      defaultValue="AddPredefinedLanguage"
+    >
       <TabsList>
-        <TabsTrigger className="TabsTrigger" value="AddCustomLanguage">
-          Add custom language
-        </TabsTrigger>
         <TabsTrigger className="TabsTrigger" value="AddPredefinedLanguage">
           Add predefined language
         </TabsTrigger>
+        <TabsTrigger className="TabsTrigger" value="AddCustomLanguage">
+          Add custom language
+        </TabsTrigger>
       </TabsList>
-      <TabsContent className="TabsContent" value="AddCustomLanguage">
-        <AddCustomLanguage languages={languages} onAddLanguage={onAddLanguage} />
-      </TabsContent>
       <TabsContent className="TabsContent" value="AddPredefinedLanguage">
         <AddPredefinedLanguage languages={languages} onAddLanguage={onAddLanguage} />
+      </TabsContent>
+      <TabsContent className="TabsContent" value="AddCustomLanguage">
+        <AddCustomLanguage languages={languages} onAddLanguage={onAddLanguage} />
       </TabsContent>
     </Tabs>
   );

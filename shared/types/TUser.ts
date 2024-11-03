@@ -1,3 +1,4 @@
+// TODO: Move to `/types`
 import { UserRole } from '@prisma/client';
 // import NextAuth from 'next-auth';
 import {

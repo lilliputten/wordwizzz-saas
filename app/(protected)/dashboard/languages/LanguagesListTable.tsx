@@ -1,7 +1,6 @@
 import React from 'react';
-// import Link from 'next/link';
-// import { ArrowUpRight } from 'lucide-react';
 
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -15,16 +14,17 @@ import {
 import { Icons } from '@/components/shared/icons';
 
 import { TLanguage, TLanguageId } from './types/TLanguage';
+import { TPropsWithClassName } from '@/types/generic';
 
-interface TProps {
+interface TLanguagesListTableProps extends TPropsWithClassName {
   languages: TLanguage[];
   onDeleteLanguage: (id: TLanguageId) => void;
 }
 
-export const LanguagesListTable: React.FC<TProps> = (props) => {
-  const { languages, onDeleteLanguage } = props;
+export const LanguagesListTable: React.FC<TLanguagesListTableProps> = (props) => {
+  const { className, languages, onDeleteLanguage } = props;
   return (
-    <Card className="xl:col-span-2">
+    <Card className={cn(className, 'xl:col-span-2')}>
       <CardHeader className="flex flex-row items-center">
         <div className="grid gap-2">
           <CardTitle>Current languages</CardTitle>
@@ -32,7 +32,7 @@ export const LanguagesListTable: React.FC<TProps> = (props) => {
             Languages you've added to the profile.
           </CardDescription>
         </div>
-        {/*
+        {/* EXAMPLE
         <Button size="sm" className="ml-auto shrink-0 gap-1 px-4">
           <Link href="#" className="flex items-center gap-2">
             <span>View All</span>
@@ -54,7 +54,7 @@ export const LanguagesListTable: React.FC<TProps> = (props) => {
                 <TableRow key={id}>
                   <TableCell>
                     <div className="font-medium">{name}</div>
-                    {/*
+                    {/* EXAMPLE
                     <div className="hidden text-sm text-muted-foreground md:inline">
                       liam@example.com
                     </div>

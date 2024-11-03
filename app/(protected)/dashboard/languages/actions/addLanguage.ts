@@ -11,12 +11,13 @@ export type TAddLanguageAction = typeof addLanguage;
 export async function addLanguage(userId: TUserId, language: TLanguage) {
   try {
     const prismaUser = prisma.user;
-    console.log('[addLanguage] start', {
-      userId,
-      language,
-      prismaUser,
-      prisma,
-    });
+    /* console.log('[addLanguage] start', {
+     *   userId,
+     *   language,
+     *   prismaUser,
+     *   prisma,
+     * });
+     */
     const updateResult = await prismaUser.update({
       where: {
         id: userId,
@@ -40,14 +41,16 @@ export async function addLanguage(userId: TUserId, language: TLanguage) {
       },
     });
     const updatedLanguages = updateResult.usedLanguages;
-    console.log('[addLanguage] done', {
-      updatedLanguages,
-      updateResult,
-      userId,
-      language,
-    });
-    // DEBUG: Delay
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    /* console.log('[addLanguage] done', {
+     *   updatedLanguages,
+     *   updateResult,
+     *   userId,
+     *   language,
+     * });
+     */
+    /* // DEBUG: Delay
+     * await new Promise((resolve) => setTimeout(resolve, 5000));
+     */
     return convertPrismaLanguagesToClient(updatedLanguages);
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -55,7 +58,7 @@ export async function addLanguage(userId: TUserId, language: TLanguage) {
       error,
     });
     debugger; // eslint-disable-line no-debugger
-    // DEBUG: Re-throw an error
+    // NOTE: Re-throw an error
     throw error;
   }
 }

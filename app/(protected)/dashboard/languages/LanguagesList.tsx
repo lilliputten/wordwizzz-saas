@@ -13,6 +13,8 @@ import { AddLanguageBlock } from './AddLanguageBlock';
 import { NoLanguages } from './NoLanguages';
 import { toast } from 'sonner';
 import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
+import { LanguagesSkeleton } from './LanguagesSkeleton';
+import { WaitingWrapper } from '@/components/ui/WaitingWrapper';
 
 interface TLanguagesListProps {
   userId: TUserId;
@@ -31,40 +33,27 @@ export async function LanguagesList(props: TLanguagesListProps) {
   } = props;
   const [languages, setLanguages] = React.useState(initialLanguages);
   const [isUpdating, startUpdating] = React.useTransition();
+  // const isUpdating = true; // DEBUG
 
   const memo = React.useMemo<{ isUpdating?: boolean }>(() => ({}), []);
 
   // Effect: Update memo data
   React.useEffect(() => {
-    console.log('[LanguagesList:Effect: Update memo data]', {
-      isUpdating,
-    });
     memo.isUpdating = isUpdating;
   }, [memo, isUpdating]);
 
   const onDeleteLanguage = React.useCallback(
     (languageId: TLanguageId) => {
-      // TODO: Update in store / on server...
       const { isUpdating } = memo;
-      console.log('[LanguagesList:onDeleteLanguage] begin', {
-        isUpdating,
-        userId,
-        languageId,
-      });
       if (isUpdating) {
         throw new Error('The data is currently being updated');
       }
       return new Promise<TLanguage[]>((resolve, reject) => {
-        startUpdating(async () => {
+        startUpdating(() => {
           return deleteLanguage(userId, languageId)
             .then((updatedLanguages) => {
-              console.log('[LanguagesList:onDeleteLanguage] done', {
-                updatedLanguages,
-                userId,
-                languageId,
-              });
               setLanguages(updatedLanguages);
-              // setLanguages((languages) => languages.filter((lang) => lang.id !== languageId)); // Manually apply changes
+              // setLanguages((languages) => languages.filter((lang) => lang.id !== languageId)); // XXX: Manually apply changes
               toast.success('The language has been removed');
               resolve(updatedLanguages);
             })
@@ -92,21 +81,12 @@ export async function LanguagesList(props: TLanguagesListProps) {
       if (memo.isUpdating) {
         throw new Error('The data is currently being updated');
       }
-      console.log('[LanguagesList:onAddLanguage] begin', {
-        userId,
-        language,
-      });
       return new Promise<TLanguage[]>((resolve, reject) => {
-        startUpdating(async () => {
+        startUpdating(() => {
           return addLanguage(userId, language)
             .then((updatedLanguages) => {
-              console.log('[LanguagesList:onAddLanguage] done', {
-                updatedLanguages,
-                userId,
-                language,
-              });
               setLanguages(updatedLanguages);
-              // setLanguages((languages) => languages.concat(language)); // Manually apply changes
+              // setLanguages((languages) => languages.concat(language)); // XXX: Manually apply changes
               toast.success('The language has been added');
               resolve(updatedLanguages);
             })
@@ -131,22 +111,44 @@ export async function LanguagesList(props: TLanguagesListProps) {
 
   const hasLanguages = !!languages.length;
 
+  /* // DEBUG: Show skeleton
+   * const showSkeleton = true;
+   * if (showSkeleton) {
+   *   return <LanguagesSkeleton className={cn('__LanguagesList_Skeleton')} />;
+   * }
+   */
+
   return (
     <div
       className={cn(
         '__LanguagesList',
         'relative',
         'transition-opacity',
-        // isUpdating && ['opacity-50', 'pointer-events-none'].join(' '),
+        'flex-1',
+        'flex',
+        'flex-col',
       )}
     >
       {hasLanguages ? (
-        <LanguagesListTable languages={languages} onDeleteLanguage={onDeleteLanguage} />
+        <LanguagesListTable
+          className="flex-1"
+          languages={languages}
+          onDeleteLanguage={onDeleteLanguage}
+        />
       ) : (
-        <NoLanguages />
+        <NoLanguages className="flex-1" />
       )}
-      <AddLanguageBlock languages={languages} onAddLanguage={onAddLanguage} />
+      <AddLanguageBlock
+        languages={languages}
+        onAddLanguage={onAddLanguage}
+        className="min-h-[300px]"
+      />
+      {/* // XXX: Show waiting spinner overlay instead skeleton?
       <WaitingSplash show={isUpdating} />
+      */}
+      <WaitingWrapper show={isUpdating}>
+        <LanguagesSkeleton />
+      </WaitingWrapper>
     </div>
   );
 }

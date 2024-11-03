@@ -1,14 +1,6 @@
-// import { useThemeContext } from "@radix-ui/themes";
 import { useTheme } from 'next-themes';
 
-import {
-  // backgroundLightColor,
-  // foregroundLightColor,
-  // backgroundDarkColor,
-  // foregroundDarkColor,
-  // appBlueColor,
-  secondaryColor,
-} from '@/styles/cssVariables';
+import { secondaryColor } from '@/styles/cssVariables';
 
 import { cn } from '@/lib/utils';
 import { Icons } from '@/components/shared/icons';
@@ -25,14 +17,10 @@ export function WaitingSplash(props: TWaitingSplashProps) {
     theme: userTheme,
   } = props;
   const hidden = !show;
+  // NOTE: Theme
   const { resolvedTheme } = useTheme();
   const theme = userTheme != undefined ? userTheme : resolvedTheme;
   const isLight = theme !== 'dark';
-  /* console.log('[WaitingSplash]', {
-   *   appBlueColor,
-   *   theme,
-   * });
-   */
   return (
     <div
       className={cn(
@@ -45,7 +33,8 @@ export function WaitingSplash(props: TWaitingSplashProps) {
         'items-center',
         'content-center',
         'justify-center',
-        'transition-opacity',
+        'transition',
+        'duration-1000',
         hidden && 'opacity-0',
         hidden && 'pointer-events-none',
       )}
@@ -62,11 +51,10 @@ export function WaitingSplash(props: TWaitingSplashProps) {
       <Icons.spinner
         className={cn(
           // prettier-ignore
-          // 'opacity-50',
           'size-8',
           'animate-spin',
         )}
-        // color={isLight ? foregroundLightColor : foregroundDarkColor}
+        // color={isLight ? foregroundLightColor : foregroundDarkColor} // XXX: Use theme color?
         color={secondaryColor}
       />
     </div>

@@ -2,14 +2,13 @@ import { redirect } from 'next/navigation';
 
 import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
-import { DashboardHeader } from '@/components/dashboard/header';
 import { siteConfig } from '@/config/site';
 
 import { LanguagesList } from './LanguagesList';
 import { LanguagePageError } from './LanguagePageError';
 import { TLanguage } from './types';
-
 import { fetchLanguages, addLanguage, deleteLanguage } from './actions';
+import { LanguagesHeader } from './LanguagesHeader';
 
 export const metadata = constructMetadata({
   title: 'Languages - ' + siteConfig.name,
@@ -22,19 +21,11 @@ export async function LanguagesPage() {
     redirect('/login');
   }
   const userId = user.id;
-  /* console.log('[LanguagesPage]', {
-   *   userId,
-   *   user,
-   * });
-   */
   try {
     const initialLanguages: TLanguage[] = await fetchLanguages(userId);
     return (
       <>
-        <DashboardHeader
-          heading="Languages"
-          text="Check and manage languages what you could use for all your applications."
-        />
+        <LanguagesHeader />
         <LanguagesList
           userId={userId}
           initialLanguages={initialLanguages}
