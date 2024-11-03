@@ -48,6 +48,9 @@ export async function LanguagesList(props: TLanguagesListProps) {
       // TODO: Deep compare or use a `actuallyUpdated` flag?
       setIsUpdating(true);
       updateLanguages(userId, languages)
+        .then(() => {
+          toast.success('Languages has been updated');
+        })
         .catch((error) => {
           const description = getErrorText(error);
           // eslint-disable-next-line no-console

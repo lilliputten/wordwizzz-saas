@@ -53,25 +53,11 @@ model UsedLanguage {
   id   String  @id
   name String
 
+  user   User   @relation(fields: [userId], references: [id])
   userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  // // TODO: To use UserData model to store all the data separately?
-  // userDataId String?
-  // userData UserData? @relation(fields: [userDataId], references: [id], onDelete: Cascade)
+  @@map(name: "used_languages")
 }
-
-// TODO: To use UserData model to store all the data separately?
-// model UserData {
-//   id String @id @default(cuid())
-//
-//   usedLanguages UsedLanguage[]
-//
-//   userId String @unique
-//   user   User   @relation(fields: [userId], references: [id])
-//
-//   @@map(name: "user_data")
-// }
 
 model User {
   id            String    @id @default(cuid())
@@ -93,9 +79,6 @@ model User {
 
   // Data
   usedLanguages UsedLanguage[]
-
-  // TODO: To use UserData model to store all the data separately?
-  // data UserData?
 
   @@map(name: "users")
 }

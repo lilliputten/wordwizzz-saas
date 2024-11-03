@@ -133,7 +133,7 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
     startTransition(async () => {
       onAddLanguage(language)
         .then(() => {
-          toast.success('New language has been already added.');
+          // toast.success('New language has been already added.');
           reset();
         })
         .catch((error) => {
