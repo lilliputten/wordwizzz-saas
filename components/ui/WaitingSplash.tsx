@@ -37,6 +37,7 @@ export function WaitingSplash(props: TWaitingSplashProps) {
     <div
       className={cn(
         '__WaitingSplash',
+        hidden ? '__WaitingSplash_Hidden' : '__WaitingSplash_Visible',
         'absolute',
         'inset-0',
         'flex',

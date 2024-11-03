@@ -4,7 +4,7 @@ import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { toast } from 'sonner';
+// import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -20,7 +20,7 @@ type TFormData = TLanguage;
 
 interface TProps {
   languages: TLanguage[];
-  onAddLanguage: (language: TLanguage) => Promise<void>;
+  onAddLanguage: (language: TLanguage) => Promise<TLanguage[]>;
 }
 
 const defaultValues: TLanguage = {
@@ -106,7 +106,7 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
     // dirtyFields, // Partial<Readonly<FieldNamesMarkedBoolean<TFieldValues>>>;
     // touchedFields, // Partial<Readonly<FieldNamesMarkedBoolean<TFieldValues>>>;
     // validatingFields, // Partial<Readonly<FieldNamesMarkedBoolean<TFieldValues>>>;
-    // // defaultValues, // undefined | Readonly<DeepPartial<TFieldValues>>;
+    // defaultValues, // undefined | Readonly<DeepPartial<TFieldValues>>;
   } = formState;
 
   /* // Effect: Languages has been updated
@@ -133,7 +133,7 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
      */
     startTransition(async () => {
       onAddLanguage(language)
-        .then(() => {
+        .then((_updatedLanguages) => {
           // toast.success('New language has been already added.');
           reset();
         })
@@ -144,9 +144,9 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
             error,
           });
           debugger; // eslint-disable-line no-debugger
-          toast.error('Something went wrong.', {
-            description: message,
-          });
+          // toast.error('Something went wrong.', {
+          //   description: message,
+          // });
         });
     });
   });

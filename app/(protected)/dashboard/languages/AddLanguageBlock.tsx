@@ -11,7 +11,7 @@ import { AddPredefinedLanguage } from './AddPredefinedLanguage';
 
 interface TProps {
   languages: TLanguage[];
-  onAddLanguage: (language: TLanguage) => Promise<void>;
+  onAddLanguage: (language: TLanguage) => Promise<TLanguage[]>;
 }
 
 export const AddLanguageBlock: React.FC<TProps> = (props) => {

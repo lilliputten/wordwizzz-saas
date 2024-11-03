@@ -30,11 +30,15 @@ export async function LanguagesList(props: TLanguagesListProps) {
     deleteLanguage,
   } = props;
   const [languages, setLanguages] = React.useState(initialLanguages);
-  const [isUpdating, setIsUpdating] = React.useState(false);
+  const [isUpdating, startUpdating] = React.useTransition();
+
   const memo = React.useMemo<{ isUpdating?: boolean }>(() => ({}), []);
 
   // Effect: Update memo data
   React.useEffect(() => {
+    console.log('[LanguagesList:Effect: Update memo data]', {
+      isUpdating,
+    });
     memo.isUpdating = isUpdating;
   }, [memo, isUpdating]);
 
@@ -50,81 +54,77 @@ export async function LanguagesList(props: TLanguagesListProps) {
       if (isUpdating) {
         throw new Error('The data is currently being updated');
       }
-      setIsUpdating(true);
-      return deleteLanguage(userId, languageId)
-        .then((updatedLanguages) => {
-          console.log('[LanguagesList:onDeleteLanguage] done', {
-            updatedLanguages,
-            userId,
-            languageId,
-          });
-          setLanguages(updatedLanguages);
-          /* setLanguages((languages) => {
-           *   return languages.filter((lang) => lang.id !== languageId);
-           * });
-           */
-          toast.success('Language has been added');
-        })
-        .catch((error) => {
-          const description = getErrorText(error);
-          // eslint-disable-next-line no-console
-          console.error('[LanguagesList:onDeleteLanguage]', description, {
-            error,
-          });
-          debugger; // eslint-disable-line no-debugger
-          toast.error('Error adding language', {
-            description,
-          });
-          // Re-throw?
-        })
-        .finally(() => {
-          setIsUpdating(false);
+      return new Promise<TLanguage[]>((resolve, reject) => {
+        startUpdating(async () => {
+          return deleteLanguage(userId, languageId)
+            .then((updatedLanguages) => {
+              console.log('[LanguagesList:onDeleteLanguage] done', {
+                updatedLanguages,
+                userId,
+                languageId,
+              });
+              setLanguages(updatedLanguages);
+              // setLanguages((languages) => languages.filter((lang) => lang.id !== languageId)); // Manually apply changes
+              toast.success('The language has been removed');
+              resolve(updatedLanguages);
+            })
+            .catch((error) => {
+              const description = getErrorText(error);
+              // eslint-disable-next-line no-console
+              console.error('[LanguagesList:onDeleteLanguage]', description, {
+                error,
+              });
+              debugger; // eslint-disable-line no-debugger
+              toast.error('Error adding language', {
+                description,
+              });
+              // Re-throw?
+              reject(error);
+            });
         });
+      });
     },
     [memo, userId, deleteLanguage],
   );
 
   const onAddLanguage = React.useCallback(
     (language: TLanguage) => {
-      const { isUpdating } = memo;
+      if (memo.isUpdating) {
+        throw new Error('The data is currently being updated');
+      }
       console.log('[LanguagesList:onAddLanguage] begin', {
-        isUpdating,
         userId,
         language,
       });
-      if (isUpdating) {
-        throw new Error('The data is currently being updated');
-      }
-      setIsUpdating(true);
-      return addLanguage(userId, language)
-        .then((updatedLanguages) => {
-          console.log('[LanguagesList:onAddLanguage] done', {
-            updatedLanguages,
-            userId,
-            language,
-          });
-          setLanguages(updatedLanguages);
-          /* setLanguages((languages) => {
-           *   return languages.concat(language);
-           * });
-           */
-          toast.success('Language has been added');
-        })
-        .catch((error) => {
-          const description = getErrorText(error);
-          // eslint-disable-next-line no-console
-          console.error('[LanguagesList:onAddLanguage]', description, {
-            error,
-          });
-          debugger; // eslint-disable-line no-debugger
-          toast.error('Error adding language', {
-            description,
-          });
-          // Re-throw?
-        })
-        .finally(() => {
-          // setIsUpdating(false);
+      return new Promise<TLanguage[]>((resolve, reject) => {
+        startUpdating(async () => {
+          return addLanguage(userId, language)
+            .then((updatedLanguages) => {
+              console.log('[LanguagesList:onAddLanguage] done', {
+                updatedLanguages,
+                userId,
+                language,
+              });
+              setLanguages(updatedLanguages);
+              // setLanguages((languages) => languages.concat(language)); // Manually apply changes
+              toast.success('The language has been added');
+              resolve(updatedLanguages);
+            })
+            .catch((error) => {
+              const description = getErrorText(error);
+              // eslint-disable-next-line no-console
+              console.error('[LanguagesList:onAddLanguage]', description, {
+                error,
+              });
+              debugger; // eslint-disable-line no-debugger
+              toast.error('Error adding language', {
+                description,
+              });
+              // Re-throw?
+              reject(error);
+            });
         });
+      });
     },
     [memo, userId, addLanguage],
   );

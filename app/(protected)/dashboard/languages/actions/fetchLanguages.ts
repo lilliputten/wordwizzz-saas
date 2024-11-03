@@ -28,5 +28,7 @@ export async function fetchLanguages(userId: TUserId) {
     result,
     userId,
   });
+  // DEBUG: Delay
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   return convertPrismaLanguagesToClient(usedLanguages);
 }

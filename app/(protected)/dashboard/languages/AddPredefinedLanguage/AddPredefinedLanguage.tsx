@@ -35,7 +35,7 @@ const defaultValues: TFormData = {
 
 interface TProps {
   languages: TLanguage[];
-  onAddLanguage: (language: TLanguage) => Promise<void>;
+  onAddLanguage: (language: TLanguage) => Promise<TLanguage[]>;
 }
 
 export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
@@ -107,8 +107,10 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
       return;
     }
     startTransition(async () => {
+      // DEBUG: Delay
+      await new Promise((resolve) => setTimeout(resolve, 5000));
       onAddLanguage(language)
-        .then(() => {
+        .then((_updatedLanguages) => {
           // toast.success('New language has been already added.');
           reset();
         })
@@ -119,9 +121,9 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
             error,
           });
           debugger; // eslint-disable-line no-debugger
-          toast.error('Something went wrong.', {
-            description: message,
-          });
+          // toast.error('Something went wrong.', {
+          //   description: message,
+          // });
         });
     });
   });

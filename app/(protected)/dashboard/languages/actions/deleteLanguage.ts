@@ -42,7 +42,7 @@ export async function deleteLanguage(userId: TUserId, languageId: TLanguageId) {
       languageId,
     });
     // DEBUG: Delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     return convertPrismaLanguagesToClient(updatedLanguages);
   } catch (error) {
     // eslint-disable-next-line no-console
