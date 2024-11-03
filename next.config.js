@@ -25,6 +25,12 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client'],
   },
+  /* // TODO?
+   * sassOptions: {
+   *   includePaths: [path.join(__dirname, 'styles')],
+   *   prependData: `@import "main.scss";`,
+   * },
+   */
 };
 
 module.exports = withContentlayer(nextConfig);

@@ -21,7 +21,7 @@ const chartConfig = {
   },
   safari: {
     label: 'Safari',
-    color: 'hsl(var(--chart2ColorHSL))',
+    color: 'var(--chart2Color)',
   },
 } satisfies ChartConfig;
 

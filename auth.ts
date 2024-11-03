@@ -1,17 +1,15 @@
 import authConfig from '@/auth.config';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { UserRole } from '@prisma/client';
-import NextAuth, { type DefaultSession } from 'next-auth';
+import NextAuth from 'next-auth';
 
 import { prisma } from '@/lib/db';
 import { getUserById } from '@/lib/user';
+import { TExtendedUser } from './shared/types/TUser';
 
 // More info: https://authjs.dev/getting-started/typescript#module-augmentation
 declare module 'next-auth' {
   interface Session {
-    user: {
-      role: UserRole;
-    } & DefaultSession['user'];
+    user: TExtendedUser;
   }
 }
 
@@ -49,11 +47,15 @@ export const {
     },
 
     async jwt({ token }) {
-      if (!token.sub) return token;
+      if (!token.sub) {
+        return token;
+      }
 
       const dbUser = await getUserById(token.sub);
 
-      if (!dbUser) return token;
+      if (!dbUser) {
+        return token;
+      }
 
       token.name = dbUser.name;
       token.email = dbUser.email;

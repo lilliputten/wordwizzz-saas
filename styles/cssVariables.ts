@@ -1,10 +1,11 @@
 /** @desc Re-export parsed and typed scss variables */
 
-import * as cssVariables from './variables-export.scss';
+import * as cssVariables from './variables.module.scss';
 
 // See pre-exports in `variables-export.scss`
 export interface TVariables {
   // Colors
+
   primaryColor: string;
   primaryForegroundColor: string;
   secondaryColor: string;
@@ -14,7 +15,52 @@ export interface TVariables {
   appBlueColor: string;
   appBlueForegroundColor: string;
 
+  // Themed colors (light)
+
+  backgroundLightColor: string;
+  foregroundLightColor: string;
+  cardLightColor: string;
+  cardForegroundLightColor: string;
+  popoverLightColor: string;
+  popoverForegroundLightColor: string;
+  mutedLightColor: string;
+  mutedForegroundLightColor: string;
+  accentLightColor: string;
+  accentForegroundLightColor: string;
+  destructiveLightColor: string;
+  destructiveForegroundLightColor: string;
+  borderLightColor: string;
+  inputLightColor: string;
+  ringLightColor: string;
+
+  // Themed colors (dark)
+
+  backgroundDarkColor: string;
+  foregroundDarkColor: string;
+  cardDarkColor: string;
+  cardForegroundDarkColor: string;
+  popoverDarkColor: string;
+  popoverForegroundDarkColor: string;
+  mutedDarkColor: string;
+  mutedForegroundDarkColor: string;
+  accentDarkColor: string;
+  accentForegroundDarkColor: string;
+  destructiveDarkColor: string;
+  destructiveForegroundDarkColor: string;
+  borderDarkColor: string;
+  inputDarkColor: string;
+  ringDarkColor: string;
+
+  // Chart colors
+
+  chart1Color: string;
+  chart2Color: string;
+  chart3Color: string;
+  chart4Color: string;
+  chart5Color: string;
+
   // Adaptive layouts
+
   smallTreshold: string;
   smallTresholdPx: number;
   mobileTreshold: string;
@@ -23,6 +69,7 @@ export interface TVariables {
   wideTresholdPx: number;
 
   // Delays
+
   transitionTimeMs: string;
   transitionTimeMsPx: number;
   animationTimeMs: string;
@@ -35,6 +82,7 @@ const vars = cssVariables as TVariables;
 
 const {
   // Colors
+
   primaryColor,
   primaryForegroundColor,
   secondaryColor,
@@ -44,12 +92,58 @@ const {
   appBlueColor,
   appBlueForegroundColor,
 
+  // Themed colors (light)
+
+  backgroundLightColor,
+  foregroundLightColor,
+  cardLightColor,
+  cardForegroundLightColor,
+  popoverLightColor,
+  popoverForegroundLightColor,
+  mutedLightColor,
+  mutedForegroundLightColor,
+  accentLightColor,
+  accentForegroundLightColor,
+  destructiveLightColor,
+  destructiveForegroundLightColor,
+  borderLightColor,
+  inputLightColor,
+  ringLightColor,
+
+  // Themed colors (dark)
+
+  backgroundDarkColor,
+  foregroundDarkColor,
+  cardDarkColor,
+  cardForegroundDarkColor,
+  popoverDarkColor,
+  popoverForegroundDarkColor,
+  mutedDarkColor,
+  mutedForegroundDarkColor,
+  accentDarkColor,
+  accentForegroundDarkColor,
+  destructiveDarkColor,
+  destructiveForegroundDarkColor,
+  borderDarkColor,
+  inputDarkColor,
+  ringDarkColor,
+
+  // Chart colors
+
+  chart1Color,
+  chart2Color,
+  chart3Color,
+  chart4Color,
+  chart5Color,
+
   // Adaptive layouts
+
   smallTreshold,
   mobileTreshold,
   wideTreshold,
 
   // Delays
+
   transitionTimeMs,
   animationTimeMs,
   disappearTimeMs,
@@ -73,6 +167,47 @@ export {
   appOrangeForegroundColor,
   appBlueColor,
   appBlueForegroundColor,
+
+  // Themed colors (light)
+  backgroundLightColor,
+  foregroundLightColor,
+  cardLightColor,
+  cardForegroundLightColor,
+  popoverLightColor,
+  popoverForegroundLightColor,
+  mutedLightColor,
+  mutedForegroundLightColor,
+  accentLightColor,
+  accentForegroundLightColor,
+  destructiveLightColor,
+  destructiveForegroundLightColor,
+  borderLightColor,
+  inputLightColor,
+  ringLightColor,
+
+  // Themed colors (dark)
+  backgroundDarkColor,
+  foregroundDarkColor,
+  cardDarkColor,
+  cardForegroundDarkColor,
+  popoverDarkColor,
+  popoverForegroundDarkColor,
+  mutedDarkColor,
+  mutedForegroundDarkColor,
+  accentDarkColor,
+  accentForegroundDarkColor,
+  destructiveDarkColor,
+  destructiveForegroundDarkColor,
+  borderDarkColor,
+  inputDarkColor,
+  ringDarkColor,
+
+  // Chart colors
+  chart1Color,
+  chart2Color,
+  chart3Color,
+  chart4Color,
+  chart5Color,
 
   // Adaptive layouts
   smallTreshold,

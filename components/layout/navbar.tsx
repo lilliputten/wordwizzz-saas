@@ -116,7 +116,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
                     'opacity-100',
                     'hover:opacity-80',
                     'sm:text-sm',
-                    item.href.startsWith(`/${selectedLayout}`) && 'text-brand-orange',
+                    item.href.startsWith(`/${selectedLayout}`) && 'text-app-orange',
                     item.disabled && 'cursor-not-allowed opacity-50',
                   )}
                 >

@@ -3,7 +3,9 @@ import { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 import { getColorSpread } from './build-utils/getColorSpread';
-import { appBlueColor, appOrangeColor, primaryColor } from '@/styles/cssVariables';
+// NOTE: It's not possible to export css modules on this stage
+// import { appBlueColor, appOrangeColor, primaryColor } from './styles/cssVariables';
+import { appBlueColor, appOrangeColor, primaryColor } from './config/theme';
 
 import tailwindcssAnimate from 'tailwindcss-animate';
 import tailwindcssTypography from '@tailwindcss/typography';
@@ -12,9 +14,9 @@ import tailwindcssTypography from '@tailwindcss/typography';
 // UNUSED? Construct primary/secondary colors spread tables
 // (with keys 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950) from key colors.
 const primaryColorSpread = getColorSpread('primary', primaryColor);
-const brandOrangeColorSpread = getColorSpread('brand-orange', appOrangeColor);
-const brandBlueColorSpread = getColorSpread('brand-blue', appBlueColor);
-const secondaryColorSpread = brandOrangeColorSpread; // getColorSpread('secondary', secondaryColor);
+const appOrangeColorSpread = getColorSpread('app-orange', appOrangeColor);
+const appBlueColorSpread = getColorSpread('app-blue', appBlueColor);
+const secondaryColorSpread = appOrangeColorSpread; // getColorSpread('secondary', secondaryColor);
 
 const config = {
   darkMode: ['class'],
@@ -36,41 +38,47 @@ const config = {
     extend: {
       colors: {
         ...primaryColorSpread,
-        ...brandOrangeColorSpread,
-        ...brandBlueColorSpread,
+        ...appOrangeColorSpread,
+        ...appBlueColorSpread,
         ...secondaryColorSpread,
-        // primary: {
-        //   DEFAULT: 'rgb(var(--primaryColorRGB))',
-        //   foreground: 'rgb(var(--primaryForegroundColorRGB))',
-        // },
-        // secondary: {
-        //   DEFAULT: 'rgb(var(--secondaryColorRGB))',
-        //   foreground: 'rgb(var(--secondaryForegroundColorRGB))',
-        // },
-        border: 'hsl(var(--borderColorHSL))',
-        input: 'hsl(var(--inputColorHSL))',
-        ring: 'hsl(var(--ringColorHSL))',
-        background: 'hsl(var(--backgroundColorHSL))',
-        foreground: 'hsl(var(--foregroundColorHSL))',
+        /* // UNUSED, see spreads above
+         * primary: {
+         *   DEFAULT: 'rgb(var(--primaryColorRGB))',
+         *   foreground: 'rgb(var(--primaryForegroundColorRGB))',
+         * },
+         * secondary: {
+         *   DEFAULT: 'rgb(var(--secondaryColorRGB))',
+         *   foreground: 'rgb(var(--secondaryForegroundColorRGB))',
+         * },
+         */
+        border: 'var(--borderColor)',
+        input: 'var(--inputColor)',
+        ring: 'var(--ringColor)',
+        backgroundLight: 'var(--backgroundLightColor)',
+        foregroundLight: 'var(--foregroundLightColor)',
+        backgroundDark: 'var(--backgroundDarkColor)',
+        foregroundDark: 'var(--foregroundDarkColor)',
+        background: 'var(--backgroundColor)',
+        foreground: 'var(--foregroundColor)',
         destructive: {
-          DEFAULT: 'hsl(var(--destructiveColorHSL))',
-          foreground: 'hsl(var(--destructiveForegroundColorHSL))',
+          DEFAULT: 'var(--destructiveColor)',
+          foreground: 'var(--destructiveForegroundColor)',
         },
         muted: {
-          DEFAULT: 'hsl(var(--mutedColorHSL))',
-          foreground: 'hsl(var(--mutedForegroundColorHSL))',
+          DEFAULT: 'var(--mutedColor)',
+          foreground: 'var(--mutedForegroundColor)',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accentColorHSL))',
-          foreground: 'hsl(var(--accentForegroundColorHSL))',
+          DEFAULT: 'var(--accentColor)',
+          foreground: 'var(--accentForegroundColor)',
         },
         popover: {
-          DEFAULT: 'hsl(var(--popoverColorHSL))',
-          foreground: 'hsl(var(--popoverForegroundColorHSL))',
+          DEFAULT: 'var(--popoverColor)',
+          foreground: 'var(--popoverForegroundColor)',
         },
         card: {
-          DEFAULT: 'hsl(var(--cardColorHSL))',
-          foreground: 'hsl(var(--cardForegroundColorHSL))',
+          DEFAULT: 'var(--cardColor)',
+          foreground: 'var(--cardForegroundColor)',
         },
       },
       borderRadius: {

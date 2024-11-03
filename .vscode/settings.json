@@ -1,6 +1,7 @@
 {
   "search.exclude": {
     "*.session": true,
+    "tsconfig.tsbuildinfo": true,
     "pnpm-lock.yaml": true,
     "preview-public": true,
     "compiled-assets": true,

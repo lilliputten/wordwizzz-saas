@@ -96,7 +96,7 @@ function SignInModal({
               'font-urban',
               'text-2xl',
               'font-bold',
-              'text-brand-orange',
+              'text-app-orange',
             )}
           >
             Sign In

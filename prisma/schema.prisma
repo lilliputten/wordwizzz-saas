@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider     = "postgresql"
-  url          = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum UserRole {
@@ -49,6 +49,30 @@ model Session {
   @@map(name: "sessions")
 }
 
+model UsedLanguage {
+  id   String  @id
+  name String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // // TODO: To use UserData model to store all the data separately?
+  // userDataId String?
+  // userData UserData? @relation(fields: [userDataId], references: [id], onDelete: Cascade)
+}
+
+// TODO: To use UserData model to store all the data separately?
+// model UserData {
+//   id String @id @default(cuid())
+//
+//   usedLanguages UsedLanguage[]
+//
+//   userId String @unique
+//   user   User   @relation(fields: [userId], references: [id])
+//
+//   @@map(name: "user_data")
+// }
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -66,6 +90,12 @@ model User {
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
   stripePriceId          String?   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+
+  // Data
+  usedLanguages UsedLanguage[]
+
+  // TODO: To use UserData model to store all the data separately?
+  // data UserData?
 
   @@map(name: "users")
 }

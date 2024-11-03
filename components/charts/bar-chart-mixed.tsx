@@ -32,23 +32,23 @@ const chartConfig = {
   },
   chrome: {
     label: 'Chrome',
-    color: 'hsl(var(--chart1ColorHSL))',
+    color: 'var(--chart1Color)',
   },
   safari: {
     label: 'Safari',
-    color: 'hsl(var(--chart2ColorHSL))',
+    color: 'var(--chart2Color)',
   },
   firefox: {
     label: 'Firefox',
-    color: 'hsl(var(--chart3ColorHSL))',
+    color: 'var(--chart3Color)',
   },
   edge: {
     label: 'Edge',
-    color: 'hsl(var(--chart4ColorHSL))',
+    color: 'var(--chart4Color)',
   },
   other: {
     label: 'Other',
-    color: 'hsl(var(--chart5ColorHSL))',
+    color: 'var(--chart5Color)',
   },
 } satisfies ChartConfig;
 
