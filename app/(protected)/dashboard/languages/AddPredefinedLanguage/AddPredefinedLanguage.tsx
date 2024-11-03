@@ -63,7 +63,7 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
     () =>
       z.object({
         id: z.string().min(minIdLength).max(maxIdLength).refine(refineLanguageId, {
-          message: 'The language id already exists in your languages list',
+          message: 'This language is not unique: The language id already exists in your languages list',
         }),
       }),
     [refineLanguageId],
@@ -149,7 +149,7 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
   return (
     <>
       <div className="__AddPredefinedLanguage p-2 pt-4">
-        {/*
+        {/* // Prepending text
         <p className="Text">
           TODO: Add a language from the list.
         </p>
@@ -160,20 +160,6 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
               <Label className="-sr-only" htmlFor="id">
                 Select language
               </Label>
-
-              {/*
-              <Controller
-                name="id"
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    {...registerSelectField}
-                    onValueChange={(value) => {
-                      return registerSelectField.onChange({ target: { name: 'id', value } });
-                    }}
-                  >
-              */}
               <Select
                 {...registerSelectField}
                 onValueChange={(value) =>
@@ -194,36 +180,9 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
                   ))}
                 </SelectContent>
               </Select>
-              {/*
-                )}
-              />
-              */}
-
               {errors?.id && <p className="pb-0.5 text-[13px] text-red-600">{errors.id.message}</p>}
               <p className="text-[13px] text-muted-foreground">Select a language form the list.</p>
             </div>
-
-            {/*
-            <div className="flex w-full flex-col gap-4">
-              <Label className="-sr-only" htmlFor="id">
-                ID
-              </Label>
-              <Input
-                id="id"
-                className="flex-1"
-                size={maxIdLength}
-                // @see https://react-hook-form.com/docs/useform/register
-                {...register('id', {
-                  required: true,
-                })}
-              />
-              {errors?.id && <p className="pb-0.5 text-[13px] text-red-600">{errors.id.message}</p>}
-              <p className="text-[13px] text-muted-foreground">
-                Should be an unique value. {minIdLength}-{maxIdLength} characters.
-              </p>
-            </div>
-            */}
-
             <div className="flex flex-col justify-between p-1"></div>
             <div className="flex w-full gap-4">
               <Button

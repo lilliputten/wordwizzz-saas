@@ -50,7 +50,7 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
     () =>
       z.object({
         id: z.string().min(minIdLength).max(maxIdLength).refine(refineLanguageId, {
-          message: 'The language id already exists in your languages list',
+          message: 'This language is not unique: The language id already exists in your languages list',
         }),
         name: z.string().min(minNameLength).max(maxNameLength),
       }),
