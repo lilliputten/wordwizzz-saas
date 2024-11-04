@@ -22,7 +22,7 @@ export function tailwindClippingLayout(params: TTailwindClippingLayoutParams = {
         '__tailwindClippingLayout',
         // 'h-screen',
         // 'w-screen',
-        'flex-1', // TODO: To remove or make optional
+        // 'flex-1', // TODO: To remove or make optional
         'flex',
         'size-full',
         // 'h-full',

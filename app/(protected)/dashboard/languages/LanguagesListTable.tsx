@@ -1,5 +1,6 @@
 import React from 'react';
 import { TLanguage, TLanguageId } from '@/features/languages/types';
+import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 
 import { TPropsWithClassName } from '@/types/generic';
 import { cn } from '@/lib/utils';
@@ -23,8 +24,21 @@ interface TLanguagesListTableProps extends TPropsWithClassName {
 export const LanguagesListTable: React.FC<TLanguagesListTableProps> = (props) => {
   const { className, languages, onDeleteLanguage } = props;
   return (
-    <Card className={cn(className, 'xl:col-span-2')}>
-      <CardHeader className="flex flex-row items-center">
+    <Card
+      className={cn(
+        // prettier-ignore
+        className,
+        '__LanguagesListTable',
+        'xl:col-span-2',
+      )}
+    >
+      <CardHeader
+        className={cn(
+          // prettier-ignore
+          '__LanguagesListTable_Header',
+          'flex flex-row items-center',
+        )}
+      >
         <div className="grid gap-2">
           <CardTitle>Current languages</CardTitle>
           <CardDescription className="text-balance">
@@ -40,7 +54,13 @@ export const LanguagesListTable: React.FC<TLanguagesListTableProps> = (props) =>
         </Button>
         */}
       </CardHeader>
-      <CardContent>
+      <CardContent
+        className={cn(
+          // prettier-ignore
+          '__LanguagesListTable_Content',
+          tailwindClippingLayout(),
+        )}
+      >
         <Table>
           <TableHeader>
             <TableRow>

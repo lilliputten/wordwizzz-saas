@@ -3,11 +3,12 @@
 import React from 'react';
 import { TLanguage, TLanguageId } from '@/features/languages/types';
 import { getErrorText } from '@/shared/helpers/strings';
+import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 import { TUserId } from '@/shared/types/TUser';
 import { toast } from 'sonner';
 
 import { cn } from '@/lib/utils';
-import { WaitingSplash } from '@/components/ui/WaitingSplash';
+// import { WaitingSplash } from '@/components/ui/WaitingSplash';
 import { WaitingWrapper } from '@/components/ui/WaitingWrapper';
 
 import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
@@ -31,6 +32,7 @@ export function LanguagesList(props: TLanguagesListProps) {
     addLanguage,
     deleteLanguage,
   } = props;
+  // NOTE: Use `isoLanguages` as an initial data to test the clipping and scrollable layouts
   const [languages, setLanguages] = React.useState(initialLanguages);
   const [isUpdating, startUpdating] = React.useTransition();
   // const isUpdating = true; // DEBUG
@@ -125,13 +127,17 @@ export function LanguagesList(props: TLanguagesListProps) {
         'relative',
         'transition-opacity',
         'flex-1',
-        'flex',
-        'flex-col',
+        tailwindClippingLayout({ vertical: true }),
       )}
     >
       {hasLanguages ? (
         <LanguagesListTable
-          className="flex-1"
+          className={cn(
+            // prettier-ignore
+            '__LanguagesList_Table',
+            'flex-1',
+            tailwindClippingLayout({ vertical: true }),
+          )}
           languages={languages}
           onDeleteLanguage={onDeleteLanguage}
         />
@@ -143,7 +149,7 @@ export function LanguagesList(props: TLanguagesListProps) {
         onAddLanguage={onAddLanguage}
         className="min-h-[300px]"
       />
-      {/* // XXX: Show waiting spinner overlay instead skeleton?
+      {/* // XXX: Show waiting spinner overlay instead skeleton? (Mind the bug with skeleton flash at the beginning of prisma data update.)
       <WaitingSplash show={isUpdating} />
       */}
       <WaitingWrapper show={isUpdating}>
