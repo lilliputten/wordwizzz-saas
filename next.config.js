@@ -10,6 +10,7 @@ import('./env.mjs');
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  optimizeFonts: false,
   images: {
     remotePatterns: [
       {

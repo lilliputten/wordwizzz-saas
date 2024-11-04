@@ -1,15 +1,15 @@
 {
   "name": "wordwizzz-saas",
   "description": "WordWizzz word learning NextJS application",
-  "version": "0.0.2",
-  "timetag": "241104-0229",
-  "timestamp": "2024.11.04 02:29 +0300",
-  "changed": "2024.09.08, 22:54",
+  "version": "0.0.4",
+  "timetag": "241105-0026",
+  "timestamp": "2024.11.05 00:26 +0300",
+  "changed": "2024.11.05, 00:02",
   "author": {
     "name": "Igor Lilliputten",
     "url": "https://lilliputten.com"
   },
-  "_packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276",
+  "unused-due-to-wsl-vscode-import-errors:packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276",
   "unusedDependencies": {
     "@typescript-eslint/parser": "^7.17.0"
   },
