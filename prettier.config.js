@@ -10,9 +10,9 @@ module.exports = {
   importOrder: [
     '^(react/(.*)$)|^(react$)',
     '^(next/(.*)$)|^(next$)',
+    '<BUILTIN_MODULES>', // Node.js built-in modules
     '<THIRD_PARTY_MODULES>',
     '',
-    '^types$',
     '^@/env(.*)$',
     '^@/types/(.*)$',
     '^@/config/(.*)$',
@@ -22,8 +22,11 @@ module.exports = {
     '^@/components/(.*)$',
     '^@/styles/(.*)$',
     '^@/app/(.*)$',
+    '^@/',
     '',
     '^[./]',
+    '',
+    '^[./].*.(css|less|scss)$',
   ],
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
   // importOrderSeparation: false,
