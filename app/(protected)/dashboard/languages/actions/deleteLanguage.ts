@@ -1,6 +1,6 @@
 'use server';
 
-import { TLanguage } from '@/features/languages/types';
+import { TLanguageId } from '@/features/languages/types';
 import { TUserId } from '@/shared/types/TUser';
 
 import { prisma } from '@/lib/db';

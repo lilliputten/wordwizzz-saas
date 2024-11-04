@@ -23,7 +23,9 @@ async function getDocFromParams(params) {
   const slug = params.slug?.join('/') || '';
   const doc = allDocs.find((doc) => doc.slugAsParams === slug);
 
-  if (!doc) return null;
+  if (!doc) {
+    return null;
+  }
 
   return doc;
 }
@@ -31,7 +33,9 @@ async function getDocFromParams(params) {
 export async function generateMetadata({ params }: DocPageProps): Promise<Metadata> {
   const doc = await getDocFromParams(params);
 
-  if (!doc) return {};
+  if (!doc) {
+    return {};
+  }
 
   const { title, description } = doc;
 

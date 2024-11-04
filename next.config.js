@@ -1,4 +1,8 @@
 const { withContentlayer } = require('next-contentlayer2');
+/* NOTE 2024.11.04, 19:20: We've got an error for contentlayer:
+ * Warning: Contentlayer might not work as expected on Windows
+ * NoConfigFoundError {
+ */
 
 import('./env.mjs');
 
@@ -34,3 +38,4 @@ const nextConfig = {
 };
 
 module.exports = withContentlayer(nextConfig);
+// module.exports = nextConfig;
