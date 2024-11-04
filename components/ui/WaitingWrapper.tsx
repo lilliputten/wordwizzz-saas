@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes';
 
-import { cn } from '@/lib/utils';
 import { TPropsWithChildren } from '@/types/generic';
+import { cn } from '@/lib/utils';
 
 interface TWaitingWrapperProps extends TPropsWithChildren {
   show?: boolean;

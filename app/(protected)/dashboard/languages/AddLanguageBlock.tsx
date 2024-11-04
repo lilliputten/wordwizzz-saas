@@ -1,14 +1,13 @@
 'use client';
 
 import React from 'react';
+import { TLanguage } from '@/features/languages/types';
 
-import { TLanguage } from './types/TLanguage';
-
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { cn } from '@/lib/utils';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { AddCustomLanguage } from './AddCustomLanguage';
 import { AddPredefinedLanguage } from './AddPredefinedLanguage';
-import { cn } from '@/lib/utils';
 
 interface TProps {
   languages: TLanguage[];

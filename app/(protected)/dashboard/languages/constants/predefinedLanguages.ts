@@ -1,4 +1,4 @@
-import { TLanguage } from '../types/TLanguage';
+import { TLanguage } from '@/features/languages/types';
 
 export const predefinedLanguages: TLanguage[] = [
   {

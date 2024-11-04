@@ -40,12 +40,12 @@ export function UserAccountNav() {
         </Drawer.Trigger>
         <Drawer.Portal>
           <Drawer.Overlay
-            className="fixed inset-0 z-40 h-full bg-background/80 backdrop-blur-sm"
+            className="bg-background/80 fixed inset-0 z-40 h-full backdrop-blur-sm"
             onClick={closeDrawer}
           />
           <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 mt-24 overflow-hidden rounded-t-[10px] border bg-background px-3 text-sm">
             <div className="sticky top-0 z-20 flex w-full items-center justify-center bg-inherit">
-              <div className="my-3 h-1.5 w-16 rounded-full bg-muted-foreground/20" />
+              <div className="bg-muted-foreground/20 my-3 h-1.5 w-16 rounded-full" />
             </div>
 
             <div className="flex items-center justify-start gap-2 p-2">

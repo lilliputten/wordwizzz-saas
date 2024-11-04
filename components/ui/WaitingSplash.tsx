@@ -1,9 +1,8 @@
 import { useTheme } from 'next-themes';
 
-import { secondaryColor } from '@/styles/cssVariables';
-
 import { cn } from '@/lib/utils';
 import { Icons } from '@/components/shared/icons';
+import { secondaryColor } from '@/styles/cssVariables';
 
 interface TWaitingSplashProps {
   show?: boolean;

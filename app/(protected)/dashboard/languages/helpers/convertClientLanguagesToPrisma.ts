@@ -1,7 +1,5 @@
+import { TLanguage, TPrismaLanguage } from '@/features/languages/types';
 import { TUserId } from '@/shared/types/TUser';
-
-import { TLanguage } from '../types/TLanguage';
-import { TPrismaLanguage } from '../types/TPrismaLanguage';
 
 export function convertClientLanguageToPrisma(
   userId: TUserId,

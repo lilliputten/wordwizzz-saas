@@ -12,7 +12,7 @@ export default function BentoGrid() {
             <div className="relative m-auto size-fit">
               <div className="relative flex h-24 w-56 items-center">
                 <svg
-                  className="absolute inset-0 size-full text-muted-foreground/30"
+                  className="text-muted-foreground/30 absolute inset-0 size-full"
                   viewBox="0 0 254 104"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ export default function BentoGrid() {
           {/* Second card */}
           <div className="relative col-span-full overflow-hidden rounded-2xl border bg-background p-8 sm:col-span-3 lg:col-span-2">
             <div>
-              <div className="relative mx-auto flex aspect-square size-32 rounded-full border before:absolute before:-inset-2 before:rounded-full before:border before:bg-muted/20 dark:before:border-white/5">
+              <div className="before:bg-muted/20 relative mx-auto flex aspect-square size-32 rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:before:border-white/5">
                 <svg
                   className="m-auto h-fit w-24"
                   viewBox="0 0 212 143"
@@ -202,7 +202,7 @@ export default function BentoGrid() {
                   </p>
                 </div>
               </div>
-              <div className="relative -mb-10 -mr-10 mt-8 h-fit rounded-tl-xl border bg-muted/30 pt-6 sm:ml-6 sm:mt-auto">
+              <div className="bg-muted/30 relative -mb-10 -mr-10 mt-8 h-fit rounded-tl-xl border pt-6 sm:ml-6 sm:mt-auto">
                 <div className="absolute left-3 top-2 flex gap-1">
                   <span className="block size-2 rounded-full border border-border"></span>
                   <span className="block size-2 rounded-full border border-border"></span>
@@ -284,7 +284,7 @@ export default function BentoGrid() {
               <div className="relative mt-6 before:absolute before:inset-0 before:mx-auto before:w-px before:bg-purple-500/50 sm:-my-8 sm:-mr-8">
                 <div className="relative flex h-full flex-col justify-center space-y-6 py-6">
                   <div className="relative flex w-[calc(50%+0.875rem)] items-center justify-end gap-2">
-                    <span className="block h-fit rounded-md border bg-muted/50 px-2 py-1 text-xs">
+                    <span className="bg-muted/50 block h-fit rounded-md border px-2 py-1 text-xs">
                       Glodie
                     </span>
                     <div className="size-7 ring-4 ring-background">
@@ -307,12 +307,12 @@ export default function BentoGrid() {
                         alt="fake-avatar"
                       />
                     </div>
-                    <span className="block h-fit rounded-md border bg-muted/50 px-2 py-1 text-xs">
+                    <span className="bg-muted/50 block h-fit rounded-md border px-2 py-1 text-xs">
                       M. Irung
                     </span>
                   </div>
                   <div className="relative flex w-[calc(50%+0.875rem)] items-center justify-end gap-2">
-                    <span className="block h-fit rounded-md border bg-muted/50 px-2 py-1 text-xs">
+                    <span className="bg-muted/50 block h-fit rounded-md border px-2 py-1 text-xs">
                       B. Ng
                     </span>
                     <div className="size-7 ring-4 ring-background">

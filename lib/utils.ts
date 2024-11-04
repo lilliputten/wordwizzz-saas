@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { clsx, ClassValue } from 'clsx';
+import { ClassValue, clsx } from 'clsx';
 import ms from 'ms';
 import { twMerge } from 'tailwind-merge';
 

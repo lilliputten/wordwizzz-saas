@@ -1,8 +1,8 @@
 import type { NextAuthConfig } from 'next-auth';
 import Github from 'next-auth/providers/github';
-import Yandex from 'next-auth/providers/yandex';
 import Google from 'next-auth/providers/google';
 import Resend from 'next-auth/providers/resend';
+import Yandex from 'next-auth/providers/yandex';
 
 import { env } from '@/env.mjs';
 import { sendVerificationRequest } from '@/lib/email';

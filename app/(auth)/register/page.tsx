@@ -1,10 +1,10 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { Icons } from '@/components/shared/icons';
 import { UserAuthForm } from '@/components/forms/user-auth-form';
-import { Suspense } from 'react';
+import { Icons } from '@/components/shared/icons';
 
 export const metadata = {
   title: 'Create an account',

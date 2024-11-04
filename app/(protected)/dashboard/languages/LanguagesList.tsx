@@ -1,20 +1,20 @@
 'use client';
 
 import React from 'react';
-
-import { cn } from '@/lib/utils';
+import { TLanguage, TLanguageId } from '@/features/languages/types';
 import { getErrorText } from '@/shared/helpers/strings';
 import { TUserId } from '@/shared/types/TUser';
-import { WaitingSplash } from '@/components/ui/WaitingSplash';
-
-import { TLanguage, TLanguageId } from './types';
-import { LanguagesListTable } from './LanguagesListTable';
-import { AddLanguageBlock } from './AddLanguageBlock';
-import { NoLanguages } from './NoLanguages';
 import { toast } from 'sonner';
-import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
-import { LanguagesSkeleton } from './LanguagesSkeleton';
+
+import { cn } from '@/lib/utils';
+import { WaitingSplash } from '@/components/ui/WaitingSplash';
 import { WaitingWrapper } from '@/components/ui/WaitingWrapper';
+
+import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
+import { AddLanguageBlock } from './AddLanguageBlock';
+import { LanguagesListTable } from './LanguagesListTable';
+import { LanguagesSkeleton } from './LanguagesSkeleton';
+import { NoLanguages } from './NoLanguages';
 
 interface TLanguagesListProps {
   userId: TUserId;

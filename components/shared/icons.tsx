@@ -3,10 +3,11 @@ import {
   ArrowRight,
   ArrowUpRight,
   BookOpen,
+  BookOpenText,
   Check,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
-  ChevronDown,
   ChevronUp,
   Copy,
   CreditCard,
@@ -15,6 +16,7 @@ import {
   HelpCircle,
   Home,
   Image,
+  Languages,
   Laptop,
   LayoutPanelLeft,
   LineChart,
@@ -33,8 +35,6 @@ import {
   Trash,
   User,
   X,
-  BookOpenText,
-  Languages,
 } from 'lucide-react';
 
 // NOTE: See stock icons at https://lucide.dev/icons/

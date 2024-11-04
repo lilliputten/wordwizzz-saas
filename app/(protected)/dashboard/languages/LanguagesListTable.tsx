@@ -1,5 +1,7 @@
 import React from 'react';
+import { TLanguage, TLanguageId } from '@/features/languages/types';
 
+import { TPropsWithClassName } from '@/types/generic';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,9 +14,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Icons } from '@/components/shared/icons';
-
-import { TLanguage, TLanguageId } from './types/TLanguage';
-import { TPropsWithClassName } from '@/types/generic';
 
 interface TLanguagesListTableProps extends TPropsWithClassName {
   languages: TLanguage[];

@@ -4,6 +4,7 @@ import NextAuth from 'next-auth';
 
 import { prisma } from '@/lib/db';
 import { getUserById } from '@/lib/user';
+
 import { TExtendedUser } from './shared/types/TUser';
 
 // More info: https://authjs.dev/getting-started/typescript#module-augmentation

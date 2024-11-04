@@ -1,9 +1,10 @@
 'use server';
 
-import { prisma } from '@/lib/db';
+import { TLanguage } from '@/features/languages/types';
 import { TUserId } from '@/shared/types/TUser';
 
-import { TLanguageId } from '../types';
+import { prisma } from '@/lib/db';
+
 import { convertPrismaLanguagesToClient } from '../helpers';
 
 export type TDeleteLanguageAction = typeof deleteLanguage;

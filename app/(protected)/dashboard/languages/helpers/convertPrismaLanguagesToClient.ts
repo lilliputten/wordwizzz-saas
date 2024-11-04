@@ -1,5 +1,4 @@
-import { TLanguage } from '../types/TLanguage';
-import { TPrismaLanguage } from '../types/TPrismaLanguage';
+import { TLanguage, TPrismaLanguage } from '@/features/languages/types';
 
 export function convertPrismaLanguageToClient(prismaLanguage: TPrismaLanguage) {
   const { id, name } = prismaLanguage;

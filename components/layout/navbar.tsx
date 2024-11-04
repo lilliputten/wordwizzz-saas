@@ -1,8 +1,8 @@
 'use client';
 
 import { useContext } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
@@ -16,8 +16,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { DocsSearch } from '@/components/docs/search';
 import { ModalContext } from '@/components/modals/providers';
 import { Icons } from '@/components/shared/icons';
-import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
 import { Logo } from '@/components/shared/Logo';
+import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
 
 interface NavBarProps {
   scroll?: boolean;

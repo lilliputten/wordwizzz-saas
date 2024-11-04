@@ -3,11 +3,11 @@ import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react'
 import { signIn } from 'next-auth/react';
 
 import { siteConfig } from '@/config/site';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Modal } from '@/components/ui/modal';
-import { IconType, Icons } from '@/components/shared/icons';
+import { Icons, IconType } from '@/components/shared/icons';
 import { Logo } from '@/components/shared/Logo';
-import { cn } from '@/lib/utils';
 
 type TSignInParameters = Parameters<typeof signIn>;
 type TProvider = TSignInParameters[0];

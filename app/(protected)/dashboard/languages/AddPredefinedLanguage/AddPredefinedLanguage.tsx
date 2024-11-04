@@ -1,29 +1,27 @@
 'use client';
 
 import React from 'react';
+import { TLanguage, TLanguageId } from '@/features/languages/types';
+import { getErrorText } from '@/shared/helpers/strings';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
 import { toast } from 'sonner';
-
-import {
-  Select,
-  SelectValue,
-  SelectTrigger,
-  SelectContent,
-  SelectItem,
-  SelectIcon,
-} from '@/components/ui/select';
+import * as z from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectIcon,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Icons } from '@/components/shared/icons';
 
-import { getErrorText } from '@/shared/helpers/strings';
-
-import { TLanguage, TLanguageId } from '../types';
-import { minIdLength, maxIdLength } from '../constants/inputFields';
 import { predefinedLanguages } from '../constants';
+import { maxIdLength, minIdLength } from '../constants/inputFields';
 
 interface TFormData {
   id?: TLanguageId;

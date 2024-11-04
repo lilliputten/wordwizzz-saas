@@ -3,7 +3,7 @@
 import { prisma } from '@/lib/db';
 import { TUserId } from '@/shared/types/TUser';
 
-import { TPrismaLanguage, TLanguage } from '../types';
+import { TPrismaLanguage, TLanguage } from '@/features/languages/types';
 import { convertClientLanguagesToPrisma } from '../helpers';
 
 export async function updateLanguages(userId: TUserId, languages: TLanguage[]) {

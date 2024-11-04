@@ -1,14 +1,14 @@
 import { redirect } from 'next/navigation';
+import { TLanguage } from '@/features/languages/types';
 
+import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
-import { siteConfig } from '@/config/site';
 
-import { LanguagesList } from './LanguagesList';
+import { addLanguage, deleteLanguage, fetchLanguages } from './actions';
 import { LanguagePageError } from './LanguagePageError';
-import { TLanguage } from './types';
-import { fetchLanguages, addLanguage, deleteLanguage } from './actions';
 import { LanguagesHeader } from './LanguagesHeader';
+import { LanguagesList } from './LanguagesList';
 
 export const metadata = constructMetadata({
   title: 'Languages - ' + siteConfig.name,

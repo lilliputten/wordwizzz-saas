@@ -1,5 +1,6 @@
+import tailwindcssTypography from '@tailwindcss/typography';
 import { Config } from 'tailwindcss';
-
+import tailwindcssAnimate from 'tailwindcss-animate';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 import { getColorSpread } from './build-utils/getColorSpread';
@@ -7,14 +8,11 @@ import { getColorSpread } from './build-utils/getColorSpread';
 // import { appBlueColor, appOrangeColor, primaryColor , secondaryColor} from './styles/cssVariables';
 import {
   appBlueColor,
+  appDestructiveColor,
   appOrangeColor,
   primaryColor,
   secondaryColor,
-  appDestructiveColor,
 } from './config/theme';
-
-import tailwindcssAnimate from 'tailwindcss-animate';
-import tailwindcssTypography from '@tailwindcss/typography';
 
 // Core app color definitions
 // UNUSED? Construct primary/secondary colors spread tables

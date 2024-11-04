@@ -1,5 +1,5 @@
-import { EmptyPlaceholder } from '@/components/shared/empty-placeholder';
 import { TPropsWithClassName } from '@/types/generic';
+import { EmptyPlaceholder } from '@/components/shared/empty-placeholder';
 
 export function NoLanguages(props: TPropsWithClassName) {
   const { className } = props;

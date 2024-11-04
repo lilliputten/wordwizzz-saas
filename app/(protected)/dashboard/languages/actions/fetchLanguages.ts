@@ -1,9 +1,10 @@
 'use server';
 
-import { prisma } from '@/lib/db';
+import { TPrismaLanguage } from '@/features/languages/types';
 import { TUserId } from '@/shared/types/TUser';
 
-import { TPrismaLanguage } from '../types';
+import { prisma } from '@/lib/db';
+
 import { convertPrismaLanguagesToClient } from '../helpers';
 
 export type TFetchLanguagesAction = typeof fetchLanguages;

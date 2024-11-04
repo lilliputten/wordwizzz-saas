@@ -1,5 +1,6 @@
-import { TColor } from '@/types/generic';
 import tinycolor from 'tinycolor2';
+
+import { TColor } from '@/types/generic';
 
 /** Color spreading helper
  * Creates color spread table with folowing indices: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950.
