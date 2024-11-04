@@ -1,10 +1,10 @@
-import { PlansRow } from '@/types';
 import { CircleCheck, Info } from 'lucide-react';
 
 import { comparePlans, plansColumns } from '@/config/subscriptions';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { HeaderSection } from '@/components/shared/header-section';
 import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
+import { PlansRow } from '@/types';
 
 export function ComparePlans() {
   const renderCell = (value: string | boolean | null) => {

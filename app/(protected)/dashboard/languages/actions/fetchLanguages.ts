@@ -1,9 +1,8 @@
 'use server';
 
+import { prisma } from '@/lib/db';
 import { TPrismaLanguage } from '@/features/languages/types';
 import { TUserId } from '@/shared/types/TUser';
-
-import { prisma } from '@/lib/db';
 
 import { convertPrismaLanguagesToClient } from '../helpers';
 

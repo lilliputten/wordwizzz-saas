@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { TLanguage } from '@/features/languages/types';
 
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { TLanguage } from '@/features/languages/types';
 
 import { AddCustomLanguage } from './AddCustomLanguage';
 import { AddPredefinedLanguage } from './AddPredefinedLanguage';

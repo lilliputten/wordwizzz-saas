@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation';
-import { TLanguage } from '@/features/languages/types';
 
 import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
+import { TLanguage } from '@/features/languages/types';
 
 import { addLanguage, deleteLanguage, fetchLanguages } from './actions';
 import { LanguagePageError } from './LanguagePageError';

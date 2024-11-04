@@ -1,15 +1,15 @@
 'use client';
 
 import React from 'react';
-import { TLanguage, TLanguageId } from '@/features/languages/types';
-import { getErrorText } from '@/shared/helpers/strings';
-import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
-import { TUserId } from '@/shared/types/TUser';
 import { toast } from 'sonner';
 
 import { cn } from '@/lib/utils';
 // import { WaitingSplash } from '@/components/ui/WaitingSplash';
 import { WaitingWrapper } from '@/components/ui/WaitingWrapper';
+import { TLanguage, TLanguageId } from '@/features/languages/types';
+import { getErrorText } from '@/shared/helpers/strings';
+import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
+import { TUserId } from '@/shared/types/TUser';
 
 import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
 import { AddLanguageBlock } from './AddLanguageBlock';

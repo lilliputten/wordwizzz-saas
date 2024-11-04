@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-import { updateUserName, type FormData } from '@/actions/update-user-name';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User } from '@prisma/client';
 import { useSession } from 'next-auth/react';
@@ -14,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { SectionColumns } from '@/components/dashboard/section-columns';
 import { Icons } from '@/components/shared/icons';
+import { updateUserName, type FormData } from '@/actions/update-user-name';
 
 interface UserNameFormProps {
   user: Pick<User, 'id' | 'name'>;

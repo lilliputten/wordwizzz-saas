@@ -1,11 +1,11 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { auth } from '@/auth';
 
 import { stripe } from '@/lib/stripe';
 import { getUserSubscriptionPlan } from '@/lib/subscription';
 import { absoluteUrl } from '@/lib/utils';
+import { auth } from '@/auth';
 
 export type responseAction = {
   status: 'success' | 'error';

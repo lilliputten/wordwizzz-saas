@@ -1,8 +1,6 @@
 'use client';
 
 import React from 'react';
-import { TLanguage, TLanguageId } from '@/features/languages/types';
-import { getErrorText } from '@/shared/helpers/strings';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -10,6 +8,8 @@ import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Icons } from '@/components/shared/icons';
+import { TLanguage, TLanguageId } from '@/features/languages/types';
+import { getErrorText } from '@/shared/helpers/strings';
 
 import { maxIdLength, maxNameLength, minIdLength, minNameLength } from '../constants/inputFields';
 

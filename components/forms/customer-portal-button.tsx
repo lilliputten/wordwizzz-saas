@@ -1,10 +1,10 @@
 'use client';
 
 import { useTransition } from 'react';
-import { openCustomerPortal } from '@/actions/open-customer-portal';
 
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/shared/icons';
+import { openCustomerPortal } from '@/actions/open-customer-portal';
 
 interface CustomerPortalButtonProps {
   userStripeId: string;

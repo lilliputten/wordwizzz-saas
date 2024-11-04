@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { SidebarNavItem } from '@/types';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -15,6 +14,7 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { Icons } from '@/components/shared/icons';
+import { SidebarNavItem } from '@/types';
 
 export function SearchCommand({ links }: { links: SidebarNavItem[] }) {
   const [open, setOpen] = React.useState(false);

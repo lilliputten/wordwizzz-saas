@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { GenericError, getErrorText } from '@/shared/helpers/strings';
 import { toast } from 'sonner';
+
+import { GenericError, getErrorText } from '@/shared/helpers/strings';
 
 interface TErrorProps {
   error: GenericError; // Error & { message?: string };
