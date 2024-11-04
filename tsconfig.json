@@ -34,5 +34,5 @@
     ".contentlayer/generated",
     "contentlayer.config.ts"
   ],
-  "exclude": ["**/*UNUSED", "**/*~", "**/*_", "node_modules"]
+  "exclude": ["**/*UNUSED", "**/*~", "**/*_", "node_modules*"]
 }
