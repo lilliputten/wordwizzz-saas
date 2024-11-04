@@ -48,6 +48,7 @@ next-env.d.ts
 /*.session
 *UNUSED
 *~
+*_
 .*.sw?
 *.tmp
 *.zip
