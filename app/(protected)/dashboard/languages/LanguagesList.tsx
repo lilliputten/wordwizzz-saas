@@ -23,7 +23,7 @@ interface TLanguagesListProps {
   deleteLanguage: TDeleteLanguageAction;
 }
 
-export async function LanguagesList(props: TLanguagesListProps) {
+export function LanguagesList(props: TLanguagesListProps) {
   const {
     // prettier-ignore
     userId,
