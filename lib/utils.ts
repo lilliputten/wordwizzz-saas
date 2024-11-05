@@ -85,7 +85,9 @@ export function absoluteUrl(path: string) {
 
 // Utils from precedent.dev
 export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
-  if (!timestamp) return 'never';
+  if (!timestamp) {
+    return 'never';
+  }
   return `${ms(Date.now() - new Date(timestamp).getTime())}${timeOnly ? '' : ' ago'}`;
 };
 
@@ -112,7 +114,9 @@ export async function fetcher<JSON = unknown>(
 }
 
 export function nFormatter(num: number, digits?: number) {
-  if (!num) return '0';
+  if (!num) {
+    return '0';
+  }
   const lookup = [
     { value: 1, symbol: '' },
     { value: 1e3, symbol: 'K' },
@@ -133,12 +137,16 @@ export function nFormatter(num: number, digits?: number) {
 }
 
 export function capitalize(str: string) {
-  if (!str || typeof str !== 'string') return str;
+  if (!str || typeof str !== 'string') {
+    return str;
+  }
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export const truncate = (str: string, length: number) => {
-  if (!str || str.length <= length) return str;
+  if (!str || str.length <= length) {
+    return str;
+  }
   return `${str.slice(0, length)}...`;
 };
 

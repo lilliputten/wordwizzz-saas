@@ -15,7 +15,9 @@ export const metadata = constructMetadata({
 export default async function SettingsPage() {
   const user = await getCurrentUser();
 
-  if (!user?.id) redirect('/login');
+  if (!user?.id) {
+    redirect('/login');
+  }
 
   return (
     <>

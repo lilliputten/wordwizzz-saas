@@ -15,7 +15,9 @@ export const sendVerificationRequest: EmailConfig['sendVerificationRequest'] = a
   provider,
 }) => {
   const user = await getUserByEmail(identifier);
-  if (!user || !user.name) return;
+  if (!user || !user.name) {
+    return;
+  }
 
   const userVerified = user?.emailVerified ? true : false;
   const authSubject = userVerified

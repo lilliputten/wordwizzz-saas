@@ -46,7 +46,9 @@ export function DocsSidebarNavItems({ items, setOpen, pathname }: DocsSidebarNav
             key={item.title + item.href}
             href={item.href}
             onClick={() => {
-              if (setOpen) setOpen(false);
+              if (setOpen) {
+                setOpen(false);
+              }
             }}
             className={cn(
               'flex w-full items-center rounded-md px-2 py-1.5 text-muted-foreground hover:underline',

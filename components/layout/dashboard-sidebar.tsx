@@ -195,7 +195,9 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
                             <Link
                               key={`link-${item.title}`}
                               onClick={() => {
-                                if (!item.disabled) setOpen(false);
+                                if (!item.disabled) {
+                                  setOpen(false);
+                                }
                               }}
                               href={item.disabled ? '#' : item.href}
                               className={cn(

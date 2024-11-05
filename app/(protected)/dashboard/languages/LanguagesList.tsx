@@ -14,7 +14,6 @@ import { TUserId } from '@/shared/types/TUser';
 import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
 // import { AddLanguageBlock } from './AddLanguageBlock';
 import { useAddLanguageModal } from './AddLanguageModal';
-// import { useConfirmDeleteLanguageModal } from './ConfirmDeleteLanguageModal';
 import { LanguagesListTable } from './LanguagesListTable';
 import { LanguagesSkeleton } from './LanguagesSkeleton';
 import { NoLanguages } from './NoLanguages';
@@ -139,19 +138,18 @@ export function LanguagesList(props: TLanguagesListProps) {
           languages={languages}
           onDeleteLanguage={onDeleteLanguage}
           showAddLanguageModal={showAddLanguageModal}
-          // showConfirmDeleteLanguageModal={showConfirmDeleteLanguageModal}
         />
       ) : (
         <NoLanguages className="flex-1" showAddLanguageModal={showAddLanguageModal} />
       )}
-      {/* UNUSED: Inline add language block under the table
+      {/* // UNUSED: Inline add language block under the table
       <AddLanguageBlock
         languages={languages}
         onAddLanguage={onAddLanguage}
         className="min-h-[300px]"
       />
       */}
-      {/* // XXX: Show waiting spinner overlay instead skeleton? (Mind the bug with skeleton flash at the beginning of prisma data update.)
+      {/* // UNUSED: Show waiting spinner overlay instead skeleton? (Mind the bug with skeleton flash at the beginning of prisma data update.)
       <WaitingSplash show={isUpdating} />
       */}
       <WaitingWrapper show={isUpdating}>
@@ -162,13 +160,6 @@ export function LanguagesList(props: TLanguagesListProps) {
         languages={languages}
         onAddLanguage={onAddLanguage}
       />
-      {/*
-      <ConfirmDeleteLanguageModal
-        // prettier-ignore
-        // languages={languages}
-        onConfirmDeleteLanguage={onConfirmDeleteLanguage}
-      />
-      */}
     </div>
   );
 }

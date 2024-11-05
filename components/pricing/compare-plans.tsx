@@ -8,9 +8,12 @@ import { PlansRow } from '@/types';
 
 export function ComparePlans() {
   const renderCell = (value: string | boolean | null) => {
-    if (value === null) return '—';
-    if (typeof value === 'boolean')
+    if (value === null) {
+      return '—';
+    }
+    if (typeof value === 'boolean') {
       return value ? <CircleCheck className="mx-auto size-[22px]" /> : '—';
+    }
     return value;
   };
 
