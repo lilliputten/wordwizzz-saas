@@ -1,9 +1,9 @@
 {
   "name": "wordwizzz-saas",
   "description": "WordWizzz word learning NextJS application",
-  "version": "0.0.3",
-  "timetag": "241105-2205",
-  "timestamp": "2024.11.05 22:05 +0300",
+  "version": "0.0.5",
+  "timetag": "241105-2214",
+  "timestamp": "2024.11.05 22:14 +0300",
   "changed": "2024.11.05, 00:02",
   "author": {
     "name": "Igor Lilliputten",

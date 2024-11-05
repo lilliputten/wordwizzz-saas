@@ -1,10 +1,10 @@
 {
   "projectName": "wordwizzz-saas",
-  "timestamp": "2024.11.05 22:05 +0300",
-  "timetag": "241105-2205",
-  "version": "0.0.3",
-  "currentTimeStr": "2024.11.05 22:05 +0300",
-  "currentTimeTag": "241105-2205",
-  "gitCommitHash": "557e7e3",
+  "timestamp": "2024.11.05 22:14 +0300",
+  "timetag": "241105-2214",
+  "version": "0.0.5",
+  "currentTimeStr": "2024.11.05 22:14 +0300",
+  "currentTimeTag": "241105-2214",
+  "gitCommitHash": "ae50edf",
   "gitBranch": "3-languages-list-edit-page"
 }
