@@ -49,13 +49,45 @@ model Session {
 }
 
 model UsedLanguage {
-  id   String  @id
+  id   String @id
+  name String
+
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  WordsSet   WordsSet? @relation(fields: [wordsSetId], references: [id])
+  wordsSetId String?
+  Word       Word[]
+
+  @@map(name: "used_languages")
+}
+
+model WordsSet {
+  // id   String  @id
+  id   String @id @default(cuid())
   name String
 
   user   User   @relation(fields: [userId], references: [id])
   userId String
 
-  @@map(name: "used_languages")
+  usedLanguages UsedLanguage[]
+  Word          Word[]
+
+  @@map(name: "words_sets")
+}
+
+model Word {
+  id   String @id @default(cuid())
+  text String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  wordsSet   WordsSet     @relation(fields: [setId], references: [id])
+  setId      String
+  language   UsedLanguage @relation(fields: [languageId], references: [id])
+  languageId String
+
+  @@map(name: "words")
 }
 
 model User {
@@ -78,6 +110,8 @@ model User {
 
   // Data
   usedLanguages UsedLanguage[]
+  wordsSet      WordsSet[]
+  words         Word[]
 
   @@map(name: "users")
 }

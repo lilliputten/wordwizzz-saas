@@ -70,6 +70,10 @@ const config = {
           DEFAULT: 'var(--appDestructiveColor)',
           foreground: 'var(--appDestructiveForegroundColor)',
         },
+        error: {
+          // DEFAULT: 'var(--backgroundColor)',
+          DEFAULT: 'var(--errorColor)',
+        },
         muted: {
           DEFAULT: 'var(--mutedColor)',
           foreground: 'var(--mutedForegroundColor)',

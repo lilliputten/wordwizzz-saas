@@ -90,27 +90,7 @@
     --animationTimeMs: #{$animationTimeMs};
     --disappearTimeMs: #{$disappearTimeMs};
 
-    // Themed colors (with HSL, regexp): \<\(backgroundColorHSL\|foregroundColorHSL\|cardColorHSL\|cardForegroundColorHSL\|popoverColorHSL\|popoverForegroundColorHSL\|primaryColorHSL\|primaryForegroundColorHSL\|secondaryColorHSL\|secondaryForegroundColorHSL\|mutedColorHSL\|mutedForegroundColorHSL\|accentColorHSL\|accentForegroundColorHSL\|destructiveColorHSL\|destructiveForegroundColorHSL\|borderColorHSL\|inputColorHSL\|ringColorHSL\)\>
-    // Themed colors (bare, regexp): \<\(backgroundColor\|foregroundColor\|cardColor\|cardForegroundColor\|popoverColor\|popoverForegroundColor\|primaryColor\|primaryForegroundColor\|secondaryColor\|secondaryForegroundColor\|mutedColor\|mutedForegroundColor\|accentColor\|accentForegroundColor\|destructiveColor\|destructiveForegroundColor\|borderColor\|inputColor\|ringColor\)
-
     // Themed light colors
-
-    // XXX: OLD
-    // --backgroundColorHSL: 0 0% 100%;
-    // --foregroundColorHSL: 0 0% 3.9%;
-    // --cardColorHSL: 0 0% 100%;
-    // --cardForegroundColorHSL: 0 0% 3.9%;
-    // --popoverColorHSL: 0 0% 100%;
-    // --popoverForegroundColorHSL: 0 0% 3.9%;
-    // --mutedColorHSL: 0 0% 96.1%;
-    // --mutedForegroundColorHSL: 0 0% 45.1%;
-    // --accentColorHSL: 0 0% 98%;
-    // --accentForegroundColorHSL: 0 0% 9%;
-    // --destructiveColorHSL: 0 84.2% 60.2%;
-    // --destructiveForegroundColorHSL: 0 0% 98%;
-    // --borderColorHSL: 0 0% 89.8%;
-    // --inputColorHSL: 0 0% 89.8%;
-    // --ringColorHSL: 0 0% 3.9%;
 
     --backgroundLightColor: #{$backgroundLightColor};
     --backgroundLightColorRGB: #{rgbComponents($backgroundLightColor)};
@@ -146,6 +126,8 @@
     --destructiveColorRGB: #{rgbComponents($destructiveLightColor)};
     --destructiveForegroundColor: #{$destructiveForegroundLightColor};
     --destructiveForegroundColorRGB: #{rgbComponents($destructiveForegroundLightColor)};
+    --errorColor: #{$errorLightColor};
+    --errorColorRGB: #{rgbComponents($errorLightColor)};
     --borderColor: #{$borderLightColor};
     --borderColorRGB: #{rgbComponents($borderLightColor)};
     --inputColor: #{$inputLightColor};
@@ -156,27 +138,6 @@
 
   .dark {
     // Themed dark colors
-
-    // XXX: OLD
-    // --primaryColorHSL: 0 0% 98%;
-    // --primaryForegroundColorHSL: 0 0% 9%;
-    // --secondaryColorHSL: 0 0% 14.9%;
-    // --secondaryForegroundColorHSL: 0 0% 98%;
-    // --backgroundColorHSL: 0 0% 3.9%;
-    // --foregroundColorHSL: 0 0% 98%;
-    // --cardColorHSL: 0 0% 3.9%;
-    // --cardForegroundColorHSL: 0 0% 98%;
-    // --popoverColorHSL: 0 0% 3.9%;
-    // --popoverForegroundColorHSL: 0 0% 98%;
-    // --mutedColorHSL: 0 0% 14.9%;
-    // --mutedForegroundColorHSL: 0 0% 63.9%;
-    // --accentColorHSL: 0 0% 8%;
-    // --accentForegroundColorHSL: 0 0% 98%;
-    // --destructiveColorHSL: 0 62.8% 30.6%;
-    // --destructiveForegroundColorHSL: 0 0% 98%;
-    // --borderColorHSL: 0 0% 14.9%;
-    // --inputColorHSL: 0 0% 14.9%;
-    // --ringColorHSL: 0 0% 83.1%;
 
     --backgroundColor: #{$backgroundDarkColor};
     --backgroundColorRGB: #{rgbComponents($backgroundDarkColor)};
@@ -202,6 +163,8 @@
     --destructiveColorRGB: #{rgbComponents($destructiveDarkColor)};
     --destructiveForegroundColor: #{$destructiveForegroundDarkColor};
     --destructiveForegroundColorRGB: #{rgbComponents($destructiveForegroundDarkColor)};
+    --errorColor: #{$errorDarkColor};
+    --errorColorRGB: #{rgbComponents($errorDarkColor)};
     --borderColor: #{$borderDarkColor};
     --borderColorRGB: #{rgbComponents($borderDarkColor)};
     --inputColor: #{$inputDarkColor};

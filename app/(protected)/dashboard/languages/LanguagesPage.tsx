@@ -4,9 +4,10 @@ import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
 import { TLanguage } from '@/features/languages/types';
+import { getErrorText } from '@/shared/helpers/strings';
 
 import { addLanguage, deleteLanguage, fetchLanguages } from './actions';
-import { LanguagePageError } from './LanguagePageError';
+import { LanguagesError } from './LanguagesError';
 import { LanguagesHeader } from './LanguagesHeader';
 import { LanguagesList } from './LanguagesList';
 
@@ -17,6 +18,7 @@ export const metadata = constructMetadata({
 
 export async function LanguagesPage() {
   const user = await getCurrentUser();
+  // TODO: Check if user valid and presented in the DB?
   if (!user || !user.id /* || user.role !== 'ADMIN' */) {
     redirect('/login');
   }
@@ -35,11 +37,13 @@ export async function LanguagesPage() {
       </>
     );
   } catch (error) {
+    // TODO: Probably there are no such user in the DB? To do logout and redirect then?
+    const errText = getErrorText(error);
     // eslint-disable-next-line no-console
-    console.error('[LanguagesPage] Error fetching usedLanguages', {
+    console.error('[LanguagesPage] Error fetching usedLanguages:', errText, {
       error,
     });
-    debugger; // eslint-disable-line no-debugger
-    return <LanguagePageError error={error} />;
+    // debugger; // eslint-disable-line no-debugger
+    return <LanguagesError error={errText} />;
   }
 }

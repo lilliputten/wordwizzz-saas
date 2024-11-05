@@ -11,8 +11,6 @@ $appBlueForegroundColor: #000;
 $appDestructiveColor: #f55;
 $appDestructiveForegroundColor: #fff;
 
-// Themed colors (regexp): \<\(backgroundColorHSL\|foregroundColorHSL\|cardColorHSL\|cardForegroundColorHSL\|popoverColorHSL\|popoverForegroundColorHSL\|primaryColorHSL\|primaryForegroundColorHSL\|secondaryColorHSL\|secondaryForegroundColorHSL\|mutedColorHSL\|mutedForegroundColorHSL\|accentColorHSL\|accentForegroundColorHSL\|destructiveColorHSL\|destructiveForegroundColorHSL\|borderColorHSL\|inputColorHSL\|ringColorHSL\)\>
-
 // Themed colors (light)
 
 $backgroundLightColor: #ffffff;
@@ -27,6 +25,7 @@ $accentLightColor: #f6f6f6; // #fafafa;
 $accentForegroundLightColor: #171717;
 $destructiveLightColor: #ef4444;
 $destructiveForegroundLightColor: $accentLightColor; // #fafafa;
+$errorLightColor: $destructiveLightColor; // #fafafa;
 $borderLightColor: #e5e5e5;
 $inputLightColor: #e5e5e5;
 $ringLightColor: #0a0a0a;
@@ -45,6 +44,7 @@ $accentDarkColor: #141414;
 $accentForegroundDarkColor: #fafafa;
 $destructiveDarkColor: #7f1d1d;
 $destructiveForegroundDarkColor: #fafafa;
+$errorDarkColor: $destructiveDarkColor;
 $borderDarkColor: #262626;
 $inputDarkColor: #262626;
 $ringDarkColor: #d4d4d4;

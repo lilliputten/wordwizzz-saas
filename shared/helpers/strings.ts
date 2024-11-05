@@ -1,7 +1,27 @@
 export type GenericError = Error | string | undefined;
 
-export function getErrorText(err: GenericError | unknown): string {
-  return err ? (err instanceof Error ? err.message : String(err)) : '';
+interface TGetErrorTextOpts {
+  omitErrorName?: boolean;
+}
+
+export function getErrorText(
+  err: GenericError /* | unknown */,
+  opts: TGetErrorTextOpts = {},
+): string {
+  if (!err) {
+    return '';
+  }
+  if (err instanceof Error) {
+    // return String(err);
+    return [
+      // prettier-ignore
+      !opts.omitErrorName && err.name,
+      err.message,
+    ]
+      .filter(Boolean)
+      .join(': ');
+  }
+  return String(err);
 }
 
 /** quoteHtmlAttr -- quote all invalid characters for html */

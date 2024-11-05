@@ -31,6 +31,7 @@ export interface TVariables {
   accentForegroundLightColor: string;
   destructiveLightColor: string;
   destructiveForegroundLightColor: string;
+  errorLightColor: string;
   borderLightColor: string;
   inputLightColor: string;
   ringLightColor: string;
@@ -49,6 +50,7 @@ export interface TVariables {
   accentForegroundDarkColor: string;
   destructiveDarkColor: string;
   destructiveForegroundDarkColor: string;
+  errorDarkColor: string;
   borderDarkColor: string;
   inputDarkColor: string;
   ringDarkColor: string;
@@ -110,6 +112,7 @@ const {
   accentForegroundLightColor,
   destructiveLightColor,
   destructiveForegroundLightColor,
+  errorLightColor,
   borderLightColor,
   inputLightColor,
   ringLightColor,
@@ -128,6 +131,7 @@ const {
   accentForegroundDarkColor,
   destructiveDarkColor,
   destructiveForegroundDarkColor,
+  errorDarkColor,
   borderDarkColor,
   inputDarkColor,
   ringDarkColor,
@@ -187,6 +191,7 @@ export {
   accentForegroundLightColor,
   destructiveLightColor,
   destructiveForegroundLightColor,
+  errorLightColor,
   borderLightColor,
   inputLightColor,
   ringLightColor,
@@ -204,6 +209,7 @@ export {
   accentForegroundDarkColor,
   destructiveDarkColor,
   destructiveForegroundDarkColor,
+  errorDarkColor,
   borderDarkColor,
   inputDarkColor,
   ringDarkColor,

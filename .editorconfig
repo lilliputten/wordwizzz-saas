@@ -13,7 +13,7 @@ indent_style = space
 indent_size = 2
 
 # Ignore paths
-[{next/**,static/**,src/data/contributors.json,.vscode/launch.json}]
+[{next/**,static/**,src/data/contributors.json,.vscode/launch.json,prisma/migrations/migration_lock.toml}]
 charset = unset
 end_of_line = unset
 insert_final_newline = unset

@@ -13,9 +13,9 @@ import { TUserId } from '@/shared/types/TUser';
 
 import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
 import { useAddLanguageModal } from './AddLanguage';
+import { LanguagesEmpty } from './LanguagesEmpty';
 import { LanguagesListTable } from './LanguagesListTable';
 import { LanguagesSkeleton } from './LanguagesSkeleton';
-import { NoLanguages } from './NoLanguages';
 
 interface TLanguagesListProps {
   userId: TUserId;
@@ -139,7 +139,7 @@ export function LanguagesList(props: TLanguagesListProps) {
           showAddLanguageModal={showAddLanguageModal}
         />
       ) : (
-        <NoLanguages className="flex-1" showAddLanguageModal={showAddLanguageModal} />
+        <LanguagesEmpty className="flex-1" showAddLanguageModal={showAddLanguageModal} />
       )}
       {/* // UNUSED: Inline add language block under the table
       <AddLanguageBlock

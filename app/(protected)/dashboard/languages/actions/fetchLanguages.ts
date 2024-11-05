@@ -2,6 +2,7 @@
 
 import { prisma } from '@/lib/db';
 import { TPrismaLanguage } from '@/features/languages/types';
+import { ServerError } from '@/shared/types/ServerError';
 import { TUserId } from '@/shared/types/TUser';
 
 import { convertPrismaLanguagesToClient } from '../helpers';
@@ -20,7 +21,7 @@ export async function fetchLanguages(userId: TUserId) {
     },
   });
   if (!result) {
-    throw new Error(`No data returned for the user id "${userId}"`);
+    throw new ServerError(`No data returned for the user id "${userId}"`);
   }
   const usedLanguages = result.usedLanguages as TPrismaLanguage[];
   /* console.log('[LanguagesPage:fetchLanguages] result', {
