@@ -1,7 +1,7 @@
 import { TPropsWithClassName } from '@/types/generic';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { EmptyPlaceholder } from '@/components/shared/empty-placeholder';
+import { EmptyPlaceholder } from '@/components/shared/EmptyPlaceholder';
 import { Icons } from '@/components/shared/icons';
 
 interface TLanguagesEmptyProps extends TPropsWithClassName {

@@ -45,7 +45,7 @@ export function LanguagesError({ error, reset, className }: TErrorProps) {
       {!!reset && (
         <div className="flex w-full justify-center gap-4">
           <Button onClick={reset}>
-            <Icons.add className="mr-2 size-4" />
+            <Icons.refresh className="mr-2 size-4" />
             <span>Try again</span>
           </Button>
         </div>

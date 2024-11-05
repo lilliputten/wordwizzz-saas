@@ -127,7 +127,7 @@ export function LanguagesList(props: TLanguagesListProps) {
         '__LanguagesList',
         'relative',
         'transition-opacity',
-        'flex-1',
+        '-z-10 flex-1',
         tailwindClippingLayout({ vertical: true }),
       )}
     >
