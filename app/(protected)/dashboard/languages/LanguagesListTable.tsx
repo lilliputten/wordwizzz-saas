@@ -14,7 +14,7 @@ import { Icons } from '@/components/shared/icons';
 import { TLanguage, TLanguageId } from '@/features/languages/types';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 
-import { useConfirmDeleteLanguageModal } from './ConfirmDeleteLanguageModal';
+import { useConfirmDeleteLanguageModal } from './DeleteLanguage';
 
 interface TLanguagesListTableProps extends TPropsWithClassName {
   languages: TLanguage[];

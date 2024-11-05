@@ -11,7 +11,6 @@ import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
-  SelectIcon,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -35,6 +34,16 @@ interface TProps {
   languages: TLanguage[];
   onAddLanguage: (language: TLanguage) => Promise<TLanguage[]>;
 }
+
+/* // NOTE: With `forwardRef`...
+ * export const AddPredefinedLanguage = React.forwardRef<HTMLDivElement, TProps>((props, ref) => {
+ *   // ...
+ *   return (
+ *     <div ref={ref} ... />
+ *   );
+ * });
+ * AddPredefinedLanguage.displayName = 'AddPredefinedLanguage';
+ */
 
 export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
   const { languages, onAddLanguage } = props;
@@ -114,66 +123,66 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
   const registerSelectField = register('id', { required: true });
 
   return (
-    <>
-      <div className="__AddPredefinedLanguage p-2">
-        <p className="Text mb-4 text-[13px] text-muted-foreground">
-          Add a language from the predefined list.
-        </p>
-        <form onSubmit={onSubmit}>
-          <div className="flex w-full flex-col items-center gap-4">
-            <div className="flex w-full flex-col gap-4">
-              <Label className="-sr-only" htmlFor="id">
-                Select language
-              </Label>
-              <Select
-                {...registerSelectField}
-                onValueChange={(value) =>
-                  registerSelectField.onChange({ target: { name: 'id', value } })
-                }
-              >
-                <SelectTrigger className="SelectTrigger flex-1" aria-label="Language">
-                  <SelectValue placeholder="Select a language…" />
+    <div className="__AddPredefinedLanguage p-2">
+      <p className="Text mb-4 text-[13px] text-muted-foreground">
+        Add a language from the predefined list.
+      </p>
+      <form onSubmit={onSubmit}>
+        <div className="flex w-full flex-col items-center gap-4">
+          <div className="flex w-full flex-col gap-4">
+            <Label className="-sr-only" htmlFor="id">
+              Select language
+            </Label>
+            <Select
+              {...registerSelectField}
+              onValueChange={(value) =>
+                registerSelectField.onChange({ target: { name: 'id', value } })
+              }
+            >
+              <SelectTrigger className="SelectTrigger flex-1" aria-label="Language">
+                <SelectValue placeholder="Select a language…" />
+                {/*
                   <SelectIcon className="SelectIcon">
                     <Icons.chevronDown className="mr-2 size-4" />
                   </SelectIcon>
-                </SelectTrigger>
-                <SelectContent className="SelectContent">
-                  {languagesList.map(({ id, name }) => (
-                    <SelectItem value={id} key={id}>
-                      {name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors?.id && <p className="pb-0.5 text-[13px] text-red-600">{errors.id.message}</p>}
-              <p className="text-[13px] text-muted-foreground">Select a language form the list.</p>
-            </div>
-            {/*
-            <div className="flex flex-col justify-between p-1"></div>
-            */}
-            <div className="flex w-full gap-4">
-              <Button
-                type="submit"
-                variant={isSubmitEnabled ? 'default' : 'disable'}
-                disabled={!isSubmitEnabled}
-                className="w-[67px] shrink-0 px-0 sm:w-[130px]"
-              >
-                {isPending ? (
-                  <Icons.spinner className="size-4 animate-spin" />
-                ) : (
-                  <p>
-                    Add
-                    <span className="hidden sm:inline-flex">&nbsp;Language</span>
-                  </p>
-                )}
-              </Button>
-            </div>
+                  */}
+              </SelectTrigger>
+              <SelectContent className="SelectContent">
+                {languagesList.map(({ id, name }) => (
+                  <SelectItem value={id} key={id}>
+                    {name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors?.id && <p className="pb-0.5 text-[13px] text-red-600">{errors.id.message}</p>}
+            <p className="text-[13px] text-muted-foreground">Select a language form the list.</p>
           </div>
           {/*
+            <div className="flex flex-col justify-between p-1"></div>
+            */}
+          <div className="flex w-full gap-4">
+            <Button
+              type="submit"
+              variant={isSubmitEnabled ? 'default' : 'disable'}
+              disabled={!isSubmitEnabled}
+              className="w-[67px] shrink-0 px-0 sm:w-[130px]"
+            >
+              {isPending ? (
+                <Icons.spinner className="size-4 animate-spin" />
+              ) : (
+                <p>
+                  Add
+                  <span className="hidden sm:inline-flex">&nbsp;Language</span>
+                </p>
+              )}
+            </Button>
+          </div>
+        </div>
+        {/*
           <div className="flex flex-col justify-between p-1"></div>
           */}
-        </form>
-      </div>
-    </>
+      </form>
+    </div>
   );
 };

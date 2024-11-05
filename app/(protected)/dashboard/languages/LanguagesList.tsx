@@ -12,8 +12,7 @@ import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 import { TUserId } from '@/shared/types/TUser';
 
 import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
-// import { AddLanguageBlock } from './AddLanguageBlock';
-import { useAddLanguageModal } from './AddLanguageModal';
+import { useAddLanguageModal } from './AddLanguage';
 import { LanguagesListTable } from './LanguagesListTable';
 import { LanguagesSkeleton } from './LanguagesSkeleton';
 import { NoLanguages } from './NoLanguages';

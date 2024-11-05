@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import { DialogTitle } from '@radix-ui/react-dialog';
 
 import { cn } from '@/lib/utils';
+import { DialogDescription } from '@/components/ui/dialog';
 import { Modal } from '@/components/ui/modal';
 import { TLanguage, TLanguageId } from '@/features/languages/types';
 
@@ -30,7 +32,10 @@ function ConfirmDeleteLanguageModal(props: TConfirmDeleteLanguageModalProps) {
   return (
     <Modal showModal={show} setShowModal={toggle} className="gap-0">
       <div className={cn('flex flex-col border-b bg-accent px-8 py-4')}>
-        <h3 className="text-lg font-semibold">Delete Language</h3>
+        <DialogTitle className="DialogTitle">Delete Language</DialogTitle>
+        <DialogDescription aria-hidden="true" hidden>
+          Delete language dialog
+        </DialogDescription>
       </div>
       <div
         className={cn(

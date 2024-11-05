@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { cn } from '@/lib/utils';
+import { DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Modal } from '@/components/ui/modal';
 import { TLanguage } from '@/features/languages/types';
 
@@ -31,7 +32,10 @@ function AddLanguageModal(props: TAddLanguageModalProps) {
   return (
     <Modal showModal={show} setShowModal={toggle} className="gap-0">
       <div className={cn('flex flex-col border-b bg-accent px-8 py-4')}>
-        <h3 className="text-lg font-semibold">Add Language</h3>
+        <DialogTitle className="DialogTitle">Add Language</DialogTitle>
+        <DialogDescription aria-hidden="true" hidden>
+          Add language dialog
+        </DialogDescription>
       </div>
       <div className={cn('flex flex-col px-8 py-4')}>
         <AddLanguageBlock

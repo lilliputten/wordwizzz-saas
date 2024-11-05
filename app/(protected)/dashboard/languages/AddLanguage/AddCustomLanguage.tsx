@@ -33,12 +33,6 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
     (value: TLanguageId) => {
       const found = languages.find((lang) => lang.id === value);
       const isError = !!found;
-      /* console.log('[AddCustomLanguage:refineLanguageId]', {
-       *   value,
-       *   isError,
-       *   languages,
-       * });
-       */
       return !isError;
     },
     [languages],
