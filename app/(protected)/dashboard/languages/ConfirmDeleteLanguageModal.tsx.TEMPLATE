@@ -1,5 +1,4 @@
-import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
-import { signOut, useSession } from 'next-auth/react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
@@ -8,14 +7,14 @@ import { Modal } from '@/components/ui/modal';
 import { UserAvatar } from '@/components/shared/user-avatar';
 
 function AddLanguageModal({
-  showAddLanguageModal,
-  setShowAddLanguageModal,
+  show,
+  toggle,
 }: {
-  showAddLanguageModal: boolean;
-  setShowAddLanguageModal: Dispatch<SetStateAction<boolean>>;
+  show: boolean;
+  toggle: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   // const { data: session } = useSession();
-  const [adding, setAdding] = useState(false);
+  const [adding, setAdding] = React.useState(false);
 
   async function addLanguage() {
     setAdding(true);
@@ -52,11 +51,7 @@ function AddLanguageModal({
   }
 
   return (
-    <Modal
-      showModal={showAddLanguageModal}
-      setShowModal={setShowAddLanguageModal}
-      className="gap-0"
-    >
+    <Modal showModal={show} setShowModal={toggle} className="gap-0">
       <div className="flex flex-col items-center justify-center space-y-3 border-b p-4 pt-8 sm:px-16">
         <h3 className="text-lg font-semibold">Delete Language</h3>
 
@@ -101,22 +96,31 @@ function AddLanguageModal({
 }
 
 export function useAddLanguageModal() {
-  const [showAddLanguageModal, setShowAddLanguageModal] = useState(false);
+  const [show, toggle] = React.useState(false);
 
-  const AddLanguageModalCallback = useCallback(() => {
-    return (
-      <AddLanguageModal
-        showAddLanguageModal={showAddLanguageModal}
-        setShowAddLanguageModal={setShowAddLanguageModal}
-      />
-    );
-  }, [showAddLanguageModal, setShowAddLanguageModal]);
+  const AddLanguageModalCallback = React.useCallback(() => {
+    return <AddLanguageModal show={show} toggle={toggle} />;
+  }, [show, toggle]);
+  const showAddLanguageModal = React.useCallback(() => {
+    debugger;
+    toggle(true);
+  }, []);
+  const hideAddLanguageModal = React.useCallback(() => toggle(false), []);
 
-  return useMemo(
+  return React.useMemo(
     () => ({
-      setShowAddLanguageModal,
+      isShown: show,
       AddLanguageModal: AddLanguageModalCallback,
+      showAddLanguageModal,
+      hideAddLanguageModal,
+      toggleShowAddLanguageModal: toggle,
     }),
-    [setShowAddLanguageModal, AddLanguageModalCallback],
+    [
+      // prettier-ignore
+      show,
+      AddLanguageModalCallback,
+      showAddLanguageModal,
+      hideAddLanguageModal,
+    ],
   );
 }

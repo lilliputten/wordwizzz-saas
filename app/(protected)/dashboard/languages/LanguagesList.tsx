@@ -13,6 +13,7 @@ import { TUserId } from '@/shared/types/TUser';
 
 import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
 import { AddLanguageBlock } from './AddLanguageBlock';
+import { useAddLanguageModal } from './AddLanguageModal';
 import { LanguagesListTable } from './LanguagesListTable';
 import { LanguagesSkeleton } from './LanguagesSkeleton';
 import { NoLanguages } from './NoLanguages';
@@ -32,6 +33,7 @@ export function LanguagesList(props: TLanguagesListProps) {
     addLanguage,
     deleteLanguage,
   } = props;
+  const { showAddLanguageModal, AddLanguageModal } = useAddLanguageModal();
   // NOTE: Use `isoLanguages` as an initial data to test the clipping and scrollable layouts
   const [languages, setLanguages] = React.useState(initialLanguages);
   const [isUpdating, startUpdating] = React.useTransition();
@@ -132,29 +134,32 @@ export function LanguagesList(props: TLanguagesListProps) {
     >
       {hasLanguages ? (
         <LanguagesListTable
-          className={cn(
-            // prettier-ignore
-            '__LanguagesList_Table',
-            'flex-1',
-            tailwindClippingLayout({ vertical: true }),
-          )}
+          className={cn('__LanguagesList_Table flex-1', tailwindClippingLayout({ vertical: true }))}
           languages={languages}
           onDeleteLanguage={onDeleteLanguage}
+          showAddLanguageModal={showAddLanguageModal}
         />
       ) : (
-        <NoLanguages className="flex-1" />
+        <NoLanguages className="flex-1" showAddLanguageModal={showAddLanguageModal} />
       )}
+      {/* UNUSED: Inline add language block under the table
       <AddLanguageBlock
         languages={languages}
         onAddLanguage={onAddLanguage}
         className="min-h-[300px]"
       />
+      */}
       {/* // XXX: Show waiting spinner overlay instead skeleton? (Mind the bug with skeleton flash at the beginning of prisma data update.)
       <WaitingSplash show={isUpdating} />
       */}
       <WaitingWrapper show={isUpdating}>
         <LanguagesSkeleton />
       </WaitingWrapper>
+      <AddLanguageModal
+        // prettier-ignore
+        languages={languages}
+        onAddLanguage={onAddLanguage}
+      />
     </div>
   );
 }

@@ -29,14 +29,10 @@ module.exports = {
     '^[./].*.(css|less|scss)$',
   ],
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
-  // importOrderSeparation: false,
-  // importOrderSortSpecifiers: true,
-  // importOrderBuiltinModulesToTop: true,
-  // importOrderMergeDuplicateImports: true,
-  // importOrderCombineTypeAndValueImports: true,
   plugins: [
-    // prettier-ignore
+    // @see https://www.npmjs.com/package/@ianvs/prettier-plugin-sort-imports#options
     '@ianvs/prettier-plugin-sort-imports',
+    // 'prettier-plugin-organize-imports' ?
     'prettier-plugin-tailwindcss',
   ],
 };
