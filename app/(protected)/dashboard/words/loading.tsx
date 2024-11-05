@@ -1,11 +1,3 @@
-import { Skeleton } from '@/components/ui/skeleton';
-import { DashboardHeader } from '@/components/dashboard/header';
+import { WordsLoading } from './WordsLoading';
 
-export default function WordsLoading() {
-  return (
-    <>
-      <DashboardHeader heading="Words" text="Check and manage your latest words." />
-      <Skeleton className="size-full rounded-lg" />
-    </>
-  );
-}
+export default WordsLoading;
