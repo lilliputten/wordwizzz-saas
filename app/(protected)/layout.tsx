@@ -4,7 +4,7 @@ import { sidebarLinks } from '@/config/dashboard';
 import { getCurrentUser } from '@/lib/session';
 import { cn } from '@/lib/utils';
 import { SearchCommand } from '@/components/dashboard/search-command';
-import { DashboardSidebar, MobileSheetSidebar } from '@/components/layout/dashboard-sidebar';
+import { DashboardSidebar, MobileSheetSidebar } from '@/components/layout/DashboardSidebar';
 import { ModeToggle } from '@/components/layout/mode-toggle';
 import { UserAccountNav } from '@/components/layout/user-account-nav';
 import MaxWidthWrapper from '@/components/shared/max-width-wrapper';

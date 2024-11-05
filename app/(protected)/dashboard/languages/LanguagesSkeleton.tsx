@@ -10,7 +10,7 @@ export function LanguagesSkeleton({ className }: TProps) {
     <div
       className={cn(
         className,
-        '__LanguagesLoading size-full rounded-lg',
+        '__LanguagesSkeleton size-full rounded-lg',
         'flex flex-1 flex-col gap-5',
         // 'border border-dashed border-black/50', // DEBUG: Show border
       )}

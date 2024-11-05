@@ -7,13 +7,14 @@ import { TLanguage } from '@/features/languages/types';
 import { getErrorText } from '@/shared/helpers/strings';
 
 import { addLanguage, deleteLanguage, fetchLanguages } from './actions';
+import { pageDescription, pageTitle } from './constants/texts';
 import { LanguagesError } from './LanguagesError';
 import { LanguagesHeader } from './LanguagesHeader';
 import { LanguagesList } from './LanguagesList';
 
 export const metadata = constructMetadata({
-  title: 'Languages - ' + siteConfig.name,
-  description: 'Check and manage your latest languages.',
+  title: pageTitle + ' - ' + siteConfig.name,
+  description: pageDescription,
 });
 
 export async function LanguagesPage() {

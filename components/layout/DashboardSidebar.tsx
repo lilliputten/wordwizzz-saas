@@ -16,7 +16,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import ProjectSwitcher from '@/components/dashboard/project-switcher';
 import { UpgradeCard } from '@/components/dashboard/upgrade-card';
 import { Icons } from '@/components/shared/icons';
-import { NavItem, SidebarNavItem } from '@/types';
+import { SidebarNavItem } from '@/types';
 
 interface DashboardSidebarProps {
   links: SidebarNavItem[];
@@ -57,7 +57,14 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
 
   return (
     <TooltipProvider delayDuration={0}>
-      <div className="sticky top-0 h-full">
+      <div
+        className={cn(
+          '__DashboardSidebar',
+          'sticky top-0 h-full',
+          // NOTE: Set sidebar atop the main content (ensure that this z-index is enough)
+          'z-10',
+        )}
+      >
         <ScrollArea className="h-full overflow-y-auto border-r">
           <aside
             className={cn(
