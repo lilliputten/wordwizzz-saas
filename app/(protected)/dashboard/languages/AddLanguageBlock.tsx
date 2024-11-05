@@ -17,10 +17,10 @@ export function AddLanguageBlock(props: TAddLanguageBlockProps) {
   const { className, languages, onAddLanguage } = props;
   return (
     <Tabs
-      className={cn(className, '__AddLanguageBlock_Tabs', 'mt-4')}
+      className={cn(className, '__AddLanguageBlock', 'mt-4')}
       defaultValue="AddPredefinedLanguage"
     >
-      <TabsList>
+      <TabsList className={cn('__AddLanguageBlock_Tabs')}>
         <TabsTrigger className="TabsTrigger" value="AddPredefinedLanguage">
           Add predefined language
         </TabsTrigger>

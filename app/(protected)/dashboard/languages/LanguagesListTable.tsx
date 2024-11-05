@@ -14,9 +14,11 @@ import { Icons } from '@/components/shared/icons';
 import { TLanguage, TLanguageId } from '@/features/languages/types';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 
+import { useConfirmDeleteLanguageModal } from './ConfirmDeleteLanguageModal';
+
 interface TLanguagesListTableProps extends TPropsWithClassName {
   languages: TLanguage[];
-  onDeleteLanguage: (id: TLanguageId) => void;
+  onDeleteLanguage: (id: TLanguageId) => Promise<unknown>;
   showAddLanguageModal: () => void; // React.Dispatch<React.SetStateAction<void>>;
 }
 type TChildProps = Omit<TLanguagesListTableProps, 'className'>;
@@ -62,10 +64,6 @@ function Header(props: TChildProps) {
   );
 }
 
-interface TLanguageTableRowProps extends TChildProps {
-  language: TLanguage;
-}
-
 function LanguageTableHeader() {
   return (
     <TableHeader>
@@ -76,11 +74,16 @@ function LanguageTableHeader() {
   );
 }
 
+interface TLanguageTableRowProps {
+  language: TLanguage;
+  invokeConfirmDeleteLanguageModal: (language: TLanguage) => void;
+}
+
 function LanguageTableRow(props: TLanguageTableRowProps) {
-  const { language, onDeleteLanguage } = props;
+  const { language, invokeConfirmDeleteLanguageModal } = props;
   const { id, name } = language;
   return (
-    <TableRow>
+    <TableRow data-language-id={id}>
       <TableCell>
         <div className="text-lg font-medium">{name}</div>
         {/* EXAMPLE
@@ -94,7 +97,7 @@ function LanguageTableRow(props: TLanguageTableRowProps) {
           variant="destructive"
           size="icon"
           className="size-9 shrink-0"
-          onClick={() => onDeleteLanguage(id)}
+          onClick={() => invokeConfirmDeleteLanguageModal(language)}
         >
           <Icons.trash className="size-4" />
         </Button>
@@ -104,34 +107,30 @@ function LanguageTableRow(props: TLanguageTableRowProps) {
 }
 
 export function LanguagesListTable(props: TLanguagesListTableProps) {
-  const { className, languages } = props;
+  const { className, languages, onDeleteLanguage } = props;
+  const { invokeConfirmDeleteLanguageModal, confirmDeleteLanguageModalElement } =
+    useConfirmDeleteLanguageModal({ onDeleteLanguage });
   return (
-    <Card
-      className={cn(
-        // prettier-ignore
-        className,
-        '__LanguagesListTable',
-        'xl:col-span-2',
-      )}
-    >
+    <Card className={cn(className, '__LanguagesListTable', 'xl:col-span-2')}>
       <Header {...props} />
-      <CardContent
-        className={cn(
-          // prettier-ignore
-          '__LanguagesListTable_Content',
-          tailwindClippingLayout(),
-        )}
-      >
+      <CardContent className={cn('__LanguagesListTable_Content', tailwindClippingLayout())}>
         <Table>
           <LanguageTableHeader />
           <TableBody>
             {languages.map((language) => {
               const key = language.id;
-              return <LanguageTableRow key={key} language={language} {...props} />;
+              return (
+                <LanguageTableRow
+                  key={key}
+                  language={language}
+                  invokeConfirmDeleteLanguageModal={invokeConfirmDeleteLanguageModal}
+                />
+              );
             })}
           </TableBody>
         </Table>
       </CardContent>
+      {confirmDeleteLanguageModalElement}
     </Card>
   );
 }

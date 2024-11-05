@@ -3,7 +3,7 @@ import { TLanguage } from '@/features/languages/types';
 import jsonLanguages from './ISO-639-1-language.json';
 
 /* // Derive types (is it rquired?)
- * import { ArrayElement } from '@/shared/helpers/ts';
+ * import { ArrayElement } from '@/shared/types/ts';
  * type TISOLanguages = typeof jsonLanguages;
  * type TISOLanguage = ArrayElement<TISOLanguages>;
  */

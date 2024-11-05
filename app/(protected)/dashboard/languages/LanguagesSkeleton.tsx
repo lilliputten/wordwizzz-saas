@@ -16,7 +16,9 @@ export function LanguagesSkeleton({ className }: TProps) {
       )}
     >
       <Skeleton className="w-full flex-1 rounded-lg" />
+      {/*
       <Skeleton className="max-h-[300px] w-full flex-1 rounded-lg" />
+      */}
     </div>
   );
 }

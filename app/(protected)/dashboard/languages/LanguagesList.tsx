@@ -12,8 +12,9 @@ import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 import { TUserId } from '@/shared/types/TUser';
 
 import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
-import { AddLanguageBlock } from './AddLanguageBlock';
+// import { AddLanguageBlock } from './AddLanguageBlock';
 import { useAddLanguageModal } from './AddLanguageModal';
+// import { useConfirmDeleteLanguageModal } from './ConfirmDeleteLanguageModal';
 import { LanguagesListTable } from './LanguagesListTable';
 import { LanguagesSkeleton } from './LanguagesSkeleton';
 import { NoLanguages } from './NoLanguages';
@@ -138,6 +139,7 @@ export function LanguagesList(props: TLanguagesListProps) {
           languages={languages}
           onDeleteLanguage={onDeleteLanguage}
           showAddLanguageModal={showAddLanguageModal}
+          // showConfirmDeleteLanguageModal={showConfirmDeleteLanguageModal}
         />
       ) : (
         <NoLanguages className="flex-1" showAddLanguageModal={showAddLanguageModal} />
@@ -160,6 +162,13 @@ export function LanguagesList(props: TLanguagesListProps) {
         languages={languages}
         onAddLanguage={onAddLanguage}
       />
+      {/*
+      <ConfirmDeleteLanguageModal
+        // prettier-ignore
+        // languages={languages}
+        onConfirmDeleteLanguage={onConfirmDeleteLanguage}
+      />
+      */}
     </div>
   );
 }

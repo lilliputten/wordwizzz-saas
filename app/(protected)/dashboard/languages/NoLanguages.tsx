@@ -14,7 +14,7 @@ export function NoLanguages(props: TNoLanguagesProps) {
     <>
       <EmptyPlaceholder className={className}>
         <EmptyPlaceholder.Icon name="languages" />
-        <EmptyPlaceholder.Title>No languages yet</EmptyPlaceholder.Title>
+        <EmptyPlaceholder.Title>No languages have been defined yet</EmptyPlaceholder.Title>
         <EmptyPlaceholder.Description>
           You dont have any languages yet. Add any language to your profile.
         </EmptyPlaceholder.Description>
