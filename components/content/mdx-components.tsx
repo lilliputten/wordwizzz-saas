@@ -152,7 +152,7 @@ const components = {
   LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
     <Link
       className={cn(
-        'flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10',
+        'hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors sm:p-10',
         className,
       )}
       {...props}
@@ -169,7 +169,9 @@ export function Mdx({ code, images }: MdxProps) {
   const Component = useMDXComponent(code);
 
   const MDXImage = (props: any) => {
-    if (!images) return null;
+    if (!images) {
+      return null;
+    }
     const blurDataURL = images.find((image) => image.src === props.src)?.blurDataURL;
 
     return (

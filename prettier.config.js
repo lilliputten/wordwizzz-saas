@@ -3,16 +3,16 @@ module.exports = {
   bracketSpacing: true,
   endOfLine: 'lf',
   semi: true,
-  singleQuote: false,
+  singleQuote: true,
   tabWidth: 2,
   trailingComma: 'all',
-  printWidth: 80,
+  printWidth: 100,
   importOrder: [
     '^(react/(.*)$)|^(react$)',
     '^(next/(.*)$)|^(next$)',
+    '<BUILTIN_MODULES>', // Node.js built-in modules
     '<THIRD_PARTY_MODULES>',
     '',
-    '^types$',
     '^@/env(.*)$',
     '^@/types/(.*)$',
     '^@/config/(.*)$',
@@ -22,14 +22,20 @@ module.exports = {
     '^@/components/(.*)$',
     '^@/styles/(.*)$',
     '^@/app/(.*)$',
+    '^@/',
     '',
     '^[./]',
+    '',
+    '^[./].*.(css|less|scss)$',
   ],
-  importOrderSeparation: false,
-  importOrderSortSpecifiers: true,
-  importOrderBuiltinModulesToTop: true,
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
-  importOrderMergeDuplicateImports: true,
-  importOrderCombineTypeAndValueImports: true,
-  plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
+  plugins: [
+    /* // Remove unused imports (can't be used with the following `@ianvs/prettier-plugin-sort-imports`)
+     * // @see https://www.npmjs.com/package/prettier-plugin-organize-imports
+     * 'prettier-plugin-organize-imports',
+     */
+    // Organize imports, @see https://www.npmjs.com/package/@ianvs/prettier-plugin-sort-imports#options
+    '@ianvs/prettier-plugin-sort-imports',
+    'prettier-plugin-tailwindcss',
+  ],
 };

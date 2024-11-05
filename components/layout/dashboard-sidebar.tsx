@@ -3,7 +3,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { NavItem, SidebarNavItem } from '@/types';
 import { Menu, PanelLeftClose, PanelRightClose } from 'lucide-react';
 
 import { siteConfig } from '@/config/site';
@@ -17,6 +16,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import ProjectSwitcher from '@/components/dashboard/project-switcher';
 import { UpgradeCard } from '@/components/dashboard/upgrade-card';
 import { Icons } from '@/components/shared/icons';
+import { NavItem, SidebarNavItem } from '@/types';
 
 interface DashboardSidebarProps {
   links: SidebarNavItem[];
@@ -195,7 +195,9 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
                             <Link
                               key={`link-${item.title}`}
                               onClick={() => {
-                                if (!item.disabled) setOpen(false);
+                                if (!item.disabled) {
+                                  setOpen(false);
+                                }
                               }}
                               href={item.disabled ? '#' : item.href}
                               className={cn(

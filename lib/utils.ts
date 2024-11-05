@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { clsx, type ClassValue } from 'clsx';
+import { ClassValue, clsx } from 'clsx';
 import ms from 'ms';
 import { twMerge } from 'tailwind-merge';
 
@@ -85,11 +85,16 @@ export function absoluteUrl(path: string) {
 
 // Utils from precedent.dev
 export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
-  if (!timestamp) return 'never';
+  if (!timestamp) {
+    return 'never';
+  }
   return `${ms(Date.now() - new Date(timestamp).getTime())}${timeOnly ? '' : ' ago'}`;
 };
 
-export async function fetcher<JSON = any>(input: RequestInfo, init?: RequestInit): Promise<JSON> {
+export async function fetcher<JSON = unknown>(
+  input: RequestInfo,
+  init?: RequestInit,
+): Promise<JSON> {
   const res = await fetch(input, init);
 
   if (!res.ok) {
@@ -109,7 +114,9 @@ export async function fetcher<JSON = any>(input: RequestInfo, init?: RequestInit
 }
 
 export function nFormatter(num: number, digits?: number) {
-  if (!num) return '0';
+  if (!num) {
+    return '0';
+  }
   const lookup = [
     { value: 1, symbol: '' },
     { value: 1e3, symbol: 'K' },
@@ -130,12 +137,16 @@ export function nFormatter(num: number, digits?: number) {
 }
 
 export function capitalize(str: string) {
-  if (!str || typeof str !== 'string') return str;
+  if (!str || typeof str !== 'string') {
+    return str;
+  }
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export const truncate = (str: string, length: number) => {
-  if (!str || str.length <= length) return str;
+  if (!str || str.length <= length) {
+    return str;
+  }
   return `${str.slice(0, length)}...`;
 };
 
@@ -154,7 +165,7 @@ export const getBlurDataURL = async (url: string | null) => {
     const base64 = Buffer.from(buffer).toString('base64');
 
     return `data:image/png;base64,${base64}`;
-  } catch (error) {
+  } catch /* (error) */ {
     return 'data:image/webp;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=';
   }
 };

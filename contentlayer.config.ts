@@ -146,7 +146,9 @@ export default makeSource({
           if (node?.type === 'element' && node?.tagName === 'pre') {
             const [codeEl] = node.children;
 
-            if (codeEl.tagName !== 'code') return;
+            if (codeEl.tagName !== 'code') {
+              return;
+            }
 
             node.__rawString__ = codeEl.children?.[0].value;
           }

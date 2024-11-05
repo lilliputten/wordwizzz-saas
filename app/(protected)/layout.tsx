@@ -2,11 +2,13 @@ import { redirect } from 'next/navigation';
 
 import { sidebarLinks } from '@/config/dashboard';
 import { getCurrentUser } from '@/lib/session';
+import { cn } from '@/lib/utils';
 import { SearchCommand } from '@/components/dashboard/search-command';
 import { DashboardSidebar, MobileSheetSidebar } from '@/components/layout/dashboard-sidebar';
 import { ModeToggle } from '@/components/layout/mode-toggle';
 import { UserAccountNav } from '@/components/layout/user-account-nav';
 import MaxWidthWrapper from '@/components/shared/max-width-wrapper';
+import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
@@ -15,7 +17,9 @@ interface ProtectedLayoutProps {
 export default async function Dashboard({ children }: ProtectedLayoutProps) {
   const user = await getCurrentUser();
 
-  if (!user) redirect('/login');
+  if (!user) {
+    redirect('/login');
+  }
 
   const filteredLinks = sidebarLinks.map((section) => ({
     ...section,
@@ -25,11 +29,18 @@ export default async function Dashboard({ children }: ProtectedLayoutProps) {
   }));
 
   return (
-    <div className="relative flex min-h-screen w-full">
+    <div
+      className={cn(
+        // prettier-ignore
+        '__app_protected_layout',
+        'relative flex size-full',
+        tailwindClippingLayout(),
+      )}
+    >
       <DashboardSidebar links={filteredLinks} />
 
-      <div className="flex flex-1 flex-col">
-        <header className="sticky top-0 z-50 flex h-14 bg-background px-4 lg:h-[60px] xl:px-8">
+      <div className="__app_protected_layout_wrapper flex flex-1 flex-col">
+        <header className="__app_protected_layout_header sticky top-0 z-50 flex h-14 bg-background px-4 lg:h-[60px] xl:px-8">
           <MaxWidthWrapper className="flex max-w-7xl items-center gap-x-3 px-0">
             <MobileSheetSidebar links={filteredLinks} />
 
@@ -42,7 +53,13 @@ export default async function Dashboard({ children }: ProtectedLayoutProps) {
           </MaxWidthWrapper>
         </header>
 
-        <main className="flex-1 p-4 xl:px-8">
+        <main
+          className={cn(
+            '__app_protected_layout_main',
+            'flex-1 p-4 xl:px-8',
+            tailwindClippingLayout(),
+          )}
+        >
           <MaxWidthWrapper className="flex h-full max-w-7xl flex-col gap-4 px-0 lg:gap-6">
             {children}
           </MaxWidthWrapper>

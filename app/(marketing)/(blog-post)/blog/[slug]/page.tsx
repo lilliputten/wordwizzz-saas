@@ -3,7 +3,7 @@ import { allPosts } from 'contentlayer/generated';
 
 import { Mdx } from '@/components/content/mdx-components';
 
-import '@/styles/mdx.css';
+import '@/styles/mdx.scss';
 
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -149,7 +149,7 @@ export default async function PostPage({
                 <Link
                   key={post.slug}
                   href={post.slug}
-                  className="flex flex-col space-y-2 rounded-xl border p-5 transition-colors duration-300 hover:bg-muted/80"
+                  className="hover:bg-muted/80 flex flex-col space-y-2 rounded-xl border p-5 transition-colors duration-300"
                 >
                   <h3 className="font-heading text-xl text-foreground">{post.title}</h3>
                   <p className="line-clamp-2 text-[15px] text-muted-foreground">

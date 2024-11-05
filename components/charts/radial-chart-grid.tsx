@@ -17,6 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart';
+
 const chartData = [
   { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },
   { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
@@ -31,23 +32,23 @@ const chartConfig = {
   },
   chrome: {
     label: 'Chrome',
-    color: 'hsl(var(--chart-1))',
+    color: 'var(--chart1Color)',
   },
   safari: {
     label: 'Safari',
-    color: 'hsl(var(--chart-2))',
+    color: 'var(--chart2Color)',
   },
   firefox: {
     label: 'Firefox',
-    color: 'hsl(var(--chart-3))',
+    color: 'var(--chart3Color)',
   },
   edge: {
     label: 'Edge',
-    color: 'hsl(var(--chart-4))',
+    color: 'var(--chart4Color)',
   },
   other: {
     label: 'Other',
-    color: 'hsl(var(--chart-5))',
+    color: 'var(--chart5Color)',
   },
 } satisfies ChartConfig;
 

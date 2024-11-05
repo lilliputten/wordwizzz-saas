@@ -1,4 +1,4 @@
-<a href="https://next-saas-stripe-starter.vercel.app">
+<a href="https://wordwizzz.vercel.app">
   <img alt="WordWizzz!" src="public/_static/og.jpg">
   <h1 align="center">Next SaaS Stripe Starter</h1>
 </a>
@@ -33,7 +33,7 @@ All seamlessly integrated with the WordWizzz! to accelerate your development and
 Clone & create this repo locally with the following command:
 
 ```bash
-npx create-next-app my-saas-project --example "https://github.com/lilliputten/next-saas-stripe-starter"
+npx create-next-app my-saas-project --example "https://github.com/mickasmt/next-saas-stripe-starter"
 ```
 
 Or, deploy with Vercel:
@@ -72,7 +72,7 @@ pnpm run dev
 
 ## Tech Stack + Features
 
-https://github.com/lilliputten/next-saas-stripe-starter/assets/62285783/828a4e0f-30e3-4cfe-96ff-4dfd9cd55124
+https://github.com/mickasmt/next-saas-stripe-starter/assets/62285783/828a4e0f-30e3-4cfe-96ff-4dfd9cd55124
 
 ### Frameworks
 

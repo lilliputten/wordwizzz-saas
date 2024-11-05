@@ -35,11 +35,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+bin
 
 # email
 /.react-email/
 
-.vscode
+# .vscode
 .contentlayer
 
 # Temporariy, swap & ignored files
@@ -48,6 +49,7 @@ next-env.d.ts
 /*.session
 *UNUSED
 *~
+*_
 .*.sw?
 *.tmp
 *.zip

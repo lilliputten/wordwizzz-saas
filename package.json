@@ -1,22 +1,21 @@
 {
   "name": "wordwizzz-saas",
   "description": "WordWizzz word learning NextJS application",
-  "version": "0.0.1",
-  "timetag": "240909-0022",
-  "timestamp": "2024.09.09 00:22 +0300",
-  "changed": "2024.09.08, 22:54",
+  "version": "0.0.5",
+  "timetag": "241105-2214",
+  "timestamp": "2024.11.05 22:14 +0300",
+  "changed": "2024.11.05, 00:02",
   "author": {
     "name": "Igor Lilliputten",
     "url": "https://lilliputten.com"
   },
-  "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276",
   "unusedDependencies": {
     "@typescript-eslint/parser": "^7.17.0"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
     "@hookform/resolvers": "^3.9.0",
-    "@prisma/client": "^5.17.0",
+    "@prisma/client": "^5.21.0",
     "@radix-ui/react-accessible-icon": "^1.1.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
@@ -57,13 +56,13 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "concurrently": "^8.2.2",
-    "contentlayer2": "^0.5.0",
+    "contentlayer2": "^0.5.3",
     "date-fns": "^3.6.0",
     "lucide-react": "^0.414.0",
     "ms": "^2.1.3",
     "next": "14.2.5",
     "next-auth": "5.0.0-beta.19",
-    "next-contentlayer2": "^0.5.0",
+    "next-contentlayer2": "^0.5.3",
     "next-themes": "^0.3.0",
     "prop-types": "^15.8.1",
     "react": "18.3.1",
@@ -74,6 +73,7 @@
     "react-textarea-autosize": "^8.5.3",
     "recharts": "^2.12.7",
     "resend": "^3.5.0",
+    "sass": "^1.78.0",
     "sharp": "^0.33.4",
     "shiki": "^1.11.0",
     "sonner": "^1.5.0",
@@ -91,9 +91,11 @@
     "@next/eslint-plugin-next": "^14.2.8",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.13",
+    "@types/ms": "^0.7.34",
     "@types/node": "^20.14.11",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
+    "@types/tinycolor2": "^1.4.6",
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
     "editorconfig-checker": "^5.1.8",
@@ -114,7 +116,7 @@
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "pretty-quick": "^4.0.0",
-    "prisma": "^5.17.0",
+    "prisma": "^5.21.1",
     "rehype": "^13.0.1",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.13.2",
@@ -126,7 +128,10 @@
     "stylelint-config-recommended": "^14.0.1",
     "stylelint-config-recommended-scss": "^14.1.0",
     "stylelint-config-tailwindcss": "^0.0.7",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^6.8.1",
     "tailwindcss": "^3.4.6",
+    "tinycolor2": "^1.6.0",
     "typescript": "5.5.3",
     "unist-util-visit": "^5.0.0"
   },
@@ -151,5 +156,6 @@
     "postinstall": "prisma generate",
     "email": "email dev --dir emails --port 3333",
     "scripts-help": "echo --List all available script commands-- && npm-package-user-scripts-list"
-  }
+  },
+  "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276"
 }

@@ -8,7 +8,7 @@ import { Icons } from '@/components/shared/icons';
 
 export default async function HeroLanding() {
   const { stargazers_count: stars } = await fetch(
-    'https://api.github.com/repos/lilliputten/next-saas-stripe-starter',
+    'https://api.github.com/repos/lilliputten/wordwizzz',
     {
       ...(env.GITHUB_OAUTH_TOKEN && {
         headers: {
@@ -41,7 +41,7 @@ export default async function HeroLanding() {
 
         <h1 className="text-balance font-urban text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-[66px]">
           Kick off with a bang with{' '}
-          <span className="text-gradient_indigo-purple font-extrabold">WordWizzz!</span>
+          <span className="text-gradient_brand font-extrabold">WordWizzz!</span>
         </h1>
 
         <p

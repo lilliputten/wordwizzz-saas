@@ -41,20 +41,43 @@ export function NavMobile() {
       <button
         onClick={() => setOpen(!open)}
         className={cn(
-          'fixed right-2 top-2.5 z-50 rounded-full p-2 transition-colors duration-200 hover:bg-muted focus:outline-none active:bg-muted md:hidden',
+          '--mobile-nav-button--',
+          'fixed',
+          'right-2',
+          'top-7',
+          'z-50',
+          'rounded-full',
+          'p-2',
+          'transition-colors',
+          'duration-200',
+          'hover:bg-muted',
+          'focus:outline-none',
+          'active:bg-muted',
+          'md:hidden',
           open && 'hover:bg-muted active:bg-muted',
         )}
       >
         {open ? (
-          <X className="size-5 text-muted-foreground" />
+          <X className="size-5 text-primary-foreground" />
         ) : (
-          <Menu className="size-5 text-muted-foreground" />
+          <Menu className="size-5 text-primary-foreground" />
         )}
       </button>
 
       <nav
         className={cn(
-          'fixed inset-0 z-20 hidden w-full overflow-auto bg-background px-5 py-16 lg:hidden',
+          '--mobile-nav-nav--',
+          'fixed',
+          'inset-0',
+          'z-20',
+          'hidden',
+          'w-full',
+          'overflow-auto',
+          'bg-background',
+          'px-5',
+          'pb-5',
+          'pt-32',
+          'lg:hidden',
           open && 'block',
         )}
       >

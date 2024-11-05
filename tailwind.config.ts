@@ -1,6 +1,27 @@
-import type { Config } from 'tailwindcss';
+import tailwindcssTypography from '@tailwindcss/typography';
+import { Config } from 'tailwindcss';
+import tailwindcssAnimate from 'tailwindcss-animate';
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
-const { fontFamily } = require('tailwindcss/defaultTheme');
+import { getColorSpread } from './build-utils/getColorSpread';
+// NOTE: It's not possible to export css modules on this stage
+// import { appBlueColor, appOrangeColor, primaryColor , secondaryColor} from './styles/cssVariables';
+import {
+  appBlueColor,
+  appDestructiveColor,
+  appOrangeColor,
+  primaryColor,
+  secondaryColor,
+} from './config/theme';
+
+// Core app color definitions
+// UNUSED? Construct primary/secondary colors spread tables
+// (with keys 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950) from key colors.
+const primaryColorSpread = getColorSpread('primary', primaryColor);
+const secondaryColorSpread = getColorSpread('secondary', secondaryColor);
+const appOrangeColorSpread = getColorSpread('app-orange', appOrangeColor);
+const appBlueColorSpread = getColorSpread('app-blue', appBlueColor);
+const appDestructiveColorSpread = getColorSpread('app-destructive', appDestructiveColor);
 
 const config = {
   darkMode: ['class'],
@@ -21,44 +42,55 @@ const config = {
     },
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
+        ...primaryColorSpread,
+        ...appOrangeColorSpread,
+        ...appBlueColorSpread,
+        ...secondaryColorSpread,
+        ...appDestructiveColorSpread,
+        /* // UNUSED, see spreads above
+         * primary: {
+         *   DEFAULT: 'rgb(var(--primaryColorRGB))',
+         *   foreground: 'rgb(var(--primaryForegroundColorRGB))',
+         * },
+         * secondary: {
+         *   DEFAULT: 'rgb(var(--secondaryColorRGB))',
+         *   foreground: 'rgb(var(--secondaryForegroundColorRGB))',
+         * },
+         */
+        border: 'var(--borderColor)',
+        input: 'var(--inputColor)',
+        ring: 'var(--ringColor)',
+        backgroundLight: 'var(--backgroundLightColor)',
+        foregroundLight: 'var(--foregroundLightColor)',
+        backgroundDark: 'var(--backgroundDarkColor)',
+        foregroundDark: 'var(--foregroundDarkColor)',
+        background: 'var(--backgroundColor)',
+        foreground: 'var(--foregroundColor)',
         destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+          DEFAULT: 'var(--appDestructiveColor)',
+          foreground: 'var(--appDestructiveForegroundColor)',
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: 'var(--mutedColor)',
+          foreground: 'var(--mutedForegroundColor)',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: 'var(--accentColor)',
+          foreground: 'var(--accentForegroundColor)',
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+          DEFAULT: 'var(--popoverColor)',
+          foreground: 'var(--popoverForegroundColor)',
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: 'var(--cardColor)',
+          foreground: 'var(--cardForegroundColor)',
         },
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        lg: 'var(--borderRadiusSize)',
+        md: 'calc(var(--borderRadiusSize) - 2px)',
+        sm: 'calc(var(--borderRadiusSize) - 4px)',
       },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
@@ -140,7 +172,7 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [tailwindcssAnimate, tailwindcssTypography],
 } satisfies Config;
 
 export default config;
