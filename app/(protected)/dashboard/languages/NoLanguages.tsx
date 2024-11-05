@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { TPropsWithClassName } from '@/types/generic';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';

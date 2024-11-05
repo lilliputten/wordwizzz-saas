@@ -1,7 +1,3 @@
-// import React from 'react';
-// import Link from 'next/link';
-// import { ArrowUpRight } from 'lucide-react';
-
 import { TPropsWithClassName } from '@/types/generic';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
