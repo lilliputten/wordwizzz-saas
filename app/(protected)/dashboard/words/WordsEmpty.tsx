@@ -5,7 +5,7 @@ import { EmptyPlaceholder } from '@/components/shared/EmptyPlaceholder';
 import { Icons } from '@/components/shared/icons';
 
 interface TWordsEmptyProps extends TPropsWithClassName {
-  showAddWordModal: () => void; // React.Dispatch<React.SetStateAction<void>>;
+  showAddWordModal?: () => void; // React.Dispatch<React.SetStateAction<void>>;
 }
 
 export function WordsEmpty(props: TWordsEmptyProps) {

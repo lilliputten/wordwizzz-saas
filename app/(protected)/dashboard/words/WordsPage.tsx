@@ -3,20 +3,24 @@ import { redirect } from 'next/navigation';
 import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
-// import { TWord } from '@/features/words/types';
+import { TWord } from '@/features/words/types';
 import { getErrorText } from '@/shared/helpers/strings';
 
 // import { addWord, deleteWord, fetchWords } from './actions';
 import { pageDescription, pageTitle } from './constants/texts';
 import { WordsError } from './WordsError';
 import { WordsHeader } from './WordsHeader';
-
-// import { WordsList } from './WordsList';
+import { WordsList } from './WordsList';
 
 export const metadata = constructMetadata({
   title: pageTitle + ' - ' + siteConfig.name,
   description: pageDescription,
 });
+
+const initialWords: TWord[] = [
+  // prettier-ignore
+  { id: 'word', text: 'Word' },
+];
 
 export async function WordsPage() {
   const user = await getCurrentUser();
@@ -30,15 +34,15 @@ export async function WordsPage() {
     return (
       <>
         <WordsHeader />
-        <p>WordsList</p>
         {/*
+        <p>WordsList</p>
+        */}
         <WordsList
           userId={userId}
           initialWords={initialWords}
-          addWord={addWord}
-          deleteWord={deleteWord}
+          // addWord={addWord}
+          // deleteWord={deleteWord}
         />
-        */}
       </>
     );
   } catch (error) {
