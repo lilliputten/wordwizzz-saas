@@ -13,26 +13,26 @@ function hslToRgbNumbers(h: number, s: number, l: number): number[] {
   return [f(0), f(8), f(4)];
 }
 
-function hslStrToRgbNums(hsl: string) {
-  const hslNums = hsl
-    .replace(/[^0-9.]+/g, ' ')
-    .split(' ')
-    .map(parseFloat);
-  const [hDegree, sPercent, lPercent] = hslNums;
-  const rgbNums = hslToRgbNumbers(hDegree, sPercent, lPercent);
-  return rgbNums;
-}
-
-function hsltoRgbColor(hsl: string) {
-  const rgbNums = hslStrToRgbNums(hsl);
-  return rgbNums.join(' ');
-}
-
-function hsltoHexColor(hsl: string) {
-  const rgbNums = hslStrToRgbNums(hsl);
-  const [r, g, b] = rgbNums;
-  return rgbToHex(r, g, b);
-}
+/* // UNUSED
+ * function hslStrToRgbNums(hsl: string) {
+ *   const hslNums = hsl
+ *     .replace(/[^0-9.]+/g, ' ')
+ *     .split(' ')
+ *     .map(parseFloat);
+ *   const [hDegree, sPercent, lPercent] = hslNums;
+ *   const rgbNums = hslToRgbNumbers(hDegree, sPercent, lPercent);
+ *   return rgbNums;
+ * }
+ * function hsltoRgbColor(hsl: string) {
+ *   const rgbNums = hslStrToRgbNums(hsl);
+ *   return rgbNums.join(' ');
+ * }
+ * function hsltoHexColor(hsl: string) {
+ *   const rgbNums = hslStrToRgbNums(hsl);
+ *   const [r, g, b] = rgbNums;
+ *   return rgbToHex(r, g, b);
+ * }
+ */
 
 function replaceHslInplace(
   _matched: string,
@@ -73,4 +73,6 @@ const result = cssText.replace(
   /(HSL): (([0-9.]+)[, ]+([0-9.]+)%[, ]+([0-9.]+)%)/g,
   replaceHslInplace,
 );
+
+// eslint-disable-next-line no-console
 console.log('Converted colors:\n', result);

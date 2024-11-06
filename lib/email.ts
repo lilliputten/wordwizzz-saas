@@ -48,6 +48,8 @@ export const sendVerificationRequest: EmailConfig['sendVerificationRequest'] = a
 
     // console.log(data)
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('[email:sendVerificationRequest]', error);
     throw new Error('Failed to send verification email.');
   }
 };
