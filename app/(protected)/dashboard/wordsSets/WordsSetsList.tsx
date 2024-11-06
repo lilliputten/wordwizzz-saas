@@ -150,7 +150,10 @@ export function WordsSetsList(props: TWordsSetsListProps) {
       {hasWordsSets ? (
         <>
           <WordsSetsListTable
-            className={cn('__WordsSetsList_Table flex-1', tailwindClippingLayout({ vertical: true }))}
+            className={cn(
+              '__WordsSetsList_Table flex-1',
+              tailwindClippingLayout({ vertical: true }),
+            )}
             wordsSets={wordsSets}
             // onDeleteWordsSet={onDeleteWordsSet}
             showAddWordsSetModal={showAddWordsSetModal}

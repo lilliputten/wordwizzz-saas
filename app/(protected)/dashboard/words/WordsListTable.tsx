@@ -114,12 +114,7 @@ export function WordsListTable(props: TWordsListTableProps) {
   return (
     <Card className={cn(className, '__WordsListTable', 'xl:col-span-2')}>
       <Header {...props} />
-      <CardContent
-        className={cn(
-          '__WordsListTable_Content',
-          tailwindClippingLayout(),
-        )}
-      >
+      <CardContent className={cn('__WordsListTable_Content', tailwindClippingLayout())}>
         <Table>
           <WordTableHeader />
           <TableBody>
