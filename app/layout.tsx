@@ -1,4 +1,5 @@
 import '@/styles/globals.scss';
+import '@/styles/root.scss';
 
 import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider } from 'next-themes';

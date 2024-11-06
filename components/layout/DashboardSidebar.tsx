@@ -91,11 +91,13 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
                 </Button>
               </div>
 
-              <nav className="flex flex-1 flex-col gap-8 px-4 pt-4">
+              <nav className="__DashboardSidebar_Section flex flex-1 flex-col gap-8 px-4 pt-4">
                 {links.map((section) => (
                   <section key={section.title} className="flex flex-col gap-0.5">
                     {isSidebarExpanded ? (
-                      <p className="text-xs text-muted-foreground">{section.title}</p>
+                      <p className="__DashboardSidebar_Section_Title text-xs uppercase text-muted-foreground">
+                        {section.title}
+                      </p>
                     ) : (
                       <div className="h-4" />
                     )}

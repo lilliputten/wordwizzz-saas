@@ -113,7 +113,12 @@ export function LanguagesListTable(props: TLanguagesListTableProps) {
   return (
     <Card className={cn(className, '__LanguagesListTable', 'xl:col-span-2')}>
       <Header {...props} />
-      <CardContent className={cn('__LanguagesListTable_Content', tailwindClippingLayout())}>
+      <CardContent
+        className={cn(
+          '__LanguagesListTable_Content',
+          tailwindClippingLayout(),
+        )}
+      >
         <Table>
           <LanguageTableHeader />
           <TableBody>

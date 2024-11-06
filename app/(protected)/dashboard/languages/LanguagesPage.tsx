@@ -6,6 +6,7 @@ import { constructMetadata } from '@/lib/utils';
 import { addLanguage, deleteLanguage, fetchLanguages } from '@/features/languages/actions';
 import { TLanguage } from '@/features/languages/types';
 import { getErrorText } from '@/shared/helpers/strings';
+import { UseScrollableLayout } from '@/shared/helpers/ui/ScrollableLayout';
 
 import { pageDescription, pageTitle } from './constants/texts';
 import { LanguagesError } from './LanguagesError';
@@ -28,6 +29,7 @@ export async function LanguagesPage() {
     const initialLanguages: TLanguage[] = await fetchLanguages(userId);
     return (
       <>
+        <UseScrollableLayout type="clippable" />
         <LanguagesHeader />
         <LanguagesList
           userId={userId}

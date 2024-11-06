@@ -18,8 +18,8 @@ export const metadata = constructMetadata({
 export default function ChartsPage() {
   return (
     <>
-      <DashboardHeader heading="Charts" text="List of charts by shadcn-ui." />
-      <div className="flex flex-col gap-5">
+      <DashboardHeader heading="Charts" text="__ChartsPage_Header List of charts by shadcn-ui." />
+      <div className="__ChartsPage_Content flex flex-col gap-5 overflow-auto">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 2xl:grid-cols-4">
           <RadialTextChart />
           <AreaChartStacked />

@@ -1,9 +1,11 @@
+// NOTE: See stock icons at https://lucide.dev/icons/
+
 import {
   AlertTriangle,
   ArrowRight,
   ArrowUpRight,
   BookOpen,
-  BookOpenText,
+  // BookOpenText, // -> wordsList
   Check,
   ChevronDown,
   ChevronLeft,
@@ -32,13 +34,13 @@ import {
   RefreshCw,
   Search,
   Settings,
+  SquareLibrary, // -> wordsSets
   SunMedium,
   Trash,
   User,
+  WholeWord, // -> wordsList
   X,
 } from 'lucide-react';
-
-// NOTE: See stock icons at https://lucide.dev/icons/
 
 // import logo from '@/public/_static/logo/tr.svg';
 
@@ -167,6 +169,7 @@ export const Icons = {
   ),
   user: User,
   warning: AlertTriangle,
-  wordsList: BookOpenText,
+  wordsList: WholeWord, // BookOpenText,
+  wordsSets: SquareLibrary,
   languages: Languages,
 };

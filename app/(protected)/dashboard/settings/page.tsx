@@ -6,6 +6,7 @@ import { DeleteAccountSection } from '@/components/dashboard/delete-account';
 import { DashboardHeader } from '@/components/dashboard/header';
 import { UserNameForm } from '@/components/forms/user-name-form';
 import { UserRoleForm } from '@/components/forms/user-role-form';
+import { UseScrollableLayout } from '@/shared/helpers/ui/ScrollableLayout';
 
 export const metadata = constructMetadata({
   title: 'Settings - WordWizzz!',
@@ -20,13 +21,14 @@ export default async function SettingsPage() {
   }
 
   return (
-    <>
+    <div className="__Settings">
+      <UseScrollableLayout />
       <DashboardHeader heading="Settings" text="Manage account and website settings." />
-      <div className="divide-y divide-muted pb-10">
+      <div className="__Settings_Content divide-y divide-muted pb-10">
         <UserNameForm user={{ id: user.id, name: user.name || '' }} />
         <UserRoleForm user={{ id: user.id, role: user.role }} />
         <DeleteAccountSection />
       </div>
-    </>
+    </div>
   );
 }

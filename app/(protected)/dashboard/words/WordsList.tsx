@@ -150,7 +150,10 @@ export function WordsList(props: TWordsListProps) {
       {hasWords ? (
         <>
           <WordsListTable
-            className={cn('__WordsList_Table flex-1', tailwindClippingLayout({ vertical: true }))}
+            className={cn(
+              '__WordsList_Table flex-1',
+              tailwindClippingLayout({ vertical: true }),
+            )}
             words={words}
             // onDeleteWord={onDeleteWord}
             showAddWordModal={showAddWordModal}

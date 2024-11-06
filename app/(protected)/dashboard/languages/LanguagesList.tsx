@@ -133,7 +133,10 @@ export function LanguagesList(props: TLanguagesListProps) {
     >
       {hasLanguages ? (
         <LanguagesListTable
-          className={cn('__LanguagesList_Table flex-1', tailwindClippingLayout({ vertical: true }))}
+          className={cn(
+            '__LanguagesList_Table flex-1',
+            tailwindClippingLayout({ vertical: true }),
+          )}
           languages={languages}
           onDeleteLanguage={onDeleteLanguage}
           showAddLanguageModal={showAddLanguageModal}
