@@ -19,7 +19,7 @@ import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 interface TWordsListTableProps extends TPropsWithClassName {
   words: TWord[];
   // onDeleteWord: (id: TWordId) => Promise<unknown>;
-  // showAddWordModal: () => void; // React.Dispatch<React.SetStateAction<void>>;
+  showAddWordModal: () => void; // React.Dispatch<React.SetStateAction<void>>;
 }
 type TChildProps = Omit<TWordsListTableProps, 'className'>;
 
@@ -33,13 +33,10 @@ function Title() {
 }
 
 function Toolbar(props: TChildProps) {
-  // const { showAddWordModal } = props;
+  const { showAddWordModal } = props;
   return (
     <div className="__WordsListTable_Toolbar ml-auto flex shrink-0 gap-2">
-      <Button
-        size="sm"
-        // onClick={showAddWordModal}
-      >
+      <Button size="sm" onClick={showAddWordModal}>
         <Icons.add className="mr-2 size-4" />
         <span>Add</span>
         <span className="hidden sm:inline-flex">&nbsp;Word</span>

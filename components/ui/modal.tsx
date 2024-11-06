@@ -58,7 +58,13 @@ export function Modal({
           }
         }}
       >
-        <Drawer.Overlay className="bg-background/80 fixed inset-0 z-40 backdrop-blur-sm" />
+        <Drawer.Overlay
+          className={cn(
+            // 'bg-background/80', // Original backdrop color
+            'bg-black/30', // Dark background (should be synced in both dialog and modal)
+            'fixed inset-0 z-40 backdrop-blur-sm',
+          )}
+        />
         <Drawer.Portal>
           <Drawer.Content
             className={cn(
@@ -88,7 +94,10 @@ export function Modal({
       <DialogContent
         onOpenAutoFocus={(e) => e.preventDefault()}
         onCloseAutoFocus={(e) => e.preventDefault()}
-        className={cn('overflow-hidden p-0 md:max-w-md md:rounded-2xl md:border', className)}
+        className={cn(
+          '__DialogContent overflow-hidden p-0 md:max-w-md md:rounded-2xl md:border',
+          className,
+        )}
       >
         {children}
       </DialogContent>

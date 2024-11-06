@@ -12,7 +12,7 @@ import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 import { TUserId } from '@/shared/types/TUser';
 
 // import { TAddWordAction, TDeleteWordAction } from './actions';
-// import { useAddWordModal } from './AddWord';
+import { useAddWordModal } from './AddWord';
 import { WordsEmpty } from './WordsEmpty';
 import { WordsListTable } from './WordsListTable';
 import { WordsSkeleton } from './WordsSkeleton';
@@ -32,7 +32,7 @@ export function WordsList(props: TWordsListProps) {
     // addWord,
     // deleteWord,
   } = props;
-  // const { showAddWordModal, AddWordModal } = useAddWordModal();
+  const { showAddWordModal, AddWordModal } = useAddWordModal();
   const [words, setWords] = React.useState(initialWords);
   const [isUpdating, startUpdating] = React.useTransition();
   // const isUpdating = true; // DEBUG
@@ -78,6 +78,8 @@ export function WordsList(props: TWordsListProps) {
     },
     [memo, userId, deleteWord],
   );
+  */
+
   const onAddWord = React.useCallback(
     (word: TWord) => {
       if (memo.isUpdating) {
@@ -85,7 +87,13 @@ export function WordsList(props: TWordsListProps) {
       }
       return new Promise<TWord[]>((resolve, reject) => {
         startUpdating(() => {
-          return addWord(userId, word)
+          console.log('[WordsList:onAddWord]', {
+            word,
+            words,
+          });
+          debugger;
+          // return addWord(userId, word)
+          return Promise.resolve([...words, word])
             .then((updatedWords) => {
               setWords(updatedWords);
               // setWords((words) => words.concat(word)); // XXX: Manually apply changes
@@ -108,9 +116,14 @@ export function WordsList(props: TWordsListProps) {
         });
       });
     },
-    [memo, userId, addWord],
+    [
+      memo,
+      userId,
+      // addWord,
+      // DEBUG
+      words,
+    ],
   );
-  */
 
   const hasWords = !!words.length;
 
@@ -137,25 +150,20 @@ export function WordsList(props: TWordsListProps) {
             className={cn('__WordsList_Table flex-1', tailwindClippingLayout({ vertical: true }))}
             words={words}
             // onDeleteWord={onDeleteWord}
-            // showAddWordModal={showAddWordModal}
+            showAddWordModal={showAddWordModal}
           />
         </>
       ) : (
-        <WordsEmpty
-          className="flex-1"
-          // showAddWordModal={showAddWordModal}
-        />
+        <WordsEmpty className="flex-1" showAddWordModal={showAddWordModal} />
       )}
       <WaitingWrapper show={isUpdating}>
         <WordsSkeleton />
       </WaitingWrapper>
-      {/*
       <AddWordModal
         // prettier-ignore
         words={words}
         onAddWord={onAddWord}
       />
-      */}
     </div>
   );
 }
