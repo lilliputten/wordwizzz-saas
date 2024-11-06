@@ -26,7 +26,7 @@ model Account {
 
   @@unique([provider, providerAccountId])
   @@index([userId])
-  @@map("accounts")
+  @@map("Accounts")
 }
 
 model Session {
@@ -37,65 +37,73 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
-  @@map("sessions")
-}
-
-model UsedLanguage {
-  id         String    @id
-  name       String
-  userId     String
-  wordsSetId String?
-  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  WordsSet   WordsSet? @relation(fields: [wordsSetId], references: [id])
-  Word       Word[]
-
-  @@map("used_languages")
-}
-
-model WordsSet {
-  id            String         @id @default(cuid())
-  name          String
-  userId        String
-  usedLanguages UsedLanguage[]
-  Word          Word[]
-  user          User           @relation(fields: [userId], references: [id])
-
-  @@map("words_sets")
+  @@map("Sessions")
 }
 
 model Word {
-  id         String       @id @default(cuid())
+  id         String   @id @default(cuid())
   text       String
   userId     String
   setId      String
   languageId String
-  language   UsedLanguage @relation(fields: [languageId], references: [id])
-  wordsSet   WordsSet     @relation(fields: [setId], references: [id])
-  user       User         @relation(fields: [userId], references: [id])
+  language   Language @relation(fields: [languageId], references: [id])
+  wordsSet   WordsSet @relation(fields: [setId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
 
-  @@map("words")
+  @@map("Words")
+}
+
+model Language {
+  id     String @id
+  name   String
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // wordsSetId String?
+  // WordsSet   WordsSet? @relation(fields: [wordsSetId], references: [id])
+  // Word       Word[]
+
+  WordsSet_WordsSetLanguages WordsSet[] @relation("WordsSetLanguages")
+  Word                       Word[]
+
+  @@map("Languages")
+}
+
+model WordsSet {
+  id     String @id @default(cuid())
+  name   String
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  // languages Language[]
+  Word Word[]
+
+  Language_WordsSetLanguages Language[] @relation("WordsSetLanguages")
+
+  @@map("WordsSets")
 }
 
 model User {
-  id                     String         @id @default(cuid())
+  id                     String    @id @default(cuid())
   name                   String?
-  email                  String?        @unique
+  email                  String?   @unique
   emailVerified          DateTime?
   image                  String?
-  createdAt              DateTime       @default(now()) @map("created_at")
-  updatedAt              DateTime       @default(now()) @map("updated_at")
-  role                   UserRole       @default(USER)
-  stripeCustomerId       String?        @unique @map("stripe_customer_id")
-  stripeSubscriptionId   String?        @unique @map("stripe_subscription_id")
-  stripePriceId          String?        @map("stripe_price_id")
-  stripeCurrentPeriodEnd DateTime?      @map("stripe_current_period_end")
+  createdAt              DateTime  @default(now()) @map("created_at")
+  updatedAt              DateTime  @default(now()) @map("updated_at")
+  role                   UserRole  @default(USER)
+  stripeCustomerId       String?   @unique @map("stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map("stripe_subscription_id")
+  stripePriceId          String?   @map("stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map("stripe_current_period_end")
   accounts               Account[]
   sessions               Session[]
-  usedLanguages          UsedLanguage[]
-  words                  Word[]
-  wordsSet               WordsSet[]
 
-  @@map("users")
+  languages Language[]
+  wordsSets WordsSet[]
+  words     Word[]
+
+  @@map("Users")
 }
 
 model VerificationToken {
@@ -104,7 +112,7 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map("verification_tokens")
+  @@map("VerificationTokens")
 }
 
 enum UserRole {

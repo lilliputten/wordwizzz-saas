@@ -1,3 +1,3 @@
-import type { UsedLanguage } from '@prisma/client';
+import type { Language } from '@prisma/client';
 
-export type TPrismaLanguage = UsedLanguage;
+export type TPrismaLanguage = Language;

@@ -23,19 +23,19 @@ export async function deleteLanguage(userId: TUserId, languageId: TLanguageId) {
         id: userId,
       },
       include: {
-        usedLanguages: true,
+        languages: true,
       },
       data: {
         // @see:
         // - https://www.prisma.io/docs/orm/reference/prisma-client-reference#delete-1
-        usedLanguages: {
+        languages: {
           delete: {
             id: languageId,
           },
         },
       },
     });
-    const updatedLanguages = updateResult.usedLanguages;
+    const updatedLanguages = updateResult.languages;
     /* console.log('[deleteLanguage] done', {
      *   updatedLanguages,
      *   updateResult,
@@ -49,7 +49,7 @@ export async function deleteLanguage(userId: TUserId, languageId: TLanguageId) {
     return convertPrismaLanguagesToClient(updatedLanguages);
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error('[deleteLanguage] Error updating usedLanguage', {
+    console.error('[deleteLanguage] Error updating language', {
       error,
     });
     debugger; // eslint-disable-line no-debugger

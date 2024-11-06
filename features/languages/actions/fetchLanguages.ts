@@ -17,15 +17,15 @@ export async function fetchLanguages(userId: TUserId) {
     select: {
       // name: true,
       // emailVerified: true,
-      usedLanguages: true,
+      languages: true,
     },
   });
   if (!result) {
     throw new ServerError(`No data returned for the user id "${userId}"`);
   }
-  const usedLanguages = result.usedLanguages as TPrismaLanguage[];
+  const languages = result.languages as TPrismaLanguage[];
   /* console.log('[LanguagesPage:fetchLanguages] result', {
-   *   usedLanguages,
+   *   languages,
    *   result,
    *   userId,
    * });
@@ -33,5 +33,5 @@ export async function fetchLanguages(userId: TUserId) {
   /* // DEBUG: Delay
    * await new Promise((resolve) => setTimeout(resolve, 3000));
    */
-  return convertPrismaLanguagesToClient(usedLanguages);
+  return convertPrismaLanguagesToClient(languages);
 }

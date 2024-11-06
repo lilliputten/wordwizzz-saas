@@ -23,7 +23,7 @@ export async function addLanguage(userId: TUserId, language: TLanguage) {
         id: userId,
       },
       include: {
-        usedLanguages: true,
+        languages: true,
       },
       data: {
         // @see:
@@ -31,7 +31,7 @@ export async function addLanguage(userId: TUserId, language: TLanguage) {
         // - https://www.prisma.io/docs/orm/prisma-client/queries/relation-queries
         // - https://www.prisma.io/docs/orm/prisma-client/queries
         // - https://www.prisma.io/docs/orm/prisma-client/queries/crud
-        usedLanguages: {
+        languages: {
           upsert: {
             where: { id: userId },
             create: language,
@@ -40,7 +40,7 @@ export async function addLanguage(userId: TUserId, language: TLanguage) {
         },
       },
     });
-    const updatedLanguages = updateResult.usedLanguages;
+    const updatedLanguages = updateResult.languages;
     /* console.log('[addLanguage] done', {
      *   updatedLanguages,
      *   updateResult,
@@ -54,7 +54,7 @@ export async function addLanguage(userId: TUserId, language: TLanguage) {
     return convertPrismaLanguagesToClient(updatedLanguages);
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error('[addLanguage] Error updating usedLanguage', {
+    console.error('[addLanguage] Error updating language', {
       error,
     });
     debugger; // eslint-disable-line no-debugger

@@ -41,7 +41,7 @@ export async function LanguagesPage() {
     // TODO: Probably there are no such user in the DB? To do logout and redirect then?
     const errText = getErrorText(error);
     // eslint-disable-next-line no-console
-    console.error('[LanguagesPage] Error fetching usedLanguages:', errText, {
+    console.error('[LanguagesPage] Error fetching languages:', errText, {
       error,
     });
     // debugger; // eslint-disable-line no-debugger
