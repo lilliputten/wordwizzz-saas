@@ -32,53 +32,62 @@ model Account {
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
-  userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@map("Sessions")
 }
 
 model Word {
-  id         String   @id @default(cuid())
-  text       String
-  userId     String
-  setId      String
+  id   String @id @default(cuid())
+  text String
+
   languageId String
   language   Language @relation(fields: [languageId], references: [id])
-  wordsSet   WordsSet @relation(fields: [setId], references: [id])
-  user       User     @relation(fields: [userId], references: [id])
+
+  wordSetId String
+  wordsSet  WordsSet @relation(fields: [wordSetId], references: [id])
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 
   @@map("Words")
 }
 
 model Language {
-  id     String @id
-  name   String
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id   String @id
+  name String
+
+  // userId String
+  user User @relation(fields: [userId], references: [id]) // @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // wordsSetId String?
   // WordsSet   WordsSet? @relation(fields: [wordsSetId], references: [id])
   // Word       Word[]
 
-  WordsSet_WordsSetLanguages WordsSet[] @relation("WordsSetLanguages")
-  Word                       Word[]
+  wordsSets WordsSet[] // @relation("WordsSetLanguages")
+  // WordsSet_WordsSetLanguages WordsSet[] // @relation("WordsSetLanguages")
+  words     Word[]
+  userId    String
 
   @@map("Languages")
 }
 
 model WordsSet {
-  id     String @id @default(cuid())
-  name   String
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
+  id   String @id @default(cuid())
+  name String
+  // userId String
+  user User   @relation(fields: [userId], references: [id]) // @relation(fields: [userId], references: [id])
 
   // languages Language[]
-  Word Word[]
+  word Word[]
 
-  Language_WordsSetLanguages Language[] @relation("WordsSetLanguages")
+  languages Language[] // @relation("WordsSetLanguages")
+  // Language_WordsSetLanguages Language[] // @relation("WordsSetLanguages")
+  userId    String
 
   @@map("WordsSets")
 }

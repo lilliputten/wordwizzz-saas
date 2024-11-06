@@ -3,7 +3,15 @@ import { SidebarNavItem } from 'types';
 
 export const sidebarLinks: SidebarNavItem[] = [
   {
-    title: 'MENU',
+    title: 'Your Data',
+    items: [
+      { href: '/dashboard/languages', icon: 'languages', title: 'Languages' },
+      { href: '/dashboard/wordsSets', icon: 'wordsSets', title: 'Words sets' },
+      { href: '/dashboard/words', icon: 'wordsList', title: 'Words lists' },
+    ],
+  },
+  {
+    title: 'Application',
     items: [
       {
         href: '/admin',
@@ -12,8 +20,6 @@ export const sidebarLinks: SidebarNavItem[] = [
         authorizeOnly: UserRole.ADMIN,
       },
       { href: '/dashboard', icon: 'dashboard', title: 'Dashboard' },
-      { href: '/dashboard/languages', icon: 'languages', title: 'Used languages' },
-      { href: '/dashboard/words', icon: 'wordsList', title: 'Words list' },
       {
         href: '/dashboard/billing',
         icon: 'billing',
@@ -38,7 +44,7 @@ export const sidebarLinks: SidebarNavItem[] = [
     ],
   },
   {
-    title: 'OPTIONS',
+    title: 'Options',
     items: [
       { href: '/dashboard/settings', icon: 'settings', title: 'Settings' },
       { href: '/', icon: 'home', title: 'Homepage' },
