@@ -40,7 +40,7 @@ export function WordsSetsList(props: TWordsSetsListProps) {
     addWordsSet,
     // deleteWordsSet,
   } = props;
-  const { showAddWordsSetModal, AddWordsSetModal } = useAddWordsSetModal();
+  const { showAddWordsSetModal, AddWordsSetModalWrapper } = useAddWordsSetModal();
   const [wordsSets, setWordsSets] = React.useState(initialWordsSets);
   const [isUpdating, startUpdating] = React.useTransition();
   // const isUpdating = true; // DEBUG
@@ -202,7 +202,7 @@ export function WordsSetsList(props: TWordsSetsListProps) {
       <WaitingWrapper show={isUpdating}>
         <WordsSetsSkeleton />
       </WaitingWrapper>
-      <AddWordsSetModal
+      <AddWordsSetModalWrapper
         // prettier-ignore
         languages={languages}
         wordsSets={wordsSets}

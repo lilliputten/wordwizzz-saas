@@ -7,16 +7,8 @@ import * as z from 'zod';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Icons } from '@/components/shared/icons';
 import { TLanguage, TLanguageId } from '@/features/languages/types';
 import { TWordsSet } from '@/features/wordsSets/types';
@@ -24,13 +16,11 @@ import { getErrorText } from '@/shared/helpers/strings';
 
 import { maxIdLength, maxNameLength, minIdLength, minNameLength } from '../constants/inputFields';
 
-// import { AddCustomWordsSet } from './AddCustomWordsSet';
-// import { AddPredefinedWordsSet } from './AddPredefinedWordsSet';
-
 export interface TAddWordsSetBlockProps {
   languages: TLanguage[];
   wordsSets: TWordsSet[];
   onAddWordsSet: (wordsSet: TWordsSet) => Promise<TWordsSet[]>;
+  onCancel?: () => void;
   className?: string;
 }
 
@@ -43,10 +33,11 @@ const defaultValues: TWordsSet = {
 
 export function AddWordsSetBlock(props: TAddWordsSetBlockProps) {
   const {
+    // prettier-ignore
     className,
     wordsSets,
     onAddWordsSet,
-    // TODO
+    onCancel,
     languages,
   } = props;
 
@@ -143,7 +134,15 @@ export function AddWordsSetBlock(props: TAddWordsSetBlockProps) {
           {/* Languages */}
           <div className="flex w-full flex-col gap-4">
             {/* TODO: Checkable list of available languages to include into the words set */}
-            (Languages selection)
+            <p>(Languages selection)</p>
+            {languages.map((lang) => {
+              const { id, name } = lang;
+              return (
+                <li key={id}>
+                  {name} ({id})
+                </li>
+              );
+            })}
           </div>
           {/* Actions */}
           <div className="flex w-full gap-4">
@@ -158,6 +157,9 @@ export function AddWordsSetBlock(props: TAddWordsSetBlockProps) {
               ) : (
                 <span>Add Words Set</span>
               )}
+            </Button>
+            <Button variant="ghost" onClick={onCancel}>
+              <span>Cancel</span>
             </Button>
           </div>
           {/*

@@ -3,13 +3,18 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Modal } from '@/components/ui/modal';
+import { TLanguage } from '@/features/languages/types';
 import { TWordsSet } from '@/features/wordsSets/types';
 
 import { AddWordsSetBlock, TAddWordsSetBlockProps } from './AddWordsSetBlock';
 
-interface TAddWordsSetModalProps extends TAddWordsSetBlockProps {
+interface TAddWordsSetModalProps /* extends TAddWordsSetBlockProps */ {
   show: boolean;
   toggle: React.Dispatch<React.SetStateAction<boolean>>;
+
+  languages: TLanguage[];
+  wordsSets: TWordsSet[];
+  onAddWordsSet: (wordsSet: TWordsSet) => Promise<TWordsSet[]>;
 }
 
 function AddWordsSetModal(props: TAddWordsSetModalProps) {
@@ -51,6 +56,9 @@ function AddWordsSetModal(props: TAddWordsSetModalProps) {
 export function useAddWordsSetModal() {
   const [show, toggle] = React.useState(false);
 
+  const showAddWordsSetModal = React.useCallback(() => toggle(true), []);
+  const hideAddWordsSetModal = React.useCallback(() => toggle(false), []);
+
   const AddWordsSetModalWrapper = React.useCallback(
     (props: TAddWordsSetBlockProps) => {
       return (
@@ -58,19 +66,18 @@ export function useAddWordsSetModal() {
           // prettier-ignore
           show={show}
           toggle={toggle}
+          onCancel={hideAddWordsSetModal}
           {...props}
         />
       );
     },
-    [show, toggle],
+    [show, toggle, hideAddWordsSetModal],
   );
-  const showAddWordsSetModal = React.useCallback(() => toggle(true), []);
-  const hideAddWordsSetModal = React.useCallback(() => toggle(false), []);
 
   return React.useMemo(
     () => ({
       isShown: show,
-      AddWordsSetModal: AddWordsSetModalWrapper,
+      AddWordsSetModalWrapper,
       showAddWordsSetModal,
       hideAddWordsSetModal,
       toggleShowAddWordsSetModal: toggle,
