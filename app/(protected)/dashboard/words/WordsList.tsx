@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 // import { WaitingSplash } from '@/components/ui/WaitingSplash';
 import { WaitingWrapper } from '@/components/ui/WaitingWrapper';
+import { TLanguage } from '@/features/languages/types';
 import { TWord, TWordId } from '@/features/words/types';
 import { getErrorText } from '@/shared/helpers/strings';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
@@ -19,6 +20,7 @@ import { WordsSkeleton } from './WordsSkeleton';
 
 interface TWordsListProps {
   userId: TUserId;
+  languages: TLanguage[];
   initialWords: TWord[];
   // addWord: TAddWordAction;
   // deleteWord: TDeleteWordAction;
@@ -28,6 +30,7 @@ export function WordsList(props: TWordsListProps) {
   const {
     // prettier-ignore
     userId,
+    languages,
     initialWords,
     // addWord,
     // deleteWord,
@@ -121,7 +124,7 @@ export function WordsList(props: TWordsListProps) {
       userId,
       // addWord,
       // DEBUG
-      words,
+      words, // DEBUG: Only for demo purpose: to update current words list in-place
     ],
   );
 

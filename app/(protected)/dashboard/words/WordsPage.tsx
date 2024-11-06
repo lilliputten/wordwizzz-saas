@@ -3,10 +3,13 @@ import { redirect } from 'next/navigation';
 import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
+import { fetchLanguages } from '@/features/languages/actions';
+import { TLanguage } from '@/features/languages/types';
 import { TWord } from '@/features/words/types';
 import { getErrorText } from '@/shared/helpers/strings';
 
-// import { addWord, deleteWord, fetchWords } from './actions';
+// import { addWord, deleteWord, fetchWords } from '@/features/words/actions';
+
 import { pageDescription, pageTitle } from './constants/texts';
 import { WordsError } from './WordsError';
 import { WordsHeader } from './WordsHeader';
@@ -30,15 +33,15 @@ export async function WordsPage() {
   }
   const userId = user.id;
   try {
+    const languages: TLanguage[] = await fetchLanguages(userId);
+    // TODO: Fetch and pass words sets list
     // const initialWords: TWord[] = await fetchWords(userId);
     return (
       <>
         <WordsHeader />
-        {/*
-        <p>WordsList</p>
-        */}
         <WordsList
           userId={userId}
+          languages={languages}
           initialWords={initialWords}
           // addWord={addWord}
           // deleteWord={deleteWord}

@@ -3,10 +3,10 @@ import { redirect } from 'next/navigation';
 import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
+import { addLanguage, deleteLanguage, fetchLanguages } from '@/features/languages/actions';
 import { TLanguage } from '@/features/languages/types';
 import { getErrorText } from '@/shared/helpers/strings';
 
-import { addLanguage, deleteLanguage, fetchLanguages } from './actions';
 import { pageDescription, pageTitle } from './constants/texts';
 import { LanguagesError } from './LanguagesError';
 import { LanguagesHeader } from './LanguagesHeader';

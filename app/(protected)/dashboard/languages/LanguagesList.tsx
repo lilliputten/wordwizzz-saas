@@ -4,14 +4,13 @@ import React from 'react';
 import { toast } from 'sonner';
 
 import { cn } from '@/lib/utils';
-// import { WaitingSplash } from '@/components/ui/WaitingSplash';
 import { WaitingWrapper } from '@/components/ui/WaitingWrapper';
+import { TAddLanguageAction, TDeleteLanguageAction } from '@/features/languages/actions';
 import { TLanguage, TLanguageId } from '@/features/languages/types';
 import { getErrorText } from '@/shared/helpers/strings';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 import { TUserId } from '@/shared/types/TUser';
 
-import { TAddLanguageAction, TDeleteLanguageAction } from './actions';
 import { useAddLanguageModal } from './AddLanguage';
 import { LanguagesEmpty } from './LanguagesEmpty';
 import { LanguagesListTable } from './LanguagesListTable';
@@ -142,14 +141,14 @@ export function LanguagesList(props: TLanguagesListProps) {
       ) : (
         <LanguagesEmpty className="flex-1" showAddLanguageModal={showAddLanguageModal} />
       )}
-      {/* // UNUSED: Inline add language block under the table
+      {/* // DEMO: Inline add language block under the table
       <AddLanguageBlock
         languages={languages}
         onAddLanguage={onAddLanguage}
         className="min-h-[300px]"
       />
       */}
-      {/* // UNUSED: Show waiting spinner overlay instead skeleton? (Mind the bug with skeleton flash at the beginning of prisma data update.)
+      {/* // DEMO: Show waiting spinner overlay instead skeleton? (Mind the bug with skeleton flash at the beginning of prisma data update.)
       <WaitingSplash show={isUpdating} />
       */}
       <WaitingWrapper show={isUpdating}>

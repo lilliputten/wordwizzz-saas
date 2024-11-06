@@ -15,7 +15,5 @@ export interface TAddWordBlockProps {
 
 export function AddWordBlock(props: TAddWordBlockProps) {
   const { className, words, onAddWord } = props;
-  return (
-    <p>(AddWordBlock)</p>
-  );
+  return <p>(AddWordBlock)</p>;
 }
