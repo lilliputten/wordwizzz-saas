@@ -4,7 +4,10 @@ import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
 import { fetchLanguages } from '@/features/languages/actions';
+import { convertLanguagesToClientForm } from '@/features/languages/helpers';
 import { TLanguage } from '@/features/languages/types';
+import { addWordsSet, deleteWordsSet, fetchWordsSetsData } from '@/features/wordsSets/actions';
+import { convertWordsSetsToClientForm } from '@/features/wordsSets/helpers';
 import { TWordsSet } from '@/features/wordsSets/types';
 import { getErrorText } from '@/shared/helpers/strings';
 
@@ -22,7 +25,7 @@ export const metadata = constructMetadata({
 
 const initialWordsSets: TWordsSet[] = [
   // prettier-ignore
-  { id: 'wordsSet', name: 'WordsSet' },
+  { id: 'aa', name: 'AA' },
 ];
 
 export async function WordsSetsPage() {
@@ -33,18 +36,30 @@ export async function WordsSetsPage() {
   }
   const userId = user.id;
   try {
-    const languages: TLanguage[] = await fetchLanguages(userId);
+    // const languages: TLanguage[] = await fetchLanguages(userId);
     // TODO: Fetch and pass wordsSets sets list
-    // const initialWordsSets: TWordsSet[] = await fetchWordsSets(userId);
+    const data = await fetchWordsSetsData(userId);
+    const { languages, wordsSets } = data;
+    const clientLanguages = convertLanguagesToClientForm(languages);
+    const clientWordsSets = convertWordsSetsToClientForm(wordsSets);
+    console.log('[WordsSetsPage]', {
+      languages,
+      wordsSets,
+      clientLanguages,
+      clientWordsSets,
+      data,
+    });
     return (
       <>
         <WordsSetsHeader />
         <WordsSetsList
           userId={userId}
-          languages={languages}
-          initialWordsSets={initialWordsSets}
-          // addWordsSet={addWordsSet}
-          // deleteWordsSet={deleteWordsSet}
+          // Pass required data to the client
+          languages={clientLanguages}
+          initialWordsSets={clientWordsSets}
+          // Pass server actions to the client
+          addWordsSet={addWordsSet}
+          deleteWordsSet={deleteWordsSet}
         />
       </>
     );

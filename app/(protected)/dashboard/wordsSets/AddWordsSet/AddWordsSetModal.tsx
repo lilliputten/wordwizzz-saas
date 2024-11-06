@@ -32,9 +32,9 @@ function AddWordsSetModal(props: TAddWordsSetModalProps) {
   return (
     <Modal showModal={show} setShowModal={toggle} className="gap-0">
       <div className={cn('flex flex-col border-b bg-accent px-8 py-4')}>
-        <DialogTitle className="DialogTitle">Add WordsSet</DialogTitle>
+        <DialogTitle className="DialogTitle">Add Words Set</DialogTitle>
         <DialogDescription aria-hidden="true" hidden>
-          Add wordsSet dialog
+          Add words set dialog
         </DialogDescription>
       </div>
       <div className={cn('flex flex-col px-8 py-4')}>

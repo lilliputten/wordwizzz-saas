@@ -1,15 +1,13 @@
 'use server';
 
 import { prisma } from '@/lib/db';
-import { TPrismaLanguage } from '@/features/languages/types';
+// import { TWordsSet } from '@/features/wordsSets/types';
 import { DatabaseError } from '@/shared/types/errors';
 import { TUserId } from '@/shared/types/TUser';
 
-import { convertLanguagesToClientForm } from '../helpers';
+export type TFetchWordsSetsAction = typeof fetchWordsSetsData;
 
-export type TFetchLanguagesAction = typeof fetchLanguages;
-
-export async function fetchLanguages(userId: TUserId) {
+export async function fetchWordsSetsData(userId: TUserId) {
   const result = await prisma.user.findUnique({
     where: {
       id: userId,
@@ -18,20 +16,21 @@ export async function fetchLanguages(userId: TUserId) {
       // name: true,
       // emailVerified: true,
       languages: true,
+      wordsSets: true,
+      words: true,
     },
   });
   if (!result) {
     throw new DatabaseError(`No data returned for the user id "${userId}"`);
   }
-  const languages = result.languages as TPrismaLanguage[];
-  /* console.log('[LanguagesPage:fetchLanguages] result', {
-   *   languages,
-   *   result,
-   *   userId,
-   * });
-   */
+  const { wordsSets } = result;
+  console.log('[WordsSetsPage:fetchWordsSets] result', {
+    wordsSets,
+    result,
+    userId,
+  });
   /* // DEBUG: Delay
    * await new Promise((resolve) => setTimeout(resolve, 3000));
    */
-  return convertLanguagesToClientForm(languages);
+  return result;
 }

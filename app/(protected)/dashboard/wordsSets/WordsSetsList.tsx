@@ -7,12 +7,17 @@ import { cn } from '@/lib/utils';
 // import { WaitingSplash } from '@/components/ui/WaitingSplash';
 import { WaitingWrapper } from '@/components/ui/WaitingWrapper';
 import { TLanguage } from '@/features/languages/types';
+import {
+  deleteWordsSet,
+  TAddWordsSetAction,
+  TDeleteWordsSetAction,
+} from '@/features/wordsSets/actions';
+import { convertWordsSetsToClientForm } from '@/features/wordsSets/helpers';
 import { TWordsSet, TWordsSetId } from '@/features/wordsSets/types';
 import { getErrorText } from '@/shared/helpers/strings';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 import { TUserId } from '@/shared/types/TUser';
 
-// import { TAddWordsSetAction, TDeleteWordsSetAction } from './actions';
 import { useAddWordsSetModal } from './AddWordsSet';
 import { WordsSetsEmpty } from './WordsSetsEmpty';
 import { WordsSetsListTable } from './WordsSetsListTable';
@@ -22,8 +27,8 @@ interface TWordsSetsListProps {
   userId: TUserId;
   languages: TLanguage[];
   initialWordsSets: TWordsSet[];
-  // addWordsSet: TAddWordsSetAction;
-  // deleteWordsSet: TDeleteWordsSetAction;
+  addWordsSet: TAddWordsSetAction;
+  deleteWordsSet: TDeleteWordsSetAction;
 }
 
 export function WordsSetsList(props: TWordsSetsListProps) {
@@ -32,7 +37,7 @@ export function WordsSetsList(props: TWordsSetsListProps) {
     userId,
     languages,
     initialWordsSets,
-    // addWordsSet,
+    addWordsSet,
     // deleteWordsSet,
   } = props;
   const { showAddWordsSetModal, AddWordsSetModal } = useAddWordsSetModal();
@@ -47,21 +52,27 @@ export function WordsSetsList(props: TWordsSetsListProps) {
     memo.isUpdating = isUpdating;
   }, [memo, isUpdating]);
 
-  /* // TODO: Handlers...
   const onDeleteWordsSet = React.useCallback(
-    (wordId: TWordsSetId) => {
+    (wordSetId: TWordsSetId) => {
       const { isUpdating } = memo;
       if (isUpdating) {
         throw new Error('The data is currently being updated');
       }
       return new Promise<TWordsSet[]>((resolve, reject) => {
         startUpdating(() => {
-          return deleteWordsSet(userId, wordId)
-            .then((updatedWordsSets) => {
-              setWordsSets(updatedWordsSets);
-              // setWordsSets((wordsSets) => wordsSets.filter((lang) => lang.id !== wordId)); // XXX: Manually apply changes
-              toast.success('The wordsSet has been removed');
-              resolve(updatedWordsSets);
+          return deleteWordsSet(userId, wordSetId)
+            .then((updateResult) => {
+              const { wordsSets } = updateResult;
+              const clientWordsSets = convertWordsSetsToClientForm(wordsSets);
+              console.log('[WordsSetsList:onDeleteWordsSet] done', {
+                updateResult,
+                wordsSets,
+                clientWordsSets,
+              });
+              debugger;
+              setWordsSets(clientWordsSets);
+              toast.success('The words set has been removed');
+              resolve(clientWordsSets);
             })
             .catch((error) => {
               const description = getErrorText(error);
@@ -81,7 +92,6 @@ export function WordsSetsList(props: TWordsSetsListProps) {
     },
     [memo, userId, deleteWordsSet],
   );
-  */
 
   const onAddWordsSet = React.useCallback(
     (wordsSet: TWordsSet) => {
@@ -94,14 +104,41 @@ export function WordsSetsList(props: TWordsSetsListProps) {
             wordsSet,
             wordsSets,
           });
-          debugger;
-          // return addWordsSet(userId, wordsSet)
-          return Promise.resolve([...wordsSets, wordsSet])
-            .then((updatedWordsSets) => {
-              setWordsSets(updatedWordsSets);
+          return addWordsSet(userId, wordsSet)
+            .then((updateResult) => {
+              /* // Sample updateResult data:
+               * createdAt: Wed Nov 06 2024 14:42:07 GMT+0300 (Moscow Standard Time) {}
+               * email: "lilliputten@gmail.com"
+               * emailVerified: null
+               * id: "cm35t72yj000093uu5ag6m97d"
+               * image: "https://lh3.googleusercontent.com/a/ACg8ocJJYaKIduKmECJkLVdTs_RFDtv9YoSzbIPJxkhldzgdBlL_CZkh=s96-c"
+               * languages: (2) [{…}, {…}]
+               * name: "Igor Lilliputten"
+               * role: "USER"
+               * stripeCurrentPeriodEnd: null
+               * stripeCustomerId: null
+               * stripePriceId: null
+               * stripeSubscriptionId: null
+               * updatedAt: Wed Nov 06 2024 14:42:07 GMT+0300 (Moscow Standard Time) {}
+               * words: []
+               * wordsSets: [{…}]
+               */
+              const { wordsSets: updatedWordsSets } = updateResult;
+              const clientWordsSets = updatedWordsSets.map(
+                ({ id, name }) => ({ id, name }) as TWordsSet,
+              );
+              console.log('[WordsSetsList:onAddWordsSet] done', {
+                clientWordsSets,
+                updatedWordsSets,
+                updateResult,
+                wordsSet,
+                wordsSets,
+              });
+              debugger;
+              setWordsSets(clientWordsSets);
               // setWordsSets((wordsSets) => wordsSets.concat(wordsSet)); // XXX: Manually apply changes
               toast.success('The wordsSet has been added');
-              resolve(updatedWordsSets);
+              resolve(clientWordsSets);
             })
             .catch((error) => {
               const description = getErrorText(error);
@@ -122,7 +159,7 @@ export function WordsSetsList(props: TWordsSetsListProps) {
     [
       memo,
       userId,
-      // addWordsSet,
+      addWordsSet,
       // DEBUG
       wordsSets, // DEBUG: Only for demo purpose: to update current wordsSets list in-place
     ],
@@ -155,7 +192,7 @@ export function WordsSetsList(props: TWordsSetsListProps) {
               tailwindClippingLayout({ vertical: true }),
             )}
             wordsSets={wordsSets}
-            // onDeleteWordsSet={onDeleteWordsSet}
+            onDeleteWordsSet={onDeleteWordsSet}
             showAddWordsSetModal={showAddWordsSetModal}
           />
         </>
@@ -167,6 +204,7 @@ export function WordsSetsList(props: TWordsSetsListProps) {
       </WaitingWrapper>
       <AddWordsSetModal
         // prettier-ignore
+        languages={languages}
         wordsSets={wordsSets}
         onAddWordsSet={onAddWordsSet}
       />

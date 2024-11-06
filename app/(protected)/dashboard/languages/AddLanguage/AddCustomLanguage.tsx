@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Icons } from '@/components/shared/icons';
@@ -18,6 +19,7 @@ type TFormData = TLanguage;
 interface TProps {
   languages: TLanguage[];
   onAddLanguage: (language: TLanguage) => Promise<TLanguage[]>;
+  className?: string;
 }
 
 const defaultValues: TLanguage = {
@@ -26,14 +28,13 @@ const defaultValues: TLanguage = {
 };
 
 export const AddCustomLanguage: React.FC<TProps> = (props) => {
-  const { languages, onAddLanguage } = props;
+  const { className, languages, onAddLanguage } = props;
   const [isPending, startTransition] = React.useTransition();
 
   const refineLanguageId = React.useCallback(
     (value: TLanguageId) => {
       const found = languages.find((lang) => lang.id === value);
-      const isError = !!found;
-      return !isError;
+      return !found;
     },
     [languages],
   );
@@ -119,87 +120,82 @@ export const AddCustomLanguage: React.FC<TProps> = (props) => {
     });
   });
 
+  // TODO: Update forms accordng to `app/(protected)/dashboard/wordsSets/AddWordsSet/AddWordsSetBlock.tsx`
+
   return (
-    <>
-      <div className="__AddCustomLanguage p-2">
-        <p className="Text mb-4 text-[13px] text-muted-foreground">
-          Add your own language with a custom (but unique) identifier and name.
-        </p>
-        <form onSubmit={onSubmit}>
-          <div className="flex w-full flex-col items-center gap-4">
-            <div className="flex w-full flex-col gap-4">
-              {/*
+    <div className={cn(className, '__AddCustomLanguage', 'py-2')}>
+      <p className="Text mb-4 text-sm text-muted-foreground">
+        Add your own language with a custom (but unique) identifier and name.
+      </p>
+      <form onSubmit={onSubmit}>
+        <div className="flex w-full flex-col items-center gap-4">
+          <div className="flex w-full flex-col gap-4">
+            {/*
               <Label className="-sr-only" htmlFor="id">
                 ID
               </Label>
               */}
-              <Input
-                id="id"
-                className="flex-1"
-                size={maxIdLength}
-                placeholder="ID"
-                // @see https://react-hook-form.com/docs/useform/register
-                {...register('id', {
-                  required: true,
-                })}
-              />
-              {errors?.id && <p className="pb-0.5 text-[13px] text-red-600">{errors.id.message}</p>}
-              {/*
-              <p className="text-[13px] text-muted-foreground">
+            <Input
+              id="id"
+              className="flex-1"
+              size={maxIdLength}
+              placeholder="ID"
+              // @see https://react-hook-form.com/docs/useform/register
+              {...register('id', {
+                required: true,
+              })}
+            />
+            {errors?.id && <p className="pb-0.5 text-sm text-red-600">{errors.id.message}</p>}
+            {/*
+              <p className="text-sm text-muted-foreground">
                 Should be an unique value. {minIdLength}-{maxIdLength} characters.
               </p>
               */}
-            </div>
-            <div className="flex w-full flex-col gap-4">
-              {/*
+          </div>
+          <div className="flex w-full flex-col gap-4">
+            {/*
               <Label className="-sr-only" htmlFor="name">
                 Name
               </Label>
               */}
-              <Input
-                id="name"
-                className="flex-1"
-                size={maxNameLength}
-                placeholder="Name"
-                // @see https://react-hook-form.com/docs/useform/register
-                {...register('name', { required: true })}
-              />
-              {errors?.name && (
-                <p className="pb-0.5 text-[13px] text-red-600">{errors.name.message}</p>
-              )}
-              {/*
-              <p className="text-[13px] text-muted-foreground">
+            <Input
+              id="name"
+              className="flex-1"
+              size={maxNameLength}
+              placeholder="Name"
+              // @see https://react-hook-form.com/docs/useform/register
+              {...register('name', { required: true })}
+            />
+            {errors?.name && <p className="pb-0.5 text-sm text-red-600">{errors.name.message}</p>}
+            {/*
+              <p className="text-sm text-muted-foreground">
                 {minNameLength}-{maxNameLength} characters.
               </p>
               */}
-            </div>
-            {/*
+          </div>
+          {/*
             <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
             <div className="flex flex-col justify-between p-1"></div>
             */}
-            <div className="flex w-full gap-4">
-              <Button
-                type="submit"
-                variant={isSubmitEnabled ? 'default' : 'disable'}
-                disabled={!isSubmitEnabled}
-                className="w-[67px] shrink-0 px-0 sm:w-[130px]"
-              >
-                {isPending ? (
-                  <Icons.spinner className="size-4 animate-spin" />
-                ) : (
-                  <p>
-                    Add
-                    <span className="hidden sm:inline-flex">&nbsp;Language</span>
-                  </p>
-                )}
-              </Button>
-            </div>
+          <div className="flex w-full gap-4">
+            <Button
+              type="submit"
+              variant={isSubmitEnabled ? 'default' : 'disable'}
+              disabled={!isSubmitEnabled}
+              className="w-[67px] shrink-0 px-0 sm:w-[130px]"
+            >
+              {isPending ? (
+                <Icons.spinner className="size-4 animate-spin" />
+              ) : (
+                <span>Add Language</span>
+              )}
+            </Button>
           </div>
-          {/*
+        </div>
+        {/*
           <div className="flex flex-col justify-between p-1"></div>
           */}
-        </form>
-      </div>
-    </>
+      </form>
+    </div>
   );
 };

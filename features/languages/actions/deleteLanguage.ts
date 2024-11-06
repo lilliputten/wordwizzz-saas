@@ -4,7 +4,7 @@ import { prisma } from '@/lib/db';
 import { TLanguageId } from '@/features/languages/types';
 import { TUserId } from '@/shared/types/TUser';
 
-import { convertPrismaLanguagesToClient } from '../helpers';
+import { convertLanguagesToClientForm } from '../helpers';
 
 export type TDeleteLanguageAction = typeof deleteLanguage;
 
@@ -46,7 +46,7 @@ export async function deleteLanguage(userId: TUserId, languageId: TLanguageId) {
     /* // DEBUG: Delay
      * await new Promise((resolve) => setTimeout(resolve, 5000));
      */
-    return convertPrismaLanguagesToClient(updatedLanguages);
+    return convertLanguagesToClientForm(updatedLanguages);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('[deleteLanguage] Error updating language', {

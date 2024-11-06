@@ -23,8 +23,7 @@ export function useScrollableLayout(type: TLayoutType = defaultType) {
   }, [type]);
 }
 
-export function UseScrollableLayout(props: { type?: TLayoutType }) {
-  const { type = defaultType } = props;
+export function UseScrollableLayout({ type = defaultType }: { type?: TLayoutType }) {
   useScrollableLayout(type);
   return null;
 }

@@ -1,4 +1,4 @@
 export const minIdLength = 2;
-export const maxIdLength = 16;
-export const minNameLength = 3;
-export const maxNameLength = 32;
+export const maxIdLength = 20;
+export const minNameLength = 2;
+export const maxNameLength = 50;

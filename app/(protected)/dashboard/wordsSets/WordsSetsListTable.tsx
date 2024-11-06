@@ -14,11 +14,11 @@ import { Icons } from '@/components/shared/icons';
 import { TWordsSet, TWordsSetId } from '@/features/wordsSets/types';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 
-// import { useConfirmDeleteWordsSetModal } from './DeleteWordsSet';
+import { useConfirmDeleteWordsSetModal } from './DeleteWordsSet';
 
 interface TWordsSetsListTableProps extends TPropsWithClassName {
   wordsSets: TWordsSet[];
-  // onDeleteWordsSet: (id: TWordsSetId) => Promise<unknown>;
+  onDeleteWordsSet: (id: TWordsSetId) => Promise<unknown>;
   showAddWordsSetModal: () => void; // React.Dispatch<React.SetStateAction<void>>;
 }
 type TChildProps = Omit<TWordsSetsListTableProps, 'className'>;
@@ -26,9 +26,9 @@ type TChildProps = Omit<TWordsSetsListTableProps, 'className'>;
 function Title() {
   return (
     <div className="__WordsSetsListTable_Title grid gap-2">
-      <CardTitle>Current wordsSets</CardTitle>
+      <CardTitle>Current words sets</CardTitle>
       <CardDescription className="text-balance">
-        WordsSets you've added to the profile.
+        Words sets you've added to the profile.
       </CardDescription>
     </div>
   );
@@ -41,7 +41,7 @@ function Toolbar(props: TChildProps) {
       <Button size="sm" onClick={showAddWordsSetModal}>
         <Icons.add className="mr-2 size-4" />
         <span>Add</span>
-        <span className="hidden sm:inline-flex">&nbsp;WordsSet</span>
+        <span className="hidden sm:inline-flex">&nbsp;words set</span>
       </Button>
       {/* EXAMPLE
       <Button size="sm" className="ml-auto shrink-0 gap-1 px-4">
@@ -76,14 +76,14 @@ function WordsSetTableHeader() {
 
 interface TWordsSetTableRowProps {
   wordsSet: TWordsSet;
-  invokeConfirmDeleteWordsSetModal?: (wordsSet: TWordsSet) => void;
+  invokeConfirmDeleteWordsSetModal: (wordsSet: TWordsSet) => void;
 }
 
 function WordsSetTableRow(props: TWordsSetTableRowProps) {
   const { wordsSet, invokeConfirmDeleteWordsSetModal } = props;
   const { id, name } = wordsSet;
   return (
-    <TableRow data-wordsSet-id={id}>
+    <TableRow data-words-set-id={id}>
       <TableCell>
         <div className="text-lg font-medium">{name}</div>
         {/* EXAMPLE
@@ -97,7 +97,7 @@ function WordsSetTableRow(props: TWordsSetTableRowProps) {
           variant="destructive"
           size="icon"
           className="size-9 shrink-0"
-          onClick={() => invokeConfirmDeleteWordsSetModal?.(wordsSet)}
+          onClick={() => invokeConfirmDeleteWordsSetModal(wordsSet)}
         >
           <Icons.trash className="size-4" />
         </Button>
@@ -107,21 +107,13 @@ function WordsSetTableRow(props: TWordsSetTableRowProps) {
 }
 
 export function WordsSetsListTable(props: TWordsSetsListTableProps) {
-  const {
-    className,
-    wordsSets,
-    // onDeleteWordsSet,
-  } = props;
-  // const { invokeConfirmDeleteWordsSetModal, confirmDeleteWordsSetModalElement } = useConfirmDeleteWordsSetModal({ onDeleteWordsSet });
+  const { className, wordsSets, onDeleteWordsSet } = props;
+  const { invokeConfirmDeleteWordsSetModal, confirmDeleteWordsSetModalElement } =
+    useConfirmDeleteWordsSetModal({ onDeleteWordsSet });
   return (
     <Card className={cn(className, '__WordsSetsListTable', 'xl:col-span-2')}>
       <Header {...props} />
-      <CardContent
-        className={cn(
-          '__WordsSetsListTable_Content',
-          //  tailwindClippingLayout(),
-        )}
-      >
+      <CardContent className={cn('__WordsSetsListTable_Content', tailwindClippingLayout())}>
         <Table>
           <WordsSetTableHeader />
           <TableBody>
@@ -131,16 +123,14 @@ export function WordsSetsListTable(props: TWordsSetsListTableProps) {
                 <WordsSetTableRow
                   key={key}
                   wordsSet={wordsSet}
-                  // invokeConfirmDeleteWordsSetModal={invokeConfirmDeleteWordsSetModal}
+                  invokeConfirmDeleteWordsSetModal={invokeConfirmDeleteWordsSetModal}
                 />
               );
             })}
           </TableBody>
         </Table>
       </CardContent>
-      {/*
       {confirmDeleteWordsSetModalElement}
-      */}
     </Card>
   );
 }

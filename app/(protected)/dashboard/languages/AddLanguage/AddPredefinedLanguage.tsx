@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
 
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import {
@@ -33,6 +34,7 @@ const defaultValues: TFormData = {
 interface TProps {
   languages: TLanguage[];
   onAddLanguage: (language: TLanguage) => Promise<TLanguage[]>;
+  className?: string;
 }
 
 /* // NOTE: With `forwardRef`...
@@ -46,7 +48,7 @@ interface TProps {
  */
 
 export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
-  const { languages, onAddLanguage } = props;
+  const { className, languages, onAddLanguage } = props;
   const [isPending, startTransition] = React.useTransition();
 
   const languagesList = React.useMemo(() => [...predefinedLanguages], []);
@@ -122,8 +124,10 @@ export const AddPredefinedLanguage: React.FC<TProps> = (props) => {
 
   const registerSelectField = register('id', { required: true });
 
+  // TODO: Update forms accordng to `app/(protected)/dashboard/wordsSets/AddWordsSet/AddWordsSetBlock.tsx`
+
   return (
-    <div className="__AddPredefinedLanguage p-2">
+    <div className={cn(className, '__AddPredefinedLanguage', 'py-2')}>
       <p className="Text mb-4 text-[13px] text-muted-foreground">
         Add a language from the predefined list.
       </p>

@@ -4,9 +4,15 @@ import { prisma } from '@/lib/db';
 import { TLanguage } from '@/features/languages/types';
 import { TUserId } from '@/shared/types/TUser';
 
-import { convertPrismaLanguagesToClient } from '../helpers';
+import { convertLanguagesToClientForm } from '../helpers';
 
 export type TAddLanguageAction = typeof addLanguage;
+
+// @see:
+// - https://www.prisma.io/docs/orm/reference/prisma-client-reference#upsert-1
+// - https://www.prisma.io/docs/orm/prisma-client/queries/relation-queries
+// - https://www.prisma.io/docs/orm/prisma-client/queries
+// - https://www.prisma.io/docs/orm/prisma-client/queries/crud
 
 export async function addLanguage(userId: TUserId, language: TLanguage) {
   try {
@@ -26,11 +32,6 @@ export async function addLanguage(userId: TUserId, language: TLanguage) {
         languages: true,
       },
       data: {
-        // @see:
-        // - https://www.prisma.io/docs/orm/reference/prisma-client-reference#upsert-1
-        // - https://www.prisma.io/docs/orm/prisma-client/queries/relation-queries
-        // - https://www.prisma.io/docs/orm/prisma-client/queries
-        // - https://www.prisma.io/docs/orm/prisma-client/queries/crud
         languages: {
           upsert: {
             where: { id: userId },
@@ -51,7 +52,7 @@ export async function addLanguage(userId: TUserId, language: TLanguage) {
     /* // DEBUG: Delay
      * await new Promise((resolve) => setTimeout(resolve, 5000));
      */
-    return convertPrismaLanguagesToClient(updatedLanguages);
+    return convertLanguagesToClientForm(updatedLanguages);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('[addLanguage] Error updating language', {

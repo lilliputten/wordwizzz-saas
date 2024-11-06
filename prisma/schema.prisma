@@ -61,17 +61,15 @@ model Language {
   id   String @id
   name String
 
-  // userId String
+  userId    String
   user User @relation(fields: [userId], references: [id]) // @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // wordsSetId String?
   // WordsSet   WordsSet? @relation(fields: [wordsSetId], references: [id])
   // Word       Word[]
 
-  wordsSets WordsSet[] // @relation("WordsSetLanguages")
-  // WordsSet_WordsSetLanguages WordsSet[] // @relation("WordsSetLanguages")
+  wordsSets WordsSet[] // @relation("_LanguageToWordsSet")
   words     Word[]
-  userId    String
 
   @@map("Languages")
 }
@@ -79,15 +77,14 @@ model Language {
 model WordsSet {
   id   String @id @default(cuid())
   name String
-  // userId String
+
+  userId    String
   user User   @relation(fields: [userId], references: [id]) // @relation(fields: [userId], references: [id])
 
   // languages Language[]
   word Word[]
 
-  languages Language[] // @relation("WordsSetLanguages")
-  // Language_WordsSetLanguages Language[] // @relation("WordsSetLanguages")
-  userId    String
+  languages Language[] // @relation("_LanguageToWordsSet")
 
   @@map("WordsSets")
 }

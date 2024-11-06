@@ -1,2 +1,1 @@
-export * from './convertClientLanguagesToPrisma';
-export * from './convertPrismaLanguagesToClient';
+export * from './convertLanguagesToClientForm';
