@@ -30,9 +30,22 @@ function ConfirmDeleteWordsSetModal(props: TConfirmDeleteWordsSetModalProps) {
     isPending,
   } = props;
   return (
-    <Modal showModal={show} setShowModal={toggle} className="gap-0">
-      <div className={cn('flex flex-col border-b bg-accent px-8 py-4')}>
-        <DialogTitle className="DialogTitle">Delete WordsSet</DialogTitle>
+    <Modal
+      showModal={show}
+      setShowModal={toggle}
+      className={cn(
+        // prettier-ignore
+        'gap-0',
+        isPending && '[&>*]:pointer-events-none [&>*]:opacity-50',
+      )}
+    >
+      <div
+        className={cn(
+          'flex flex-col border-b bg-accent px-8 py-4',
+          // isPending && 'pointer-events-none opacity-50',
+        )}
+      >
+        <DialogTitle className="DialogTitle">Delete Words Set</DialogTitle>
         <DialogDescription aria-hidden="true" hidden>
           Delete wordsSet dialog
         </DialogDescription>
@@ -41,7 +54,7 @@ function ConfirmDeleteWordsSetModal(props: TConfirmDeleteWordsSetModalProps) {
         className={cn(
           // prettier-ignore
           'flex flex-col px-8 py-4',
-          isPending && 'pointer-events-none opacity-50',
+          // isPending && 'pointer-events-none opacity-50',
         )}
       >
         {!!wordsSet && (
@@ -49,6 +62,7 @@ function ConfirmDeleteWordsSetModal(props: TConfirmDeleteWordsSetModalProps) {
             onConfirm={onConfirm}
             onCancel={onCancel}
             wordsSet={wordsSet}
+            isPending={isPending}
           />
         )}
       </div>

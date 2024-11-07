@@ -6,14 +6,10 @@ import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 // import { WaitingSplash } from '@/components/ui/WaitingSplash';
 import { WaitingWrapper } from '@/components/ui/WaitingWrapper';
-import { TLanguage } from '@/features/languages/types';
-import {
-  deleteWordsSet,
-  TAddWordsSetAction,
-  TDeleteWordsSetAction,
-} from '@/features/wordsSets/actions';
+import { TLanguage, TLanguageId } from '@/features/languages/types';
+import { TAddWordsSetAction, TDeleteWordsSetAction } from '@/features/wordsSets/actions';
 import { convertWordsSetsToClientForm } from '@/features/wordsSets/helpers';
-import { TWordsSet, TWordsSetId } from '@/features/wordsSets/types';
+import { TNewWordsSet, TWordsSet, TWordsSetId } from '@/features/wordsSets/types';
 import { getErrorText } from '@/shared/helpers/strings';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 import { TUserId } from '@/shared/types/TUser';
@@ -38,7 +34,7 @@ export function WordsSetsList(props: TWordsSetsListProps) {
     languages,
     initialWordsSets,
     addWordsSet,
-    // deleteWordsSet,
+    deleteWordsSet,
   } = props;
   const { showAddWordsSetModal, AddWordsSetModalWrapper } = useAddWordsSetModal();
   const [wordsSets, setWordsSets] = React.useState(initialWordsSets);
@@ -69,7 +65,6 @@ export function WordsSetsList(props: TWordsSetsListProps) {
                 wordsSets,
                 clientWordsSets,
               });
-              debugger;
               setWordsSets(clientWordsSets);
               toast.success('The words set has been removed');
               resolve(clientWordsSets);
@@ -94,7 +89,7 @@ export function WordsSetsList(props: TWordsSetsListProps) {
   );
 
   const onAddWordsSet = React.useCallback(
-    (wordsSet: TWordsSet) => {
+    (wordsSet: TNewWordsSet, languageIds: TLanguageId[]) => {
       if (memo.isUpdating) {
         throw new Error('The data is currently being updated');
       }
@@ -104,7 +99,7 @@ export function WordsSetsList(props: TWordsSetsListProps) {
             wordsSet,
             wordsSets,
           });
-          return addWordsSet(userId, wordsSet)
+          return addWordsSet(userId, wordsSet, languageIds)
             .then((updateResult) => {
               /* // Sample updateResult data:
                * createdAt: Wed Nov 06 2024 14:42:07 GMT+0300 (Moscow Standard Time) {}

@@ -6,6 +6,7 @@ interface TTailwindClippingLayoutParams {
   className?: string;
   clippingLayout?: boolean;
   vertical?: boolean;
+  fullSize?: boolean;
 }
 export function tailwindClippingLayout(params: TTailwindClippingLayoutParams = {}) {
   const {
@@ -13,6 +14,7 @@ export function tailwindClippingLayout(params: TTailwindClippingLayoutParams = {
     clippingLayout = true,
     className,
     vertical,
+    fullSize,
   } = params;
   return cn(
     className,
@@ -22,7 +24,8 @@ export function tailwindClippingLayout(params: TTailwindClippingLayoutParams = {
         '__tailwindClippingLayout',
         // 'h-screen',
         // 'w-screen',
-        // 'flex-1', // TODO: To remove or make optional
+        fullSize && 'flex-1', // TODO: To remove or make optional
+        'relative',
         'flex',
         'size-full',
         // 'h-full',

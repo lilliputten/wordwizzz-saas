@@ -68,7 +68,7 @@ function WordsSetTableHeader() {
   return (
     <TableHeader>
       <TableRow>
-        <TableHead>WordsSet</TableHead>
+        <TableHead>Words Sets</TableHead>
       </TableRow>
     </TableHeader>
   );

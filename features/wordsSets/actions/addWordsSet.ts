@@ -1,7 +1,8 @@
 'use server';
 
 import { prisma } from '@/lib/db';
-import { TWordsSet } from '@/features/wordsSets/types';
+import { TLanguageId } from '@/features/languages/types';
+import { TNewWordsSet, TWordsSet } from '@/features/wordsSets/types';
 import { DatabaseError } from '@/shared/types/errors';
 import { TUserId } from '@/shared/types/TUser';
 
@@ -13,11 +14,15 @@ export type TAddWordsSetAction = typeof addWordsSet;
 // - https://www.prisma.io/docs/orm/prisma-client/queries
 // - https://www.prisma.io/docs/orm/prisma-client/queries/crud
 
-export async function addWordsSet(userId: TUserId, wordsSet: TWordsSet) {
+export async function addWordsSet(
+  userId: TUserId,
+  wordsSet: TNewWordsSet,
+  languageIds: TLanguageId[],
+) {
   try {
     const { name } = wordsSet;
     const wordsSetRecord = { name };
-    const prismaWordsSet = prisma.wordsSet;
+    // const prismaWordsSet = prisma.wordsSet;
     const prismaUser = prisma.user;
     /* // DEBUG: Fetch current user with related data
      * const user = await prismaUser.findUnique({
@@ -39,10 +44,13 @@ export async function addWordsSet(userId: TUserId, wordsSet: TWordsSet) {
     console.log('[addWordsSet] start', {
       name,
       userId,
+      languageIds,
       wordsSet,
-      prismaWordsSet,
+      // prismaWordsSet,
       prisma,
     });
+    debugger;
+    // TODO: Connect with languages form `languageIds`
     const updateResult = await prismaUser.update({
       where: {
         id: userId,
@@ -68,7 +76,7 @@ export async function addWordsSet(userId: TUserId, wordsSet: TWordsSet) {
       wordsSet,
     });
     // DEBUG: Delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     return updateResult;
   } catch (error) {
     // eslint-disable-next-line no-console

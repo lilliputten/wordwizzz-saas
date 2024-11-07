@@ -39,9 +39,8 @@ export async function deleteWordsSet(userId: TUserId, wordsSetId: TWordsSetId) {
       userId,
       wordsSetId,
     });
-    /* // DEBUG: Delay
-     * await new Promise((resolve) => setTimeout(resolve, 5000));
-     */
+    // DEBUG: Delay
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     return updateResult;
   } catch (error) {
     // eslint-disable-next-line no-console

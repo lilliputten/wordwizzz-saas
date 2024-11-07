@@ -1,10 +1,13 @@
 import React from 'react';
 
 import { cn } from '@/lib/utils';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import { DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Modal } from '@/components/ui/modal';
-import { TLanguage } from '@/features/languages/types';
-import { TWordsSet } from '@/features/wordsSets/types';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { TLanguage, TLanguageId } from '@/features/languages/types';
+import { TNewWordsSet, TWordsSet } from '@/features/wordsSets/types';
+import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 
 import { AddWordsSetBlock, TAddWordsSetBlockProps } from './AddWordsSetBlock';
 
@@ -14,16 +17,24 @@ interface TAddWordsSetModalProps /* extends TAddWordsSetBlockProps */ {
 
   languages: TLanguage[];
   wordsSets: TWordsSet[];
-  onAddWordsSet: (wordsSet: TWordsSet) => Promise<TWordsSet[]>;
+  // onAddWordsSet: (wordsSet: TWordsSet) => Promise<TWordsSet[]>;
+  onAddWordsSet: (wordsSet: TNewWordsSet, languageIds: TLanguageId[]) => Promise<TWordsSet[]>;
 }
 
 function AddWordsSetModal(props: TAddWordsSetModalProps) {
   const { show, toggle, onAddWordsSet, ...restProps } = props;
+  const [isPending, setPending] = React.useState(false);
+
+  React.useEffect(() => {
+    console.log('[AddWordsSetModal:isPending]', {
+      isPending,
+    });
+  }, [isPending]);
 
   const handleAddWordsSet = React.useCallback(
-    (wordsSet: TWordsSet) => {
+    (wordsSet: TNewWordsSet, languageIds: TLanguageId[]) => {
       return (
-        onAddWordsSet(wordsSet)
+        onAddWordsSet(wordsSet, languageIds)
           // Close the modal on finish
           .then((result) => {
             toggle(false);
@@ -34,18 +45,44 @@ function AddWordsSetModal(props: TAddWordsSetModalProps) {
     [onAddWordsSet, toggle],
   );
 
+  const { isMobile } = useMediaQuery();
+
   return (
-    <Modal showModal={show} setShowModal={toggle} className="gap-0">
-      <div className={cn('flex flex-col border-b bg-accent px-8 py-4')}>
+    <Modal
+      showModal={show}
+      setShowModal={toggle}
+      className={cn(
+        // prettier-ignore
+        '__AddWordsSetModal',
+        !isMobile && 'max-h-[90vh]',
+        'flex flex-col gap-0',
+        // tailwindClippingLayout({ vertical: true }),
+        isPending && '[&>*]:pointer-events-none [&>*]:opacity-50',
+      )}
+    >
+      <div
+        className={cn(
+          // prettier-ignore
+          '__AddWordsSetModal_Header',
+          'flex flex-col border-b bg-accent px-8 py-4',
+        )}
+      >
         <DialogTitle className="DialogTitle">Add Words Set</DialogTitle>
         <DialogDescription aria-hidden="true" hidden>
           Add words set dialog
         </DialogDescription>
       </div>
-      <div className={cn('flex flex-col px-8 py-4')}>
+      <div
+        className={cn(
+          '__AddWordsSetModal__Content',
+          tailwindClippingLayout(),
+          'flex flex-1 flex-col',
+        )}
+      >
         <AddWordsSetBlock
-          // prettier-ignore
           onAddWordsSet={handleAddWordsSet}
+          className={cn('__AddWordsSetModal__ContentBlock', 'p-8')}
+          forwardPending={setPending}
           {...restProps}
         />
       </div>
