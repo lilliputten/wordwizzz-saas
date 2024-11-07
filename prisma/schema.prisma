@@ -61,8 +61,8 @@ model Language {
   id   String @id
   name String
 
-  userId    String
-  user User @relation(fields: [userId], references: [id]) // @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id]) // @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // wordsSetId String?
   // WordsSet   WordsSet? @relation(fields: [wordsSetId], references: [id])
@@ -78,11 +78,11 @@ model WordsSet {
   id   String @id @default(cuid())
   name String
 
-  userId    String
-  user User   @relation(fields: [userId], references: [id]) // @relation(fields: [userId], references: [id])
+  userId String
+  user   User   @relation(fields: [userId], references: [id]) // @relation(fields: [userId], references: [id])
 
   // languages Language[]
-  word Word[]
+  words Word[]
 
   languages Language[] // @relation("_LanguageToWordsSet")
 

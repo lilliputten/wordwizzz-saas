@@ -12,7 +12,7 @@ export function WordsSetsEmpty(props: TWordsSetsEmptyProps) {
   const { className, showAddWordsSetModal } = props;
   return (
     <EmptyPlaceholder className={cn(className, '__WordsSetsEmpty')}>
-      <EmptyPlaceholder.Icon name="wordsList" />
+      <EmptyPlaceholder.Icon name="wordsSets" />
       <EmptyPlaceholder.Title>No words sets have been defined yet</EmptyPlaceholder.Title>
       <EmptyPlaceholder.Description>
         You dont have any words sets yet. Add any wordsSet to your profile.

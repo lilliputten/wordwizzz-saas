@@ -23,7 +23,8 @@ export async function fetchLanguages(userId: TUserId) {
   if (!result) {
     throw new DatabaseError(`No data returned for the user id "${userId}"`);
   }
-  const languages = result.languages as TPrismaLanguage[];
+  const { languages } = result;
+  // const languages = result.languages as TPrismaLanguage[];
   /* console.log('[LanguagesPage:fetchLanguages] result', {
    *   languages,
    *   result,
@@ -33,5 +34,6 @@ export async function fetchLanguages(userId: TUserId) {
   /* // DEBUG: Delay
    * await new Promise((resolve) => setTimeout(resolve, 3000));
    */
-  return convertLanguagesToClientForm(languages);
+  return languages;
+  // return convertLanguagesToClientForm(languages);
 }

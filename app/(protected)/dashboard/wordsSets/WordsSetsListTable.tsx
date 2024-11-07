@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { TPropsWithClassName } from '@/types/generic';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -11,13 +13,13 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Icons } from '@/components/shared/icons';
-import { TWordsSet, TWordsSetId } from '@/features/wordsSets/types';
+import { TWordsSet, TWordsSetId, TWordsSetWithLanguages } from '@/features/wordsSets/types';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 
 import { useConfirmDeleteWordsSetModal } from './DeleteWordsSet';
 
 interface TWordsSetsListTableProps extends TPropsWithClassName {
-  wordsSets: TWordsSet[];
+  wordsSets: TWordsSetWithLanguages[];
   onDeleteWordsSet: (id: TWordsSetId) => Promise<unknown>;
   showAddWordsSetModal: () => void; // React.Dispatch<React.SetStateAction<void>>;
 }
@@ -37,20 +39,19 @@ function Title() {
 function Toolbar(props: TChildProps) {
   const { showAddWordsSetModal } = props;
   return (
-    <div className="__WordsSetsListTable_Toolbar ml-auto flex shrink-0 gap-2">
-      <Button size="sm" onClick={showAddWordsSetModal}>
-        <Icons.add className="mr-2 size-4" />
-        <span>Add</span>
-        <span className="hidden sm:inline-flex">&nbsp;words set</span>
-      </Button>
-      {/* EXAMPLE
-      <Button size="sm" className="ml-auto shrink-0 gap-1 px-4">
+    <div className="__WordsSetsListTable_Toolbar ml-auto flex shrink-0 flex-wrap gap-2">
+      <Button disabled variant="ghost" size="sm" className="flex gap-2 px-4">
         <Link href="#" className="flex items-center gap-2">
-          <ArrowUpRight className="hidden size-4 sm:block" />
-          <span>View All</span>
+          <Icons.refresh className="hidden size-4 sm:block" />
+          <span>Refresh</span>
         </Link>
       </Button>
-       */}
+      <Button variant="ghost" size="sm" onClick={showAddWordsSetModal} className="flex gap-2 px-4">
+        <Icons.add className="hidden size-4 sm:block" />
+        <span>
+          Add <span className="hidden sm:inline-flex">New Set</span>
+        </span>
+      </Button>
     </div>
   );
 }
@@ -68,20 +69,22 @@ function WordsSetTableHeader() {
   return (
     <TableHeader>
       <TableRow>
-        <TableHead>Words Sets</TableHead>
+        <TableHead>Set Name</TableHead>
+        <TableHead>Languages</TableHead>
       </TableRow>
     </TableHeader>
   );
 }
 
 interface TWordsSetTableRowProps {
-  wordsSet: TWordsSet;
+  wordsSet: TWordsSetWithLanguages;
   invokeConfirmDeleteWordsSetModal: (wordsSet: TWordsSet) => void;
 }
 
 function WordsSetTableRow(props: TWordsSetTableRowProps) {
   const { wordsSet, invokeConfirmDeleteWordsSetModal } = props;
-  const { id, name } = wordsSet;
+  const { id, name, languages } = wordsSet;
+  const languagesContent = languages.map(({ id, name }) => <span key={id}>{name}</span>);
   return (
     <TableRow data-words-set-id={id}>
       <TableCell>
@@ -92,15 +95,43 @@ function WordsSetTableRow(props: TWordsSetTableRowProps) {
         </div>
         */}
       </TableCell>
-      <TableCell className="text-right">
-        <Button
-          variant="destructive"
-          size="icon"
-          className="size-9 shrink-0"
-          onClick={() => invokeConfirmDeleteWordsSetModal(wordsSet)}
+      <TableCell>
+        <div
+          className={cn(
+            // Show commas after language list items
+            '[&>span]:after:inline-block',
+            '[&>span]:after:content-[","]',
+            '[&>span]:after:mr-1',
+            'last:[&>span]:after:hidden',
+          )}
         >
-          <Icons.trash className="size-4" />
-        </Button>
+          {languagesContent}
+        </div>
+      </TableCell>
+      <TableCell className="text-right">
+        <div className="flex justify-end gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-9 shrink-0"
+            // onClick={() => invokeConfirmDeleteWordsSetModal(wordsSet)}
+            aria-label="Edit"
+            title="Edit"
+            disabled
+          >
+            <Icons.edit className="size-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-9 shrink-0"
+            onClick={() => invokeConfirmDeleteWordsSetModal(wordsSet)}
+            aria-label="Delete"
+            title="Delete"
+          >
+            <Icons.trash className="size-4" />
+          </Button>
+        </div>
       </TableCell>
     </TableRow>
   );

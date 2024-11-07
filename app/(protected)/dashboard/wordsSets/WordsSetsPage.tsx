@@ -5,10 +5,7 @@ import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
 import { fetchLanguages } from '@/features/languages/actions';
 import { convertLanguagesToClientForm } from '@/features/languages/helpers';
-import { TLanguage } from '@/features/languages/types';
 import { addWordsSet, deleteWordsSet, fetchWordsSetsData } from '@/features/wordsSets/actions';
-import { convertWordsSetsToClientForm } from '@/features/wordsSets/helpers';
-import { TWordsSet } from '@/features/wordsSets/types';
 import { getErrorText } from '@/shared/helpers/strings';
 
 // import { addWordsSet, deleteWordsSet, fetchWordsSets } from '@/features/wordsSets/actions';
@@ -23,11 +20,6 @@ export const metadata = constructMetadata({
   description: pageDescription,
 });
 
-const initialWordsSets: TWordsSet[] = [
-  // prettier-ignore
-  { id: 'aa', name: 'AA' },
-];
-
 export async function WordsSetsPage() {
   const user = await getCurrentUser();
   // TODO: Check if user valid and presented in the DB?
@@ -36,18 +28,15 @@ export async function WordsSetsPage() {
   }
   const userId = user.id;
   try {
-    // const languages: TLanguage[] = await fetchLanguages(userId);
-    // TODO: Fetch and pass wordsSets sets list
-    const data = await fetchWordsSetsData(userId);
-    const { languages, wordsSets } = data;
+    const languages = await fetchLanguages(userId);
+    const wordsSets = await fetchWordsSetsData(userId);
     const clientLanguages = convertLanguagesToClientForm(languages);
-    const clientWordsSets = convertWordsSetsToClientForm(wordsSets);
+    const initialWordsSets = wordsSets; // convertWordsSetsToClientForm(wordsSets);
     console.log('[WordsSetsPage]', {
       languages,
       wordsSets,
       clientLanguages,
-      clientWordsSets,
-      data,
+      initialWordsSets,
     });
     return (
       <>
@@ -56,7 +45,7 @@ export async function WordsSetsPage() {
           userId={userId}
           // Pass required data to the client
           languages={clientLanguages}
-          initialWordsSets={clientWordsSets}
+          initialWordsSets={initialWordsSets}
           // Pass server actions to the client
           addWordsSet={addWordsSet}
           deleteWordsSet={deleteWordsSet}

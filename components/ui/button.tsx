@@ -16,6 +16,7 @@ const buttonVariants = cva(
     'focus-visible:ring-offset-2',
     'disabled:opacity-50',
     'disabled:cursor-not-allowed',
+    'disabled:pointer-events-none',
     'ring-offset-background',
     'select-none',
     'active:scale-[0.98]',

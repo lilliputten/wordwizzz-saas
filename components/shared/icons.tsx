@@ -29,6 +29,7 @@ import {
   Moon,
   MoreVertical,
   Package,
+  Pencil,
   Plus,
   Puzzle,
   RefreshCw,
@@ -64,6 +65,7 @@ export const Icons = {
   copy: Copy,
   dashboard: LayoutPanelLeft,
   ellipsis: MoreVertical,
+  edit: Pencil,
   github: ({ ...props }: IconProps) => (
     <svg
       aria-hidden="true"
@@ -135,6 +137,7 @@ export const Icons = {
   ),
   help: HelpCircle,
   home: Home,
+  languages: Languages,
   laptop: Laptop,
   lineChart: LineChart,
   logo: Puzzle,
@@ -171,5 +174,4 @@ export const Icons = {
   warning: AlertTriangle,
   wordsList: WholeWord, // BookOpenText,
   wordsSets: SquareLibrary,
-  languages: Languages,
 };

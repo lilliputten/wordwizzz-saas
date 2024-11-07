@@ -4,9 +4,6 @@ import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { TWord } from '@/features/words/types';
 
-// import { AddCustomWord } from './AddCustomWord';
-// import { AddPredefinedWord } from './AddPredefinedWord';
-
 export interface TAddWordBlockProps {
   words: TWord[];
   onAddWord: (word: TWord) => Promise<TWord[]>;

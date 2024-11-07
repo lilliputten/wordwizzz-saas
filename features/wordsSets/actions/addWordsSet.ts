@@ -21,43 +21,56 @@ export async function addWordsSet(
 ) {
   try {
     const { name } = wordsSet;
-    const wordsSetRecord = { name };
     // const prismaWordsSet = prisma.wordsSet;
-    const prismaUser = prisma.user;
-    /* // DEBUG: Fetch current user with related data
-     * const user = await prismaUser.findUnique({
-     *   where: {
-     *     id: userId,
-     *   },
-     *   select: {
-     *     // name: true,
-     *     // emailVerified: true,
-     *     languages: true,
-     *     wordsSets: true,
-     *     words: true,
-     *   },
-     * });
-     * if (!user) {
-     *   throw new DatabaseError(`Can't find a user for id "${userId}"`);
-     * }
-     */
+    // const prismaUser = prisma.user;
+    // const prismaLanguage = prisma.language;
+    // DEBUG: Fetch current user with related data
+    const foundLanguages = await prisma.language.findMany({
+      where: {
+        id: { in: languageIds },
+      },
+    });
+    if (!foundLanguages.length) {
+      throw new DatabaseError(`Can't find languages for id(s): "${languageIds}"`);
+    }
+    const connectLanguagesRecord = {
+      connect: foundLanguages,
+    };
+    const wordsSetRecord = {
+      name,
+      languages: connectLanguagesRecord,
+    };
     console.log('[addWordsSet] start', {
+      wordsSetRecord,
+      foundLanguages,
       name,
       userId,
-      languageIds,
+      languageIds, // TODO!
       wordsSet,
-      // prismaWordsSet,
       prisma,
     });
-    debugger;
-    // TODO: Connect with languages form `languageIds`
-    const updateResult = await prismaUser.update({
+    // TODO: Connect wordsSet with languages from `languageIds`
+    const addedWordsSet = await prisma.wordsSet.create({
+      data: {
+        userId: userId,
+        name,
+        languages: connectLanguagesRecord,
+      },
+      select: {
+        id: true,
+        name: true,
+        languages: true,
+        // words: true,
+      },
+    });
+    /*
+    const updateResultOld = await prisma.user.update({
       where: {
         id: userId,
       },
       include: {
         wordsSets: true,
-        // languages: true,
+        languages: true,
         // words: true,
       },
       data: {
@@ -70,14 +83,15 @@ export async function addWordsSet(
         },
       },
     });
+    */
     console.log('[addWordsSet] done', {
-      updateResult,
+      addedWordsSet,
       userId,
       wordsSet,
     });
     // DEBUG: Delay
     await new Promise((resolve) => setTimeout(resolve, 5000));
-    return updateResult;
+    return addedWordsSet;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('[addWordsSet] Error updating wordsSet', {

@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
 import { fetchLanguages } from '@/features/languages/actions';
+import { convertLanguagesToClientForm } from '@/features/languages/helpers';
 import { TLanguage } from '@/features/languages/types';
 import { TWord } from '@/features/words/types';
 import { getErrorText } from '@/shared/helpers/strings';
@@ -34,14 +35,14 @@ export async function WordsPage() {
   const userId = user.id;
   try {
     const languages: TLanguage[] = await fetchLanguages(userId);
-    // TODO: Fetch and pass words sets list
+    const clientLanguages = convertLanguagesToClientForm(languages);
     // const initialWords: TWord[] = await fetchWords(userId);
     return (
       <>
         <WordsHeader />
         <WordsList
           userId={userId}
-          languages={languages}
+          languages={clientLanguages}
           initialWords={initialWords}
           // addWord={addWord}
           // deleteWord={deleteWord}

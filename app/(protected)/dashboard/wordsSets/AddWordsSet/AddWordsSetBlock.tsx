@@ -14,7 +14,7 @@ import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Icons } from '@/components/shared/icons';
 import { TLanguage, TLanguageId } from '@/features/languages/types';
-import { TNewWordsSet, TWordsSet } from '@/features/wordsSets/types';
+import { TNewWordsSet, TWordsSet, TWordsSetWithLanguages } from '@/features/wordsSets/types';
 import { getErrorText } from '@/shared/helpers/strings';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 
@@ -23,7 +23,10 @@ import { maxNameLength, minNameLength } from '../constants/inputFields';
 export interface TAddWordsSetBlockProps {
   languages: TLanguage[];
   wordsSets: TWordsSet[];
-  onAddWordsSet: (wordsSet: TNewWordsSet, languageIds: TLanguageId[]) => Promise<TWordsSet[]>;
+  onAddWordsSet: (
+    wordsSet: TNewWordsSet,
+    languageIds: TLanguageId[],
+  ) => Promise<TWordsSetWithLanguages>;
   onCancel?: () => void;
   className?: string;
   forwardPending?: (isPending: boolean) => void;
@@ -34,15 +37,6 @@ interface TFormData {
   name: TWordsSet['name'];
   languages: TLanguagesData;
 }
-
-const defaultLanguages: TLanguagesData = {
-  // DEBUG!
-  zh: true,
-};
-const defaultValues: TFormData = {
-  name: '',
-  languages: defaultLanguages,
-};
 
 export function AddWordsSetBlock(props: TAddWordsSetBlockProps) {
   const {
@@ -72,11 +66,26 @@ export function AddWordsSetBlock(props: TAddWordsSetBlockProps) {
         name: z.string().min(minNameLength).max(maxNameLength).refine(refineWordsSetName, {
           message: 'This words set name is not unique: Choose another one, please.',
         }),
-        languages: z.unknown(), // NOTE: This wrong definition allows to pass the form verification with ontouched languages (we don't care)
-        // languages: z.record(z.string(), z.boolean()).optional(), // NOTE: This correct definition requires at least one change to language data (WTF?)
+        // NOTE: This wrong definition allows to pass the form verification with ontouched languages (we don't care)
+        languages: z.unknown(),
+        /* // NOTE: This correct definition requires at least one change to language data (WTF?)
+         * languages: z.record(z.string(), z.boolean()).optional(),
+         */
       }),
     [refineWordsSetName],
   );
+
+  const defaultValues: TFormData = React.useMemo(() => {
+    // Include all the languages by default
+    const defaultLanguages: TLanguagesData = languages.reduce((hash, { id }) => {
+      hash[id] = true;
+      return hash;
+    }, {});
+    return {
+      name: '',
+      languages: defaultLanguages,
+    };
+  }, [languages]);
 
   // @see https://react-hook-form.com/docs/useform
   const form = useForm<TFormData>({
@@ -136,7 +145,6 @@ export function AddWordsSetBlock(props: TAddWordsSetBlockProps) {
         languages,
         formData,
       });
-      debugger;
       onAddWordsSet(newWordsSet, languageIds)
         .then((_updatedWordsSets) => {
           /* console.log('[AddWordsSetBlock:onSubmit] done', {
@@ -273,11 +281,7 @@ export function AddWordsSetBlock(props: TAddWordsSetBlockProps) {
             variant={isSubmitEnabled ? 'default' : 'disable'}
             disabled={!isSubmitEnabled}
           >
-            {isPending ? (
-              <Icons.spinner className="size-4 animate-spin" />
-            ) : (
-              <span>Add words set</span>
-            )}
+            {isPending ? <Icons.spinner className="size-4 animate-spin" /> : <span>Create</span>}
           </Button>
           <Button variant="ghost" onClick={onCancel}>
             <span>Cancel</span>

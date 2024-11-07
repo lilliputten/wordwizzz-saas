@@ -15,7 +15,20 @@ export async function deleteWordsSet(userId: TUserId, wordsSetId: TWordsSetId) {
       prismaUser,
       prisma,
     });
-    const updateResult = await prismaUser.update({
+    const removedWordsSet = await prisma.wordsSet.delete({
+      where: {
+        userId: userId,
+        id: wordsSetId,
+      },
+      select: {
+        id: true,
+        name: true,
+        languages: true,
+        // words: true,
+      },
+    });
+    /*
+    const updateResultOld = await prismaUser.update({
       where: {
         id: userId,
       },
@@ -34,14 +47,15 @@ export async function deleteWordsSet(userId: TUserId, wordsSetId: TWordsSetId) {
         },
       },
     });
+    */
     console.log('[deleteWordsSet] done', {
-      updateResult,
+      removedWordsSet,
       userId,
       wordsSetId,
     });
     // DEBUG: Delay
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-    return updateResult;
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    return removedWordsSet;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('[deleteWordsSet] Error updating words set', {

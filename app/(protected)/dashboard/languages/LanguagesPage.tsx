@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
 import { constructMetadata } from '@/lib/utils';
 import { addLanguage, deleteLanguage, fetchLanguages } from '@/features/languages/actions';
+import { convertLanguagesToClientForm } from '@/features/languages/helpers';
 import { TLanguage } from '@/features/languages/types';
 import { getErrorText } from '@/shared/helpers/strings';
 import { UseScrollableLayout } from '@/shared/helpers/ui/ScrollableLayout';
@@ -26,7 +27,8 @@ export async function LanguagesPage() {
   }
   const userId = user.id;
   try {
-    const initialLanguages: TLanguage[] = await fetchLanguages(userId);
+    const languages: TLanguage[] = await fetchLanguages(userId);
+    const initialLanguages = convertLanguagesToClientForm(languages);
     return (
       <>
         <UseScrollableLayout type="clippable" />

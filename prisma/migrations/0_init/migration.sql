@@ -2,7 +2,7 @@
 CREATE TYPE "UserRole" AS ENUM ('ADMIN', 'USER');
 
 -- CreateTable
-CREATE TABLE "accounts" (
+CREATE TABLE "Accounts" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
@@ -18,51 +18,50 @@ CREATE TABLE "accounts" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "accounts_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Accounts_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "sessions" (
+CREATE TABLE "Sessions" (
     "id" TEXT NOT NULL,
     "sessionToken" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "sessions_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "used_languages" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "wordsSetId" TEXT,
-
-    CONSTRAINT "used_languages_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "words_sets" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
 
-    CONSTRAINT "words_sets_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Sessions_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "words" (
+CREATE TABLE "Words" (
     "id" TEXT NOT NULL,
     "text" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "setId" TEXT NOT NULL,
     "languageId" TEXT NOT NULL,
+    "wordSetId" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
 
-    CONSTRAINT "words_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Words_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "users" (
+CREATE TABLE "Languages" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+
+    CONSTRAINT "Languages_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "WordsSets" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+
+    CONSTRAINT "WordsSets_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Users" (
     "id" TEXT NOT NULL,
     "name" TEXT,
     "email" TEXT,
@@ -76,64 +75,79 @@ CREATE TABLE "users" (
     "stripe_price_id" TEXT,
     "stripe_current_period_end" TIMESTAMP(3),
 
-    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Users_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "verification_tokens" (
+CREATE TABLE "VerificationTokens" (
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL
 );
 
--- CreateIndex
-CREATE INDEX "accounts_userId_idx" ON "accounts"("userId");
+-- CreateTable
+CREATE TABLE "_LanguageToWordsSet" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
 
 -- CreateIndex
-CREATE UNIQUE INDEX "accounts_provider_providerAccountId_key" ON "accounts"("provider", "providerAccountId");
+CREATE INDEX "Accounts_userId_idx" ON "Accounts"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "sessions_sessionToken_key" ON "sessions"("sessionToken");
+CREATE UNIQUE INDEX "Accounts_provider_providerAccountId_key" ON "Accounts"("provider", "providerAccountId");
 
 -- CreateIndex
-CREATE INDEX "sessions_userId_idx" ON "sessions"("userId");
+CREATE UNIQUE INDEX "Sessions_sessionToken_key" ON "Sessions"("sessionToken");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+CREATE INDEX "Sessions_userId_idx" ON "Sessions"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_stripe_customer_id_key" ON "users"("stripe_customer_id");
+CREATE UNIQUE INDEX "Users_email_key" ON "Users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_stripe_subscription_id_key" ON "users"("stripe_subscription_id");
+CREATE UNIQUE INDEX "Users_stripe_customer_id_key" ON "Users"("stripe_customer_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "verification_tokens_token_key" ON "verification_tokens"("token");
+CREATE UNIQUE INDEX "Users_stripe_subscription_id_key" ON "Users"("stripe_subscription_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "verification_tokens_identifier_token_key" ON "verification_tokens"("identifier", "token");
+CREATE UNIQUE INDEX "VerificationTokens_token_key" ON "VerificationTokens"("token");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VerificationTokens_identifier_token_key" ON "VerificationTokens"("identifier", "token");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_LanguageToWordsSet_AB_unique" ON "_LanguageToWordsSet"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_LanguageToWordsSet_B_index" ON "_LanguageToWordsSet"("B");
 
 -- AddForeignKey
-ALTER TABLE "accounts" ADD CONSTRAINT "accounts_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Accounts" ADD CONSTRAINT "Accounts_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "sessions" ADD CONSTRAINT "sessions_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Sessions" ADD CONSTRAINT "Sessions_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "used_languages" ADD CONSTRAINT "used_languages_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Words" ADD CONSTRAINT "Words_languageId_fkey" FOREIGN KEY ("languageId") REFERENCES "Languages"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "used_languages" ADD CONSTRAINT "used_languages_wordsSetId_fkey" FOREIGN KEY ("wordsSetId") REFERENCES "words_sets"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Words" ADD CONSTRAINT "Words_wordSetId_fkey" FOREIGN KEY ("wordSetId") REFERENCES "WordsSets"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "words_sets" ADD CONSTRAINT "words_sets_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Words" ADD CONSTRAINT "Words_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "words" ADD CONSTRAINT "words_languageId_fkey" FOREIGN KEY ("languageId") REFERENCES "used_languages"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Languages" ADD CONSTRAINT "Languages_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "words" ADD CONSTRAINT "words_setId_fkey" FOREIGN KEY ("setId") REFERENCES "words_sets"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "WordsSets" ADD CONSTRAINT "WordsSets_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "words" ADD CONSTRAINT "words_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "_LanguageToWordsSet" ADD CONSTRAINT "_LanguageToWordsSet_A_fkey" FOREIGN KEY ("A") REFERENCES "Languages"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_LanguageToWordsSet" ADD CONSTRAINT "_LanguageToWordsSet_B_fkey" FOREIGN KEY ("B") REFERENCES "WordsSets"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 

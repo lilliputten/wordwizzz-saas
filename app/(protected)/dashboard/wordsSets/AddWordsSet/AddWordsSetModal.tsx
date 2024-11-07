@@ -4,9 +4,8 @@ import { cn } from '@/lib/utils';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Modal } from '@/components/ui/modal';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { TLanguage, TLanguageId } from '@/features/languages/types';
-import { TNewWordsSet, TWordsSet } from '@/features/wordsSets/types';
+import { TNewWordsSet, TWordsSet, TWordsSetWithLanguages } from '@/features/wordsSets/types';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 
 import { AddWordsSetBlock, TAddWordsSetBlockProps } from './AddWordsSetBlock';
@@ -18,7 +17,10 @@ interface TAddWordsSetModalProps /* extends TAddWordsSetBlockProps */ {
   languages: TLanguage[];
   wordsSets: TWordsSet[];
   // onAddWordsSet: (wordsSet: TWordsSet) => Promise<TWordsSet[]>;
-  onAddWordsSet: (wordsSet: TNewWordsSet, languageIds: TLanguageId[]) => Promise<TWordsSet[]>;
+  onAddWordsSet: (
+    wordsSet: TNewWordsSet,
+    languageIds: TLanguageId[],
+  ) => Promise<TWordsSetWithLanguages>;
 }
 
 function AddWordsSetModal(props: TAddWordsSetModalProps) {

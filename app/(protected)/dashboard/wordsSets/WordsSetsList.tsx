@@ -9,7 +9,12 @@ import { WaitingWrapper } from '@/components/ui/WaitingWrapper';
 import { TLanguage, TLanguageId } from '@/features/languages/types';
 import { TAddWordsSetAction, TDeleteWordsSetAction } from '@/features/wordsSets/actions';
 import { convertWordsSetsToClientForm } from '@/features/wordsSets/helpers';
-import { TNewWordsSet, TWordsSet, TWordsSetId } from '@/features/wordsSets/types';
+import {
+  TNewWordsSet,
+  TWordsSet,
+  TWordsSetId,
+  TWordsSetWithLanguages,
+} from '@/features/wordsSets/types';
 import { getErrorText } from '@/shared/helpers/strings';
 import { tailwindClippingLayout } from '@/shared/helpers/tailwind';
 import { TUserId } from '@/shared/types/TUser';
@@ -22,7 +27,7 @@ import { WordsSetsSkeleton } from './WordsSetsSkeleton';
 interface TWordsSetsListProps {
   userId: TUserId;
   languages: TLanguage[];
-  initialWordsSets: TWordsSet[];
+  initialWordsSets: TWordsSetWithLanguages[];
   addWordsSet: TAddWordsSetAction;
   deleteWordsSet: TDeleteWordsSetAction;
 }
@@ -54,20 +59,16 @@ export function WordsSetsList(props: TWordsSetsListProps) {
       if (isUpdating) {
         throw new Error('The data is currently being updated');
       }
-      return new Promise<TWordsSet[]>((resolve, reject) => {
+      return new Promise<TWordsSetWithLanguages>((resolve, reject) => {
         startUpdating(() => {
           return deleteWordsSet(userId, wordSetId)
-            .then((updateResult) => {
-              const { wordsSets } = updateResult;
-              const clientWordsSets = convertWordsSetsToClientForm(wordsSets);
+            .then((removedWordsSet) => {
               console.log('[WordsSetsList:onDeleteWordsSet] done', {
-                updateResult,
-                wordsSets,
-                clientWordsSets,
+                removedWordsSet,
               });
-              setWordsSets(clientWordsSets);
+              setWordsSets((wordsSets) => wordsSets.filter(({ id }) => id !== removedWordsSet.id));
               toast.success('The words set has been removed');
-              resolve(clientWordsSets);
+              resolve(removedWordsSet);
             })
             .catch((error) => {
               const description = getErrorText(error);
@@ -93,47 +94,21 @@ export function WordsSetsList(props: TWordsSetsListProps) {
       if (memo.isUpdating) {
         throw new Error('The data is currently being updated');
       }
-      return new Promise<TWordsSet[]>((resolve, reject) => {
+      return new Promise<TWordsSetWithLanguages>((resolve, reject) => {
         startUpdating(() => {
           console.log('[WordsSetsList:onAddWordsSet]', {
             wordsSet,
-            wordsSets,
+            // wordsSets,
           });
           return addWordsSet(userId, wordsSet, languageIds)
-            .then((updateResult) => {
-              /* // Sample updateResult data:
-               * createdAt: Wed Nov 06 2024 14:42:07 GMT+0300 (Moscow Standard Time) {}
-               * email: "lilliputten@gmail.com"
-               * emailVerified: null
-               * id: "cm35t72yj000093uu5ag6m97d"
-               * image: "https://lh3.googleusercontent.com/a/ACg8ocJJYaKIduKmECJkLVdTs_RFDtv9YoSzbIPJxkhldzgdBlL_CZkh=s96-c"
-               * languages: (2) [{…}, {…}]
-               * name: "Igor Lilliputten"
-               * role: "USER"
-               * stripeCurrentPeriodEnd: null
-               * stripeCustomerId: null
-               * stripePriceId: null
-               * stripeSubscriptionId: null
-               * updatedAt: Wed Nov 06 2024 14:42:07 GMT+0300 (Moscow Standard Time) {}
-               * words: []
-               * wordsSets: [{…}]
-               */
-              const { wordsSets: updatedWordsSets } = updateResult;
-              const clientWordsSets = updatedWordsSets.map(
-                ({ id, name }) => ({ id, name }) as TWordsSet,
-              );
+            .then((addedWordsSet) => {
               console.log('[WordsSetsList:onAddWordsSet] done', {
-                clientWordsSets,
-                updatedWordsSets,
-                updateResult,
+                addedWordsSet,
                 wordsSet,
-                wordsSets,
               });
-              debugger;
-              setWordsSets(clientWordsSets);
-              // setWordsSets((wordsSets) => wordsSets.concat(wordsSet)); // XXX: Manually apply changes
+              setWordsSets((wordsSets) => wordsSets.concat(addedWordsSet));
               toast.success('The wordsSet has been added');
-              resolve(clientWordsSets);
+              resolve(addedWordsSet);
             })
             .catch((error) => {
               const description = getErrorText(error);
@@ -151,13 +126,7 @@ export function WordsSetsList(props: TWordsSetsListProps) {
         });
       });
     },
-    [
-      memo,
-      userId,
-      addWordsSet,
-      // DEBUG
-      wordsSets, // DEBUG: Only for demo purpose: to update current wordsSets list in-place
-    ],
+    [memo, userId, addWordsSet],
   );
 
   const hasWordsSets = !!wordsSets.length;

@@ -1,10 +1,10 @@
-import { TLanguage, TPrismaLanguage } from '@/features/languages/types';
+import { TLanguage } from '@/features/languages/types';
 
-function convertPrismaLanguageToClient(prismaLanguage: TPrismaLanguage) {
+function convertPrismaLanguageToClient(prismaLanguage: TLanguage) {
   const { id, name } = prismaLanguage;
   return { id, name } as TLanguage;
 }
 
-export function convertLanguagesToClientForm(prismaLanguages: TPrismaLanguage[]) {
+export function convertLanguagesToClientForm(prismaLanguages: TLanguage[]) {
   return prismaLanguages.map((language) => convertPrismaLanguageToClient(language));
 }
